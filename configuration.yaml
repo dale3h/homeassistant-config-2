@@ -45,10 +45,10 @@ http:
   ssl_certificate: !secret ssl_cert
   ssl_key: !secret ssl_key
   trusted_networks:
-    - 192.168.10.0/24
-    - 137.91.114.0/24
-    - 72.223.82.224
-    - 174.79.54.163
+    - !secret network_1
+    - !secret network_2
+    - !secret network_3
+    - !secret network_4
 
 ### iOS
 ios:
