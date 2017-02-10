@@ -1,1 +1,0 @@
-megs_update: 'mosquitto_pub -d -u mqtt-user -P ricknmegs -t owntracks/megs/iphone/cmd -m "{"_type":"cmd","action":"reportLocation"}"'
