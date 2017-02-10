@@ -1,0 +1,16 @@
+www
+icloud
+lib
+deps
+known_devices.yaml
+secrets.yaml
+*.pid
+*.xml
+*.csr
+*.crt
+*.key
+*.txt
+*.log
+*.conf
+*.db
+pyozw.sqlite

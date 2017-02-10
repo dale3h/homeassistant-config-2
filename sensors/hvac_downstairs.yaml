@@ -1,0 +1,53 @@
+
+#####################################################################
+### HVAC Downstairs
+#####################################################################
+
+## Median Temperature Downstairs
+- platform: statistics
+  entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1
+  name: Downstairs Thermostat Statistics
+
+## Downstairs Thermostat Mode
+- platform: template
+  sensors:
+    hvac_downstairs_mode:
+      value_template: "{{ states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2') }}"
+      friendly_name: "Downstairs Thermostat Mode"
+
+## Downstairs Fan State
+- platform: template
+  sensors:
+    hvac_downstairs_fan:
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes.fan_state }}"
+      friendly_name: "Downstairs HVAC Fan"
+
+## Downstairs AC Temp Setpoint
+- platform: template
+  sensors:
+    hvac_downstairs_ac_setpoint:
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes.temperature }}"
+      friendly_name: "Downstairs AC Setpoint"
+
+## Downstairs Heat Temp Setpoint
+- platform: template
+  sensors:
+    hvac_downstairs_heat_setpoint:
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_18_1'].attributes.temperature }}"
+      friendly_name: "Downstairs Heat Setpoint"
+
+## Downstairs Climate
+- platform: template
+  sensors:
+    hvac_downstairs_climate:
+      value_template: >-
+        {%- if 69.5 <= states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state|float <= 80.5 -%}
+            Comfy
+          {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1") | float < 69.5 -%}
+            Cold
+          {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1") | float > 80.5 -%}
+            Hot
+        {%- else -%}
+            {{ states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1") }}
+        {%- endif %}
+      friendly_name: "Downstairs Climate"

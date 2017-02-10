@@ -1,0 +1,14 @@
+- alias: Turn off Humidifier
+  hide_entity: True
+  trigger:
+    platform: time
+    after: '06:45:00'
+  
+  condition:
+    condition: state
+    entity_id: switch.humidifier
+    state: 'on'
+  
+  action:
+    service: switch.turn_off
+    entity_id: switch.humidifier

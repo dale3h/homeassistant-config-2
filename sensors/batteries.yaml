@@ -1,0 +1,40 @@
+
+#####################################################################
+### BATTERY STATUS
+#####################################################################
+
+# sensor: iCloud Battery - Rick
+- platform: template
+  sensors:
+    iphone_battery_rick:
+      value_template: '{{ states.device_tracker.iphwn666.attributes.battery | round(2) }}'
+      unit_of_measurement: '%'
+      entity_id: device_tracker.iphwn666
+      friendly_name: "Rick's Phone Battery"
+
+# sensor: iCloud Battery - Megs
+- platform: template
+  sensors:
+    iphone_battery_megs:
+      value_template: '{{ states.device_tracker.iphone7.attributes.battery | round(2) }}'
+      unit_of_measurement: '%'
+      entity_id: device_tracker.iphone7
+      friendly_name: "Meg's Phone Battery"
+
+# Beach Bathroom Lock Battery %
+- platform: template
+  sensors:
+    lock_beach_battery:
+      value_template: '{{ states.lock.assa_abloy_yale_real_living_captouch_lever_locked_12_0.attributes.battery_level }}'
+      unit_of_measurement: '%'
+      entity_id: lock.assa_abloy_yale_real_living_captouch_lever_locked_12_0
+      friendly_name: "Beach Lock Battery"
+
+# South Lock Battery %
+- platform: template
+  sensors:
+    lock_south_battery:
+      value_template: '{{ states.lock.assa_abloy_yale_real_living_captouch_lever_locked_16_0.attributes.battery_level }}'
+      unit_of_measurement: '%'
+      entity_id: lock.assa_abloy_yale_real_living_captouch_lever_locked_16_0
+      friendly_name: "South Lock Battery"

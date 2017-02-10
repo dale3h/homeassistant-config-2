@@ -1,0 +1,11 @@
+
+#####################################################################
+### Peak Hours
+#####################################################################
+
+## Peak Hours State
+- platform: template
+  sensors:
+    peak_hours_status:
+      value_template: "{{ states('input_boolean.peak_hours') }}"
+      friendly_name: "Peak Hours"

@@ -1,0 +1,61 @@
+#####################################################################
+### HVAC MODES - SET OFF; Turn off the system if the weather is awesome!
+#####################################################################
+
+- alias: hvac off during awesome weather
+  trigger:
+    - platform: template
+      value_template: "{% if is_state('sensor.season', 'Awesome') %}true{% endif %}"
+
+  action:
+    - service: climate.set_operation_mode
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      data:
+        operation_mode: 'Off'
+
+    - service: climate.set_operation_mode
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
+      data:
+        operation_mode: 'Off'
+
+#####################################################################
+### SET COOL
+#####################################################################
+
+- alias: hvac downstairs mode cool
+  hide_entity: True
+  trigger:
+    - platform: template
+      value_template: "{% if is_state('sensor.season', 'Summer') %}true{% endif %}"
+
+  action:
+    - service: climate.set_operation_mode
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      data:
+        operation_mode: 'Cool'
+
+    - service: climate.set_operation_mode
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
+      data:
+        operation_mode: 'Cool'
+
+#####################################################################
+### SET HEAT
+#####################################################################
+
+- alias: hvac downstairs mode heat
+  hide_entity: True
+  trigger:
+    - platform: template
+      value_template: "{% if is_state('sensor.season', 'Winter') %}true{% endif %}"
+
+  action:
+    - service: climate.set_operation_mode
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      data:
+        operation_mode: 'Heat'
+
+    - service: climate.set_operation_mode
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
+      data:
+        operation_mode: 'Heat'

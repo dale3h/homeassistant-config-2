@@ -1,0 +1,4 @@
+- platform: manual
+  name: "Alarm"
+  pending_time: 0
+  trigger_time: 0

@@ -1,0 +1,151 @@
+#####################################################################
+### Condition Test #1
+#####################################################################
+
+- alias: test input_boolean condition 1
+  trigger:
+
+    - platform: state
+      entity_id: input_boolean.state_change
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: template
+      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state < '72' }}"
+
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        - sun
+
+    - condition: state
+      entity_id: input_boolean.condition_3
+      state: 'on'
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.condition_4
+          state: 'on'
+
+        - condition: state
+          entity_id: input_boolean.condition_5
+          state: 'on'
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.condition_1
+          state: 'on'
+
+        - condition: state
+          entity_id: input_boolean.condition_2
+          state: 'on'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Red"
+
+#####################################################################
+### Condition Test #2
+#####################################################################
+
+- alias: test input_boolean condition 2
+  trigger:
+
+    - platform: state
+      entity_id: input_boolean.state_change
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.condition_1
+      state: 'on'
+
+    - condition: state
+      entity_id: input_boolean.condition_2
+      state: 'on'
+
+    - condition: state
+      entity_id: input_boolean.condition_3
+      state: 'off'
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.condition_4
+          state: 'off'
+
+        - condition: state
+          entity_id: input_boolean.condition_5
+          state: 'off'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Blue"
+
+#####################################################################
+### Condition Test #3
+#####################################################################
+
+- alias: test input_boolean condition 3
+  trigger:
+
+    - platform: state
+      entity_id: input_boolean.state_change
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.condition_1
+      state: 'off'
+
+    - condition: state
+      entity_id: input_boolean.condition_2
+      state: 'off'
+
+    - condition: state
+      entity_id: input_boolean.condition_3
+      state: 'off'
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.condition_4
+          state: 'on'
+
+        - condition: state
+          entity_id: input_boolean.condition_5
+          state: 'on'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Violet"
+
+####################################################
+- alias: test input_boolean off
+  trigger:
+
+    - platform: state
+      entity_id: input_boolean.state_change
+      from: 'on'
+      to: 'off'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Off"

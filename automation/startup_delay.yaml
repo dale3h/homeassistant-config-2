@@ -1,0 +1,54 @@
+#####################################################################
+### Send notification on HA Restart
+#####################################################################
+
+- alias: Startup Notification
+  hide_entity: True
+  trigger:
+    platform: event
+    event_type: homeassistant_start
+
+  action:
+  - service: notify.notify
+    data:
+      title: "Home Assistant Startup"
+      target: "device/Chrome"
+      message: "Home Assistant is up and running."
+
+# notify iOS
+  - service: notify.ios_iphwn666
+    data:
+      title: "Home Assistant Startup"
+      message: "Home Assistant is up and running."
+
+#####################################################################
+### Delay automations that trigger on restart; i.e. presence-detection
+#####################################################################
+
+- alias: delay on restart
+  hide_entity: True
+  trigger:
+    platform: event
+    event_type: homeassistant_start
+
+  action:
+    - service: automation.turn_off
+      entity_id: automation.unlock_door_for_megs
+    - service: automation.turn_off
+      entity_id: automation.turn_on_lights_upon_arrival
+    - service: automation.turn_off
+      entity_id: automation.away_mode
+    - service: automation.turn_off
+      entity_id: automation.heat_downstairs_upon_arrival
+
+    - delay:
+        minutes: 3
+
+    - service: automation.turn_on
+      entity_id: automation.unlock_door_for_megs
+    - service: automation.turn_on
+      entity_id: automation.turn_on_lights_upon_arrival
+    - service: automation.turn_on
+      entity_id: automation.away_mode
+    - service: automation.turn_on
+      entity_id: automation.heat_downstairs_upon_arrival

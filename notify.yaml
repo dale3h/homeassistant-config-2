@@ -1,0 +1,22 @@
+## iOS
+- platform: ios
+  target: !secret ios_token
+
+## PushBullet
+- platform: pushbullet
+  name: pushbullet
+  api_key: !secret pushbullet_api_key
+
+## Future Adds....
+# html 5
+#- platform: html5
+#  gcm_api_key: 'gcm-sender-key'
+#  gcm_sender_id: 'gcm-sender-id'
+
+## Kodi
+#- platform: kodi
+#  name: kodi
+#  host: 192.168.0.150
+#  port: 80
+##  username: USERNAME
+#  password: PASSWORD

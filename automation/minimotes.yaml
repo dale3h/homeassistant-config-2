@@ -1,0 +1,272 @@
+#####################################################################
+### Aeotec zwave minimote #1: aeotec_dsa03202_minimote_30
+#####################################################################
+
+- alias: minimote 1 button 1 short
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_30
+        scene_id: 1
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Warm"
+
+###
+- alias: minimote 1 button 1 long
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_30
+        scene_id: 2
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Warm Dim"
+
+###
+- alias: minimote 1 button 2 short
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_30
+        scene_id: 3
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Off"
+
+###
+- alias: minimote 1 button 2 long
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_30
+        scene_id: 4
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Cool"
+
+###
+- alias: minimote 1 button 3 short
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_30
+        scene_id: 5
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Blue"
+
+###
+- alias: minimote 1 button 3 long
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_30
+        scene_id: 6
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Violet"
+
+###
+- alias: minimote 1 button 4 short
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_30
+        scene_id: 7
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Red"
+
+###
+- alias: minimote 1 button 4 long
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_30
+        scene_id: 8
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Green"
+#####################################################################
+### Aeotec zwave minimote #2: aeotec_dsa03202_minimote_32
+#####################################################################
+
+- alias: minimote 2 button 1 short
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_32
+        scene_id: 1
+
+  action:
+    - service: script.turn_on
+      data:
+        entity_id: script.master_bedroom_night_time
+
+##
+- alias: minimote 2 button 1 long
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_32
+        scene_id: 2
+
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.ge_12724_3way_dimmer_switch_level_8_0
+
+##
+- alias: minimote 2 button 2 short
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_32
+        scene_id: 3
+
+  action:
+    - service: script.turn_on
+      data:
+        entity_id: script.cool_upstairs_120min
+
+##
+- alias: minimote 2 button 2 long
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_32
+        scene_id: 4
+
+  action:
+    - service: script.turn_on
+      data:
+        entity_id: script.heat_upstairs_120min
+
+##
+- alias: minimote 2 button 3 short
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_32
+        scene_id: 5
+
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.early_morning
+
+##
+- alias: minimote 2 button 3 long
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_32
+        scene_id: 6
+
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.living_room_normal
+
+##
+- alias: minimote 2 button 4 short
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_32
+        scene_id: 7
+
+  action:
+    - service: script.turn_on
+      data:
+        entity_id: script.cool_downstairs_120min
+
+##
+- alias: minimote 2 button 4 long
+  initial_state: True
+  hide_entity: True
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: aeotec_dsa03202_minimote_32
+        scene_id: 8
+
+  action:
+    - service: script.turn_on
+      data:
+        entity_id: script.heat_downstairs_120min
+
+#####################################################################
+### Aeotec zwave minimote #3: aeotec_dsa03202_minimote_31
+#####################################################################

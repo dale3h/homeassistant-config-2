@@ -1,0 +1,75 @@
+#####################################################################
+### Megs Away
+#####################################################################
+
+- alias: 'set megs away'
+  trigger:
+## iCloud tracker
+    - platform: state
+      entity_id: device_tracker.iphone7
+      from: 'home'
+      to: 'not_home'
+      for:
+        minutes: 5
+
+## Owntracks tracker
+    - platform: state
+      entity_id: device_tracker.megs_iphone7
+      from: 'home'
+      to: 'not_home'
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.megs_home
+
+#####################################################################
+### Megs home
+#####################################################################
+
+- alias: 'set megs home'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.iphone7
+      from: 'not_home'
+      to: 'home'
+
+    - platform: state
+      entity_id: device_tracker.megs_iphone7
+      from: 'not_home'
+      to: 'home'
+
+  action:
+     service: homeassistant.turn_on
+     entity_id: input_boolean.megs_home
+
+#####################################################################
+### Rick Away
+#####################################################################
+
+- alias: 'set rick away'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.iphwn666
+      from: 'home'
+      to: 'not_home'
+      for:
+        minutes: 5
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.rick_home
+
+#####################################################################
+### Rick home
+#####################################################################
+
+- alias: 'set rick home'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.iphwn666
+      from: 'not_home'
+      to: 'home'
+
+  action:
+     service: homeassistant.turn_on
+     entity_id: input_boolean.rick_home

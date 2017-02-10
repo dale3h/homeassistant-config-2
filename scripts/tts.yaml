@@ -1,0 +1,52 @@
+time_temp:
+  alias: "Kodi Time and Temp"
+  sequence:
+    - service: tts.google_say
+      data_template:
+        entity_id: media_player.kodi_office
+        message: >-
+          {% if now().strftime("%H")|int < 12 %}
+          Good morning.
+          {% elif now().strftime("%H")|int < 18 %}
+          Good afternoon.
+          {% else %}
+          Good evening.
+          {% endif %}
+          'The temperature is {{states.sensor.pws_temp_f.state|round}} degrees right now in Mesa'
+          {% if now().strftime("%H")|int < 9 %}
+          'Rick's commute to work is {{states.sensor.rick_work_commute.state | int }} minutes if you leave now.'
+          {% endif %}
+
+    - service: tts.google_say
+      data_template:
+        entity_id: media_player.kodi_office
+        message: 'the temperature downstairs is about {{states.sensor.fibaro_system_fgms001_motion_sensor_temperature_22_1.state | int }} degrees.'
+        
+        
+        
+#        message: >-
+#          {% if now().strftime("%H")|int < 12 %}
+#          Good morning.
+#          {% elif now().strftime("%H")|int < 18 %}
+#          Good afternoon.
+#          {% else %}
+#          Good evening.
+#          {% endif %}
+#          'The temperature is {{states.sensor.pws_temp_f.state|round}} degrees right now in Mesa'
+#          {% if now().strftime("%H")|int < 9 %}
+#          'Rick's commute to work is {{states.sensor.rick_work_commute.state | int }} minutes if you leave now.'
+#          {% endif %}
+#          
+#          
+#        message: >
+#          {% if now().strftime("%H")|int < 12 %}
+#          Bon Matin.
+#          {% elif now().strftime("%H")|int < 18 %}
+#          Bonne aprês-midi.
+#          {% else %}
+#          Bon soir.
+#          {% endif %}
+#          Bonjour, la température extérieur est de {{states.sensor.owm_temperature.state|round}} degrés à Trois-Rivières.
+#          {% if now().strftime("%H")|int < 9 %}
+#          Le temps pour se rendre au travail est de {{states.sensor.temps_travail_.state}}
+#          {% endif %}

@@ -1,0 +1,9 @@
+home:
+  ignored_zones:
+    - rick_work
+    - megs_work
+  devices:
+    - device_tracker.megs_iphone
+    - device_tracker.iphwn666
+  tolerance: 50
+  unit_of_measurement: mi

@@ -1,0 +1,19 @@
+- alias: notify unlock entry
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0
+    state: '19'
+
+  action:
+
+    - service: notify.notify
+      data:
+        title: "Door Unlocked"
+        target: "device/Chrome"
+        message: "South Door {{ states.sensor.lock_south_door_status.state }}"
+
+    - service: notify.ios_iphwn666
+      data:
+        title: "Door Unlocked"
+        message: "South Door {{ states.sensor.lock_south_door_status.state }}"

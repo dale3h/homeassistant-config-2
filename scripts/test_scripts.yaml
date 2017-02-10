@@ -1,0 +1,33 @@
+#####################################################################
+###  - test sequence
+#####################################################################
+
+script_test:
+  sequence:
+
+## turn on the light
+  - service: light.turn_on
+    entity_id: light.flux_rgb
+
+
+#####################################################################
+### Leave this section for testing notifications
+#####################################################################
+
+## notify Pushbullet
+#    - service: notify.notify
+#      data:
+#        title: "Testing!"
+#        target: "device/Chrome"
+#        message: "Test completed at:{{ states('sensor.date__time') }}"
+
+# notify iOS
+#    - service: notify.ios_iphwn666
+#      data:
+#        title: "Testing!"
+#        message: "Test completed at:{{ states('sensor.date__time') }}"
+
+## include sound notifications
+#        data:
+#          push:
+#            sound: "US-EN-Morgan-Freeman-Wife-Is-Arriving.wav"

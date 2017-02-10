@@ -1,0 +1,202 @@
+#####################################################################
+### AC - Downstairs Limit Reached
+#####################################################################
+
+- alias: cool downstairs if too hot
+  trigger:
+    - platform: template
+      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state > '84.5' }}"
+
+# kick the AC on for 3 hours
+  action:
+    - service: script.cool_downstairs_180min
+
+#####################################################################
+### AC - Downstairs trigger on temperature
+#####################################################################
+
+- alias: downstairs cooling triggered
+  trigger:
+    - platform: template
+      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state > '79.5' }}"
+
+#    - platform: template
+#      value_template: "{% if is_state('sensor.hvac_downstairs_climate', 'Hot') %}true{% endif %}"
+
+  condition:
+    - condition: state
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      state: 'Cool'
+
+    - condition: state
+      entity_id: sensor.hvac_downstairs_climate
+      state: 'Hot'
+
+    - condition: state
+      entity_id: script.cool_downstairs_180min
+      state: 'off'
+
+    - condition: state
+      entity_id: input_boolean.peak_hours
+      state: 'off'
+
+    - condition: state
+      entity_id: input_boolean.after_hours
+      state: 'off'
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: group.family
+          state: 'on'
+
+        - condition: state
+          entity_id: input_boolean.visitor_mode
+          state: 'on'
+
+# kick the AC on for 3 hours
+  action:
+    - service: script.cool_downstairs_180min
+
+#####################################################################
+### AC - Downstairs Weekday mornings
+#####################################################################
+
+- alias: downstairs cooling weekday mornings
+  trigger:
+    - platform: time
+      after: '04:14:59'
+
+  condition:
+    - condition: state
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      state: 'Cool'
+
+    - condition: state
+      entity_id: sensor.hvac_downstairs_climate
+      state: 'Hot'
+
+    - condition: state
+      entity_id: script.cool_downstairs_180min
+      state: 'off'
+
+    - condition: time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: group.family
+          state: 'on'
+
+        - condition: state
+          entity_id: input_boolean.visitor_mode
+          state: 'on'
+
+# kick the AC on for 3 hours
+  action:
+    - service: script.cool_downstairs_180min
+
+#####################################################################
+### AC - Downstairs weekends
+#####################################################################
+
+- alias: downstairs cooling weekends
+  trigger:
+    - platform: time
+      after: '07:59:59'
+
+    - platform: time
+      after: '12:59:59'
+
+  condition:
+    - condition: state
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      state: 'Cool'
+
+    - condition: state
+      entity_id: sensor.hvac_downstairs_climate
+      state: 'Hot'
+
+    - condition: state
+      entity_id: script.cool_downstairs_180min
+      state: 'off'
+
+    - condition: time
+      weekday:
+      - sat
+      - sun
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: group.family
+          state: 'on'
+
+        - condition: state
+          entity_id: input_boolean.visitor_mode
+          state: 'on'
+
+# kick the AC on for 3 hours
+  action:
+    - service: script.cool_downstairs_180min
+
+#####################################################################
+### AC - Turn up the AC when bedtime is triggered
+#####################################################################
+
+- alias: cool downstairs bedtime
+  trigger:
+    - platform: state
+      entity_id: script.bedtime
+      from: 'off'
+      to: 'on'
+
+    - platform: state
+      entity_id: input_boolean.after_hours
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      state: 'Cool'
+
+  action:
+    - service: script.turn_off
+      entity_id: script.cool_downstairs_180min
+
+    - service: climate.set_temperature
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      data:
+        temperature: 82
+
+#####################################################################
+### AC - Cool down when we return
+#####################################################################
+
+- alias: cool downstairs upon arrival
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 2
+
+  condition:
+    - condition: state
+      entity_id: sensor.hvac_downstairs_climate
+      state: 'Hot'
+
+    - condition: state
+      entity_id: input_boolean.peak_hours
+      state: 'off'
+
+  action:
+    - service: script.cool_downstairs_120min

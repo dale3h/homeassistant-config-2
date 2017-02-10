@@ -1,0 +1,61 @@
+#####################################################################
+### Downstairs Input slider temperature adjustment
+#####################################################################
+
+- alias: downstairs hvac temperature adjustment
+  trigger:
+    platform: state
+    entity_id: input_slider.downstairs_heat
+
+  action:
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_18_1
+        temperature: '{{ trigger.to_state.state | int }}'
+
+#####################################################################
+### Upstairs Input slider temperature adjustment
+#####################################################################
+
+- alias: upstairs hvac temperature adjustment
+  trigger:
+    platform: state
+    entity_id: input_slider.upstairs_heat
+
+  action:
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_24_1
+        temperature: '{{ trigger.to_state.state | int }}'
+
+#####################################################################
+### Downstairs - Change Input slider adjust to match temperature (downstairs heat)
+#####################################################################
+
+- alias: downstairs hvac heat input slider
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: sensor.hvac_downstairs_heat_setpoint
+
+  action:
+    service: input_slider.select_value
+    data_template:
+      entity_id: input_slider.downstairs_heat
+      value: "{{ states.sensor.hvac_downstairs_heat_setpoint.state | int }}"
+
+#####################################################################
+### Upstairs - Change Input slider adjust to match temperature (upstairs heat)
+#####################################################################
+
+- alias: upstairs hvac heat input slider
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: sensor.hvac_upstairs_heat_setpoint
+
+  action:
+    service: input_slider.select_value
+    data_template:
+      entity_id: input_slider.upstairs_heat
+      value: "{{ states.sensor.hvac_upstairs_heat_setpoint.state | int }}"

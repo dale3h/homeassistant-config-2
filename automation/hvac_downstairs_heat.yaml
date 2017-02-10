@@ -1,0 +1,201 @@
+#####################################################################
+### HEAT - Downstairs Limit Reached
+#####################################################################
+
+- alias: heat downstairs if too cold
+  trigger:
+    - platform: template
+      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state < '66.5' }}"
+
+# kick the heat on for 3 hours
+  action:
+    - service: script.heat_downstairs_180min
+
+#####################################################################
+### HEAT - Downstairs trigger on temperature
+#####################################################################
+
+- alias: downstairs heating triggered
+  trigger:
+    - platform: template
+      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state < '69.5' }}"
+
+#    - platform: template
+#      value_template: "{% if is_state('sensor.hvac_downstairs_climate', 'Cold') %}true{% else %}false{% endif %}"
+
+  condition:
+    - condition: state
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      state: 'Heat'
+
+    - condition: state
+      entity_id: script.heat_downstairs_180min
+      state: 'off'
+
+    - condition: state
+      entity_id: input_boolean.peak_hours
+      state: 'off'
+
+    - condition: time
+      after: '08:29:59'
+      before: '22:00:00'
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: group.family
+          state: 'on'
+
+        - condition: state
+          entity_id: input_boolean.visitor_mode
+          state: 'on'
+
+# kick the heat on for 3 hours
+  action:
+    - service: script.heat_downstairs_180min
+
+#####################################################################
+### HEAT - downstairs weekday mornings
+#####################################################################
+
+- alias: heat downstairs weekday mornings
+  trigger:
+    - platform: time
+      after: '04:14:59'
+
+  condition:
+    - condition: state
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      state: 'Heat'
+
+    - condition: state
+      entity_id: sensor.hvac_downstairs_climate
+      state: 'Cold'
+
+    - condition: state
+      entity_id: script.heat_downstairs_180min
+      state: 'off'
+
+    - condition: time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: group.family
+          state: 'on'
+
+        - condition: state
+          entity_id: input_boolean.visitor_mode
+          state: 'on'
+
+# kick the heat on for 3 hours
+  action:
+    - service: script.heat_downstairs_180min
+
+#####################################################################
+### HEAT - downstairs evenings
+#####################################################################
+
+- alias: heat downstairs evenings
+  trigger:
+    - platform: time
+      after: '17:59:59'
+
+  condition:
+    - condition: state
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      state: 'Heat'
+
+    - condition: state
+      entity_id: sensor.hvac_downstairs_climate
+      state: 'Cold'
+
+    - condition: state
+      entity_id: script.heat_downstairs_180min
+      state: 'off'
+
+    - condition: time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: group.family
+          state: 'on'
+
+        - condition: state
+          entity_id: input_boolean.visitor_mode
+          state: 'on'
+
+# kick the heat on for 3 hours
+  action:
+    - service: script.heat_downstairs_180min
+
+#####################################################################
+### HEAT - Turn down the heat at bedtime
+#####################################################################
+
+- alias: heat downstairs lowered at bedtime
+  trigger:
+    - platform: state
+      entity_id: input_boolean.after_hours
+      from: 'off'
+      to: 'on'
+
+    - platform: state
+      entity_id: script.bedtime
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      state: 'Heat'
+
+  action:
+    - service: script.turn_off
+      entity_id: script.heat_downstairs_180min
+
+    - service: climate.set_temperature
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_18_1
+      data:
+        temperature: 62
+
+#####################################################################
+### HEAT - Raise the heat when we return
+#####################################################################
+
+- alias: heat downstairs upon arrival
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 2
+
+  condition:
+    condition: and
+    conditions:
+
+      - condition: state
+        entity_id: sensor.hvac_downstairs_climate
+        state: 'Cold'
+
+      - condition: state
+        entity_id: input_boolean.peak_hours
+        state: 'off'
+
+  action:
+    - service: script.heat_downstairs_60min

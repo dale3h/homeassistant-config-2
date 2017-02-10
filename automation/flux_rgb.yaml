@@ -1,0 +1,264 @@
+#####################################################################
+### Turn off the lamp when OFF is selected
+#####################################################################
+
+- alias: RGB Select Off
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.rgb_light
+    state: "Off"
+
+  action:
+    - service: light.turn_off
+      entity_id: light.flux_rgb
+
+#####################################################################
+### Reset input selection when lamp is turned off
+#####################################################################
+
+- alias: RGB Reset Off
+  hide_entity: True
+  trigger:
+    - platform: state
+      entity_id: light.flux_rgb
+      from: 'on'
+      to: 'off'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Off"
+
+#####################################################################
+### Default to Warm if turned on with no selection
+#####################################################################
+
+- alias: RGB Default Warm
+  hide_entity: True
+  trigger:
+    - platform: state
+      entity_id: light.flux_rgb
+      from: 'off'
+      to: 'on'
+
+  condition:
+    condition: state
+    entity_id: input_select.rgb_light
+    state: "Off"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Warm"
+
+#####################################################################
+### RGB Select Cool
+#####################################################################
+
+- alias: RGB Cool
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.rgb_light
+    state: "Cool"
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.flux_rgb
+        brightness: 255
+        color_temp: 200
+        rgb_color: [255,255,255]
+
+#####################################################################
+### RGB Select Warm
+#####################################################################
+
+- alias: RGB Warm
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.rgb_light
+    state: "Warm"
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.flux_rgb
+        brightness: 255
+        color_temp: 370
+
+#####################################################################
+### RGB Select Warm Dim
+#####################################################################
+
+- alias: RGB Warm Dim
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.rgb_light
+    state: "Warm Dim"
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.flux_rgb
+        brightness: 15
+        color_temp: 390
+
+#####################################################################
+### RGB Select Blue
+#####################################################################
+
+- alias: RGB Blue
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.rgb_light
+    state: "Blue"
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.flux_rgb
+        brightness: 255
+        color_temp: 255
+        rgb_color: [0,0,255]
+
+#####################################################################
+### RGB Select Cyan
+#####################################################################
+
+- alias: RGB Cyan
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.rgb_light
+    state: "Cyan"
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.flux_rgb
+        brightness: 255
+        color_temp: 255
+        rgb_color: [0,255,255]
+
+#####################################################################
+### RGB Select Green
+#####################################################################
+
+- alias: RGB Green
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.rgb_light
+    state: "Green"
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.flux_rgb
+        brightness: 255
+        color_temp: 255
+        rgb_color: [0,225,0]
+
+#####################################################################
+### RGB Select Pink
+#####################################################################
+
+- alias: RGB Pink
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.rgb_light
+    state: "Pink"
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.flux_rgb
+        brightness: 255
+        color_temp: 255
+        rgb_color: [255,0,255]
+
+#####################################################################
+### RGB Select Red
+#####################################################################
+
+- alias: RGB Red
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.rgb_light
+    state: "Red"
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.flux_rgb
+        brightness: 255
+        color_temp: 255
+        rgb_color: [255,0,0]
+
+#####################################################################
+### RGB Select Violet
+#####################################################################
+
+- alias: RGB Violet
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.rgb_light
+    state: "Violet"
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.flux_rgb
+        brightness: 255
+        color_temp: 255
+        rgb_color: [125,0,255]
+
+#####################################################################
+### RGB Select Yellow
+#####################################################################
+
+- alias: RGB Yellow
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.rgb_light
+    state: "Yellow"
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.flux_rgb
+        brightness: 255
+        color_temp: 255
+        rgb_color: [255,255,0]
+
+#####################################################################
+### RGB Select Random
+#####################################################################
+
+- alias: random_flux_rgb
+  hide_entity: True
+  trigger:
+    - platform: time
+      seconds: '/45'
+
+  condition:
+    - condition: state
+      entity_id: input_select.rgb_light
+      state: "Random"
+
+  action:
+    service: light.turn_on
+    data:
+      entity_id: light.flux_rgb
+      effect: random

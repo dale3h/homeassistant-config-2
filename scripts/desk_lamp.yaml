@@ -1,0 +1,22 @@
+desk_lamp:
+  sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.rgb_light
+        option: "Blue"
+
+## notify Pushbullet
+#    - service: notify.notify
+#      data:
+#        title: "Testing!"
+#        target: "device/Chrome"
+#        message: "Test completed at:{{ states('sensor.date__time') }}"
+# notify iOS
+    - service: notify.ios_iphwn666
+      data:
+        title: "Testing!"
+        message: "Test completed at:{{ states('sensor.date__time') }}"
+## sounds!
+#        data:
+#          push:
+#            sound: "US-EN-Morgan-Freeman-Wife-Is-Arriving.wav"

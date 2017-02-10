@@ -1,0 +1,67 @@
+#####################################################################
+### Turn off the lights when a movie is playing
+#####################################################################
+
+- alias: "kodi playing"
+  hide_entity: True
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_kodi_playback_state
+      to: 'playing'
+
+    - platform: state
+      entity_id: sensor.living_room_kodi_playback_state
+      to: 'resumed'
+
+  condition: 
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+      service: scene.turn_on
+      entity_id: scene.movie_time
+
+#####################################################################
+### Dim the lights when kodi is paused
+#####################################################################
+
+- alias: "kodi paused"
+  hide_entity: True
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_kodi_playback_state
+      to: 'paused'
+
+  condition: 
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: scene.turn_on
+      entity_id: scene.movie_paused
+
+#####################################################################
+### Return Living Room to normal after movie ends
+#####################################################################
+
+- alias: "kodi ended or stopped"
+  hide_entity: True
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_kodi_playback_state
+      to: 'stopped'
+
+    - platform: state
+      entity_id: sensor.living_room_kodi_playback_state
+      to: 'ended'
+
+  condition: 
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: scene.turn_on
+      entity_id: scene.movie_ended

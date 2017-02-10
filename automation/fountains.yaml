@@ -1,0 +1,57 @@
+#####################################################################
+### FOUNTAINS ON
+#####################################################################
+
+- alias: turn on fountains
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: '01:30:00'
+
+    - platform: state
+      entity_id: group.family
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: template
+      value_template: '{{ states.sensor.pws_wind_mph.state | float < 8 }}'
+
+## consider '{{ states.sensor.pws_weather.state != 'Rain'}}' need to know if it is "Rain or Raining"
+    - condition: template
+      value_template: '{{ states.sensor.dark_sky_precip_probability.state | int < 70 }}'
+
+    - condition: state
+      entity_id: input_boolean.rain
+      state: 'off'
+
+    - condition: sun
+      before: sunset
+
+    - condition: state
+      entity_id: group.family
+      state: 'on'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.linear_fs20z_isolated_contact_fixture_module_switch_21_0
+
+#####################################################################
+### FOUNTAINS OFF
+#####################################################################
+
+- alias: turn off fountains
+  hide_entity: True
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: '00:05:00'
+
+  condition:
+    - condition: state
+      entity_id: switch.linear_fs20z_isolated_contact_fixture_module_switch_21_0
+      state: 'on'
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.linear_fs20z_isolated_contact_fixture_module_switch_21_0

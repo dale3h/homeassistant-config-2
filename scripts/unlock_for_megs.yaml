@@ -1,0 +1,34 @@
+#####################################################################
+### unlock the south door for Megs
+#####################################################################
+
+unlock_megs:
+  sequence:
+
+## cancel the away script to avoid conflicts "in passing"
+  - service: script.turn_off
+    data:
+      entity_id: script.away
+
+## unlock the south door
+  - service: lock.unlock
+    entity_id: lock.assa_abloy_yale_real_living_captouch_lever_locked_16_0
+
+## and notify Rick that Megs is home
+  - service: notify.notify
+    data:
+      title: "Arrived"
+      target: "device/Chrome"
+      message: "Megs is home!"
+
+## notify iOS
+  - service: notify.ios_iphwn666
+    data:
+      title: "Arrived"
+      message: "Megs is home!"
+
+## and then, lock the south door automatically after 15 minutes
+  - delay:
+      minutes: 15
+  - service: lock.lock
+    entity_id: lock.assa_abloy_yale_real_living_captouch_lever_locked_16_0

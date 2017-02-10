@@ -1,0 +1,78 @@
+#####################################################################
+### Pool Light Scene Selection
+#####################################################################
+
+- alias: 'Pool Scene'
+  trigger:
+    - platform: state
+      entity_id: input_select.pool_scene
+
+  action:
+    - service: script.turn_on
+      data_template:
+        entity_id: >-
+          {% if is_state('input_select.pool_scene', 'Cycle') %}
+            script.pool_cycle
+          {% elif is_state('input_select.pool_scene', 'Party') %}
+            script.pool_party
+          {% elif is_state('input_select.pool_scene', 'Romance') %}
+            script.pool_romance
+          {% elif is_state('input_select.pool_scene', 'Caribbean') %}
+            script.pool_caribbean
+          {% elif is_state('input_select.pool_scene', 'Patriotic') %}
+            script.pool_patriotic
+          {% elif is_state('input_select.pool_scene', 'Sunset') %}
+            script.pool_sunset
+          {% elif is_state('input_select.pool_scene', 'Royal') %}
+            script.pool_royal
+          {% endif %}
+
+#####################################################################
+### Pool Light Color Selection
+#####################################################################
+
+- alias: 'Pool Color'
+  trigger:
+    - platform: state
+      entity_id: input_select.pool_color
+
+  action:
+    - service: script.turn_on
+      data_template:
+        entity_id: >-
+          {% if is_state('input_select.pool_color', 'Blue') %}
+            script.pool_blue
+          {% elif is_state('input_select.pool_color', 'Green') %}
+            script.pool_green
+          {% elif is_state('input_select.pool_color', 'Red') %}
+            script.pool_red
+          {% elif is_state('input_select.pool_color', 'White') %}
+            script.pool_white
+          {% elif is_state('input_select.pool_color', 'Magenta') %}
+            script.pool_magenta
+          {% endif %}
+
+#####################################################################
+### Turn off the Pool Light
+#####################################################################
+
+- alias: pool light reset selections
+  hide_entity: True
+  trigger:
+    - platform: state
+      entity_id: switch.ge_12722_onoff_relay_switch_switch_25_0
+      from: 'on'
+      to: 'off'
+      for:
+        seconds: 10
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.pool_scene
+        option: "None"
+
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.pool_color
+        option: "None"

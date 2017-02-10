@@ -1,0 +1,123 @@
+# Raspberry Pi RF Switches
+- platform: rpi_rf
+  gpio: 17
+  switches:
+    outdoor_speakers:
+      protocol: 1
+      pulselength: 186
+      code_on: !secret code1_on
+      code_off: !secret code1_off
+    humidifier:
+      protocol: 1
+      pulselength: 186
+      code_on: !secret code2_on
+      code_off: !secret code2_off
+    staircase_xmas:
+      protocol: 1
+      pulselength: 186
+      code_on: !secret code3_on
+      code_off: !secret code3_off
+    staircase_lamp:
+      protocol: 1
+      pulselength: 186
+      code_on: !secret code4_on
+      code_off: !secret code4_off
+    wine_room_lamp:
+      protocol: 1
+      pulselength: 186
+      code_on: !secret code5_on
+      code_off: !secret code5_off
+
+## MASTER BEDROOM CEILING FAN
+#    master_bed_fan_power:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_power
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_1:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_1
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_2:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_2
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_3:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_3
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_4:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_4
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_5:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_5
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_6:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_6
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_variable:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_variable
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_vacation:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_vacation
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_light:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_light
+#      code_off: !secret mbr_fan_light
+#    master_bed_fan_timer:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_timer
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_2h:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_2h
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_4h:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_4h
+#      code_off: !secret mbr_fan_power
+#    master_bed_fan_8h:
+#      protocol: 3
+#      pulselength: 146
+#      code_on: !secret mbr_fan_8h
+#      code_off: !secret mbr_fan_power
+
+# LIVING ROOM CEILING FAN
+#    living_room_fan_light:
+#      protocol: 1
+#      pulselength: 186
+#      code_on: !secret lr_fan_light
+#    living_room_fan_0:
+#      protocol: 1
+#      pulselength: 186
+#      code_on: !secret lr_fan_0
+#    living_room_fan_1:
+#      protocol: 1
+#      pulselength: 186
+#      code_on: !secret lr_fan_1
+#    living_room_fan_2:
+#      protocol: 1
+#      pulselength: 186
+#      code_on: !secret lr_fan_2
+#    living_room_fan_3:
+#      protocol: 1
+#      pulselength: 186
+#      code_on: !secret lr_fan_3

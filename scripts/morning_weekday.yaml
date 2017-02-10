@@ -1,0 +1,41 @@
+#####################################################################
+### Weekday Mornings
+#####################################################################
+
+morning_weekday:
+  sequence:
+
+  # turn on master bed chandelier
+  - service: light.turn_on
+    entity_id: light.ge_12724_3way_dimmer_switch_level_8_0
+    data:
+      brightness: 50
+
+### Turn on the accent lights
+  - service: switch.turn_on
+    entity_id: group.accent_lights
+
+  - delay: 00:00:10
+
+### Hit accent lights again
+  - service: switch.turn_on
+    entity_id: group.accent_lights
+
+  - delay:
+      minutes: 5
+
+# turn on the living room lamp
+  - service: light.turn_on
+    entity_id: light.living_room_lamp
+    data:
+      brightness: 220
+      transition: 60
+
+# turn on the living room lights
+  - service: light.turn_on
+    entity_id:
+      - light.entryway_lights
+      - group.living_room_ceiling
+    data:
+      brightness: 140
+      transition: 600

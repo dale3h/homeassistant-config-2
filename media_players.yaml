@@ -1,0 +1,25 @@
+####MEDIA PLAYERS####
+- platform: kodi
+  host: 192.168.10.150
+  port: 80
+  name: kodi_office
+  username: !secret kodi_user
+  password: !secret kodi_password
+
+- platform: kodi
+  host: 192.168.10.85
+  port: 80
+  name: kodi_bedroom
+  username: !secret kodi_user
+  password: !secret kodi_password
+
+- platform: kodi
+  host: 192.168.10.86
+  port: 8080
+  name: kodi_living_room
+  username: !secret kodi_user
+  password: !secret kodi_password
+
+#- platform: directv
+#  host: 192.168.10.175
+#  name: DirecTV DVR

@@ -1,0 +1,12 @@
+- platform: flux_led
+  automatic_add: true
+  devices:
+    192.168.10.37:
+      name: flux_rgb
+
+#    192.168.10.39:
+#      name: example_second_bulb
+
+- platform: hue
+  host: 192.168.10.38
+  allow_unreachable: true

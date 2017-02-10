@@ -1,0 +1,58 @@
+
+#####################################################################
+### GOOGLE TRAVEL
+#####################################################################
+
+# sensor: google travel time - Rick Work Commute
+- platform: google_travel_time
+  name: Rick Work Commute
+  api_key: !secret google_time_travel_api_key
+  origin: Home
+  destination: Rick Work
+
+# sensor: google travel time - Rick Home Commute
+- platform: google_travel_time
+  name: Rick Home Commute
+  api_key: !secret google_time_travel_api_key
+  origin: Rick Work
+  destination: Home
+
+# sensor: google travel time - Megs Work Commute
+- platform: google_travel_time
+  name: Megs Work Commute
+  api_key: !secret google_time_travel_api_key
+  origin: Home
+  destination: Megs Work
+
+# sensor: google travel time - Megs Home Commute
+- platform: google_travel_time
+  name: Megs Home Commute
+  api_key: !secret google_time_travel_api_key
+  origin: Megs Work
+  destination: Home
+
+# iCloud tracker for ETA Home
+- platform: google_travel_time
+  name: Megs ETA Home
+  api_key: !secret google_time_travel_api_key
+  origin: device_tracker.iphone7
+  destination: Home
+
+# iCloud tracker for ETA Home
+- platform: google_travel_time
+  name: Rick ETA Home
+  api_key: !secret google_time_travel_api_key
+  origin: device_tracker.iphwn666
+  destination: Home
+
+- platform: template
+  sensors:
+    ricks_eta:
+      value_template: "{% if is_state('sensor.rick_eta_home', '0') %}Home{% else %}{{states('sensor.rick_eta_home') }}{% endif %}"
+      friendly_name: "Rick's ETA"
+
+- platform: template
+  sensors:
+    megs_eta:
+      value_template: "{% if is_state('sensor.megs_eta_home', '0') %}Home{% else %}{{states('sensor.megs_eta_home') }}{% endif %}"
+      friendly_name: "Meg's ETA"

@@ -1,0 +1,75 @@
+#####################################################################
+### HEAT - Turn down the heat if nobody is home or during peak hours
+#####################################################################
+
+- alias: heat global peak or away
+  trigger:
+    - platform: state
+      entity_id: group.family
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 15
+
+    - platform: state
+      entity_id: input_boolean.peak_hours
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      state: 'Heat'
+
+    - condition: state
+      entity_id: input_boolean.visitor_mode
+      state: 'off'
+
+  action:
+    - service: climate.set_temperature
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_18_1
+      data:
+        temperature: 62
+
+    - service: climate.set_temperature
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_24_1
+      data:
+        temperature: 62
+
+#####################################################################
+### AC - Turn up the AC if nobody is home or during peak hours
+#####################################################################
+
+- alias: ac global peak or away
+  trigger:
+    - platform: state
+      entity_id: group.family
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 15
+
+    - platform: state
+      entity_id: input_boolean.peak_hours
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+      state: 'Cool'
+
+    - condition: state
+      entity_id: input_boolean.visitor_mode
+      state: 'off'
+
+  action:
+    - service: climate.set_temperature
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_1
+      data:
+        temperature: 85
+
+    - service: climate.set_temperature
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
+      data:
+        temperature: 87

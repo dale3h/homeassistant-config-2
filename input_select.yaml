@@ -1,0 +1,38 @@
+rgb_light:
+  name: RGB Light
+  options:
+   - "Off"
+   - "Random"
+   - "Cool"
+   - "Warm"
+   - "Warm Dim"
+   - "Red"
+   - "Blue"
+   - "Green"
+   - "Cyan"
+   - "Pink"
+   - "Violet"
+   - "Yellow"
+  initial: "Off"
+
+pool_scene:
+  name: Pool Scene
+  options:
+   - "None"
+   - "Cycle"
+   - "Party"
+   - "Romance"
+   - "Caribbean"
+   - "Patriotic"
+   - "Sunset"
+   - "Royal"
+
+pool_color:
+  name: Pool Color
+  options:
+   - "None"
+   - "Blue"
+   - "Green"
+   - "Red"
+   - "White"
+   - "Magenta"

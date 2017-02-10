@@ -1,0 +1,32 @@
+#####################################################################
+### Away
+#####################################################################
+
+away:
+  sequence:
+
+# lock up
+  - service: lock.lock
+
+# turn off all lights (except porch)
+  - service: homeassistant.turn_off
+    entity_id: group.interior_lights
+
+  - service: homeassistant.turn_off
+    entity_id: group.exterior_lights
+
+# turn off all the "things"
+  - service: homeassistant.turn_off
+    entity_id: group.things
+
+# Send notification
+  - service: notify.notify
+    data:
+      title: "Away Mode ON"
+      target: "device/Chrome"
+      message: "It appears nobody's home; away mode activated."
+# notify iOS
+  - service: notify.ios_iphwn666
+    data:
+      title: "Away Mode ON"
+      message: "It appears nobody's home; away mode activated."

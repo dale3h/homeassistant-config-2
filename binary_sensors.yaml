@@ -1,0 +1,6 @@
+#- platform: template
+#  sensors:
+#    motionsensor2:
+#      value_template: '{{ states.sensor.fibaro_system_fgms001_motion_sensor_burglar_2.state = "8"}}'
+#      friendly_name: 'Motion Sensor'
+#      sensor_class: motion

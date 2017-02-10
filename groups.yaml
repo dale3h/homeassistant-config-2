@@ -1,0 +1,495 @@
+#####################################################################
+### HOME VIEW (DEFAULT)
+#####################################################################
+
+default_view:
+  name: Home
+  view: yes
+  entities:
+    - group.travel_megs
+    - group.travel_rick
+    - group.device_status
+
+#####################################################################
+### SECURITY VIEW
+#####################################################################
+
+security:
+  name: Security
+  view: yes
+  icon: mdi:security-home
+  entities:
+    - group.security_override
+    - group.door_locks
+    - group.sensors
+    - group.cameras
+    - group.breaches
+
+#####################################################################
+### ROOMS VIEW
+#####################################################################
+
+rooms:
+  name: Rooms
+  view: yes
+  icon: mdi:lightbulb
+  entities:
+    - group.living_room
+    - group.entry_lighting
+    - group.accent_lights
+    - group.office
+    - group.master_bedroom
+    - group.billiards_room
+    - group.yard
+    - group.pool
+    - group.porch
+
+#####################################################################
+### CLIMATE VIEW
+#####################################################################
+
+climate:
+  name: Climate
+  view: yes
+  icon: mdi:weather-sunny
+  entities:
+    - group.climate_status
+    - group.downstairs_thermostat
+    - group.upstairs_thermostat
+    - group.weather_summary
+    - group.weather_details
+    - group.precipitation
+
+#####################################################################
+### SCENES VIEW
+#####################################################################
+
+scenes:
+  name: Scenes
+  icon: mdi:home-variant
+  view: yes
+  entities:
+    - group.lighting_scenes
+    - group.downstairs_climate_override
+    - group.upstairs_climate_override
+    - group.light_and_switch_override
+
+#####################################################################
+### MEDIA VIEW
+#####################################################################
+
+media:
+  name: Media
+  view: yes
+  icon: mdi:theater
+  entities:
+    - group.media_players
+    - group.downloads
+
+#####################################################################
+### SYSTEM VIEW
+#####################################################################
+
+system:
+  name: System
+  icon: mdi:server
+  view: yes
+  entities:
+    - updater.updater
+    - group.ha_status
+    - group.speedtest
+
+#####################################################################
+### TEST LAB VIEW
+#####################################################################
+
+lab:
+  name: Lab
+  view: yes
+  icon: mdi:test-tube
+  entities:
+    - group.family
+    - group.triggers
+    - group.test_conditions
+    - group.hvac_downstairs
+    - group.hvac_upstairs
+
+
+#####################################################################
+#####################################################################
+#################         GROUP CONFIGURATION           ###################
+#####################################################################
+#VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+
+#####################################################################
+### DEVICE TRACKERS GROUPS
+#####################################################################
+
+Family:
+  - input_boolean.megs_home
+  - input_boolean.rick_home
+
+Device Status:
+  - sensor.iphone_battery_rick
+  - sensor.iphone_battery_megs
+
+Travel Rick:
+  - device_tracker.iphwn666
+  - sensor.ricks_eta
+  - sensor.rick_home_commute
+  - sensor.rick_work_commute
+
+Travel Megs:
+  - device_tracker.iphone7
+  - sensor.megs_eta
+  - sensor.megs_home_commute
+  - sensor.megs_work_commute
+
+#####################################################################
+### SCENES GROUPS
+#####################################################################
+
+Lighting Scenes:
+  - script.bedtime
+  - scene.early_morning
+  - scene.movie_time
+  - scene.living_room_dim
+  - scene.living_room_cloudy
+  - scene.living_room_normal
+  - scene.living_room_bright
+  - script.shutdown_lights
+
+#####################################################################
+### INTERIOR LIGHTS
+#####################################################################
+
+Interior Lights:
+  - group.accent_lights
+  - group.entry_lighting
+  - group.living_room_ceiling
+  - light.living_room_lamp
+  - light.flux_rgb
+# Master Bedroom Chandelier
+  - light.ge_12724_3way_dimmer_switch_level_8_0
+# Billiards Room
+  - switch.ge_45609_onoff_relay_switch_switch_2_0
+
+#####################################################################
+### EXTERIOR LIGHTS (excluding Porch Lights)
+#####################################################################
+
+Exterior Lights:
+  - group.yard
+  - group.pool
+
+#####################################################################
+### THINGS (appliances, outlets, etc.) that are not lights
+#####################################################################
+
+Things:
+  - switch.humidifier
+# Fountains
+  - switch.linear_fs20z_isolated_contact_fixture_module_switch_21_0
+  - switch.outdoor_speakers
+
+#####################################################################
+### ROOMS GROUPS
+#####################################################################
+
+Accent Lights:
+  - switch.staircase_lamp
+#  - switch.wine_room_lamp
+#  - switch.staircase_xmas
+
+Entry Lighting:
+  - light.south_entry
+  - light.kitchen_entry
+  - light.center_entry
+
+Living Room:
+  - light.living_room_lamp
+  - group.living_room_ceiling
+
+Living Room Ceiling:
+  - light.northeast_ceiling
+  - light.northwest_ceiling
+  - light.southeast_ceiling
+  - light.southwest_ceiling
+
+Office:
+  - light.flux_rgb
+  - input_select.rgb_light
+
+Master Bedroom:
+  - light.ge_12724_3way_dimmer_switch_level_8_0
+  - script.master_bedroom_night_time
+  - switch.humidifier
+
+
+Billiards Room:
+  - switch.ge_45609_onoff_relay_switch_switch_2_0
+
+#####################################################################
+### SECURITY GROUPS
+#####################################################################
+
+Security Override:
+  - input_boolean.visitor_mode
+  - automation.away_mode
+  - automation.unlock_door_for_megs
+
+Door Locks:
+  - lock.assa_abloy_yale_real_living_captouch_lever_locked_12_0
+  - sensor.lock_beach_door_status
+  - sensor.lock_beach_battery
+  - lock.assa_abloy_yale_real_living_captouch_lever_locked_16_0
+  - sensor.lock_south_door_status
+  - sensor.lock_south_battery
+
+Cameras:
+  - camera.front_door
+  - camera.gate
+  - camera.north_ptz
+  - camera.kitchen_ptz
+  - sensor.kitchen_ptz_ptz_preset
+  - sensor.north_ptz_ptz_preset
+  - sensor.kitchen_ptz_sd_used
+  - sensor.north_ptz_sd_used
+
+Sensors:
+  - sensor.fibaro_state
+  - sensor.kitchen_ptz_motion_detected
+  - sensor.north_ptz_motion_detected
+  - sensor.fibaro_system_fgms001_motion_sensor_luminance_22_3
+#  - sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10
+#  - binary_sensor.fibaro_system_fgms001_motion_sensor_sensor_22_0
+#  - sensor.fibaro_system_fgms001_motion_sensor_general_22_0
+#  - sensor.fibaro_system_fgms001_motion_sensor_alarm_level_22_1
+#  - sensor.fibaro_system_fgms001_motion_sensor_alarm_type_22_0
+#  - sensor.fibaro_system_fgms001_motion_sensor_seismic_intensity_22_25
+#  - sensor.fibaro_system_fgms001_motion_sensor_sourcenodeid_22_2
+#  - sensor.fibaro_system_fgms001_motion_sensor_temperature_22_1
+
+Breaches:
+  - sensor.breaches_ricknmegsgmailcom
+  - sensor.breaches_rixjunkcoxnet
+
+#####################################################################
+### CLIMATE GROUPS
+#####################################################################
+
+Downstairs Climate Override:
+  - script.heat_downstairs_120min
+  - script.heat_downstairs_180min
+  - script.cool_downstairs_120min
+  - script.cool_downstairs_180min
+
+Upstairs Climate Override:
+  - script.heat_upstairs_120min
+  - script.heat_upstairs_180min
+  - script.cool_upstairs_120min
+  - script.cool_upstairs_180min
+
+Climate Status:
+  - sensor.upstairs_thermostat_statistics_mean
+  - sensor.downstairs_thermostat_statistics_mean
+  - sensor.fibaro_system_fgms001_motion_sensor_temperature_22_1
+  - sensor.peak_hours_status
+
+Downstairs Thermostat:
+  - sensor.hvac_downstairs_mode
+  - sensor.hvac_downstairs_fan
+  - sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1
+  - sensor.hvac_downstairs_ac_setpoint
+  - sensor.hvac_downstairs_heat_setpoint
+  - sensor.hvac_downstairs_climate
+  - input_slider.downstairs_heat
+  - script.cool_downstairs_60min
+  - script.heat_downstairs_60min
+
+Upstairs Thermostat:
+  - sensor.hvac_upstairs_mode
+  - sensor.hvac_upstairs_fan
+  - sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
+  - sensor.hvac_upstairs_ac_setpoint
+  - sensor.hvac_upstairs_heat_setpoint
+  - sensor.hvac_upstairs_climate
+  - input_slider.upstairs_heat
+  - script.cool_upstairs_60min
+  - script.heat_upstairs_60min
+
+#HVAC Downstairs:
+#  - climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+#  - climate.2gig_technologies_ct101_thermostat_iris_heating_1_18_1
+
+#HVAC Upstairs:
+#  - climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
+#  - climate.2gig_technologies_ct101_thermostat_iris_heating_1_24_1
+
+#####################################################################
+### OUTDOOR GROUPS
+#####################################################################
+
+Yard:
+# patio lights
+  - switch.ge_12722_onoff_relay_switch_switch_7_0
+# GE Outdoor wireless outlet; for Christmas lights, etc.
+  - switch.ge_unknown_type4f50_id3031_switch_23_0
+# Pool fountains
+  - switch.linear_fs20z_isolated_contact_fixture_module_switch_21_0
+  - switch.outdoor_speakers
+
+Pool:
+# Pool Light
+  - switch.ge_12722_onoff_relay_switch_switch_25_0
+  - input_select.pool_scene
+  - input_select.pool_color
+
+Porch:
+## south porch_lights
+  - switch.ge_45609_onoff_relay_switch_switch_19_0
+## front porch_lights
+  - switch.ge_45609_onoff_relay_switch_switch_20_0
+
+#####################################################################
+### WEATHER GROUPS
+#####################################################################
+
+Weather Summary:
+  - sensor.pws_weather
+  - sensor.dark_sky_daily_summary
+  - sensor.pws_temp_f
+  - sensor.pws_feelslike_string
+  - sensor.pws_wind_string
+  - sensor.pws_relative_humidity
+  - sensor.pws_dewpoint_string
+
+Precipitation:
+  - sensor.dark_sky_precip_probability
+  - sensor.dark_sky_precip_intensity
+  - sensor.pws_precip_today_string
+  - sensor.dark_sky_nearest_storm_distance
+  - input_boolean.rain
+
+Weather Details:
+  - sensor.dark_sky_cloud_coverage
+  - sensor.pws_heat_index_string
+  - sensor.pws_pressure_in
+  - sensor.pws_pressure_mb
+  - sensor.pws_solarradiation
+  - sensor.pws_uv
+  - sensor.pws_visibility_mi
+
+#####################################################################
+### AUTOMATION GROUPS
+#####################################################################
+
+Light and Switch Override:
+  - automation.turn_on_lights_upon_arrival
+  - automation.turn_on_fountains
+  - automation.turn_on_living_room_lamp_at_sunset
+  - automation.turn_off_living_room_lamp_weekdays
+  - automation.turn_off_living_room_lamp_weekends
+  - automation.turn_off_living_room_lamp_away
+  - automation.turn_off_lights_at_sun_up
+  - automation.turn_off_xmas_lights_weekdays
+  - automation.turn_off_xmas_lights_weekends
+
+#####################################################################
+### MEDIA PLAYERS
+#####################################################################
+
+Media Players:
+  - media_player.kodi_office
+  - media_player.kodi_living_room
+  - media_player.kodi_bedroom
+#  - media_player.rnmcast
+#  - media_player.directv
+
+#Office Kodi:
+#  - sensor.office_kodi_mediatype
+#  - sensor.office_kodi_playback_state
+#  - sensor.office_kodi_playbackstate
+#  - sensor.office_kodi_progress
+#  - sensor.office_kodi_title
+#
+#Living Room Kodi:
+#  - sensor.living_room_kodi_mediatype
+#  - sensor.living_room_kodi_playback_state
+#  - sensor.living_room_kodi_playbackstate
+#  - sensor.living_room_kodi_progress
+#  - sensor.living_room_kodi_title
+
+#####################################################################
+### SYSTEM GROUPS
+#####################################################################
+
+Speedtest:
+  - sensor.speedtest_ping
+  - sensor.speedtest_download
+  - sensor.speedtest_upload
+
+Downloads:
+  - sensor.sab_disk
+  - sensor.sab_disk_free
+  - sensor.sab_queue
+  - sensor.sab_speed
+  - sensor.sab_status
+
+HA Status:
+  - sensor.date__time
+  - script.restart_ha
+  - sensor.cpu_use
+  - sensor.ram_free
+  - sensor.disk_free_home
+  - sensor.last_boot
+
+#####################################################################
+### TEST LAB GROUPS
+#####################################################################
+
+Triggers:
+  - script.desk_lamp
+  - script.light_test
+  - input_boolean.state_change
+  - automation.raining
+  - script.time_temp
+  - script.morning_weekday
+
+Test Conditions:
+  - input_boolean.condition_1
+  - input_boolean.condition_2
+  - input_boolean.condition_3
+  - input_boolean.condition_4
+  - input_boolean.condition_5
+
+HVAC Downstairs:
+  - climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+  - climate.2gig_technologies_ct101_thermostat_iris_heating_1_18_1
+
+HVAC Upstairs:
+  - climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
+  - climate.2gig_technologies_ct101_thermostat_iris_heating_1_24_1
+
+#####################################################################
+### CURRENTLY UNUSED
+#####################################################################
+
+#Master BR Fan:
+#  - switch.master_bed_fan_power
+#  - switch.master_bed_fan_1
+#  - switch.master_bed_fan_2
+#  - switch.master_bed_fan_3
+#  - switch.master_bed_fan_4
+#  - switch.master_bed_fan_5
+#  - switch.master_bed_fan_6
+#  - switch.master_bed_fan_variable
+#  - switch.master_bed_fan_vacation
+#  - switch.master_bed_fan_light
+#  - switch.master_bed_fan_timer
+#  - switch.master_bed_fan_2h
+#  - switch.master_bed_fan_4h
+#  - switch.master_bed_fan_8h
+
+# New Devices:
+#  - sensor.new_devices

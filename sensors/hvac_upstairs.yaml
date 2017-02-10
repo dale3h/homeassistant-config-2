@@ -1,0 +1,52 @@
+
+#####################################################################
+### HVAC Upstairs
+#####################################################################
+
+## Median Temperature Upstairs
+- platform: statistics
+  entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
+  name: Upstairs Thermostat Statistics
+
+## Upstairs Thermostat Mode
+- platform: template
+  sensors:
+    hvac_upstairs_mode:
+      value_template: "{{ states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2') }}"
+      friendly_name: "Upstairs Thermostat Mode"
+
+- platform: template
+  sensors:
+    hvac_upstairs_fan:
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes.fan_state }}"
+      friendly_name: "Upstairs HVAC Fan"
+
+## Upstairs AC Temp Setpoint
+- platform: template
+  sensors:
+    hvac_upstairs_ac_setpoint:
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes.temperature }}"
+      friendly_name: "Upstairs AC Setpoint"
+      
+## Upstairs Heat Temp Setpoint
+- platform: template
+  sensors:
+    hvac_upstairs_heat_setpoint:
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_24_1'].attributes.temperature }}"
+      friendly_name: "Upstairs Heat Setpoint"
+
+## Upstairs Climate
+- platform: template
+  sensors:
+    hvac_upstairs_climate:
+      value_template: >-
+        {%- if 68.5 <= states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state|float <= 83.5 -%}
+            Comfy
+          {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1") | float < 68.5 -%}
+            Cold
+          {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1") | float > 83.5 -%}
+            Hot
+        {%- else -%}
+            {{ states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1") }}
+        {%- endif %}
+      friendly_name: "Upstairs Climate"

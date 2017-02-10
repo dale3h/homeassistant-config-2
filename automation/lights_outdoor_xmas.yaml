@@ -1,0 +1,50 @@
+#####################################################################
+### Turn off the Christmas Lights - Weekdays
+#####################################################################
+
+- alias: turn off xmas lights weekdays
+  trigger:
+    platform: time
+    after: '23:59:59'
+
+  condition:
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+
+    - condition: state
+      entity_id: switch.ge_unknown_type4f50_id3031_switch_23_0
+      state: 'on'
+
+  action:
+# outdoor Christmas lights
+    - service: switch.turn_off
+      entity_id: switch.ge_unknown_type4f50_id3031_switch_23_0
+
+#####################################################################
+### Turn off the Christmas Lights - Weekends
+#####################################################################
+
+- alias: turn off xmas lights weekends
+  trigger:
+    platform: time
+    after: '01:59:59'
+
+  condition:
+    - condition: time
+      weekday:
+        - sat
+        - sun
+
+    - condition: state
+      entity_id: switch.ge_unknown_type4f50_id3031_switch_23_0
+      state: 'on'
+
+  action:
+# outdoor Christmas lights
+    - service: switch.turn_off
+      entity_id: switch.ge_unknown_type4f50_id3031_switch_23_0

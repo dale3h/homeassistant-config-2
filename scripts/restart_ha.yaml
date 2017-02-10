@@ -1,0 +1,14 @@
+restart_ha:
+  sequence:
+  - service: homeassistant.restart
+
+  - service: notify.notify
+    data:
+      title: "System Restart"
+      target: "device/Chrome"
+      message: "Restarting Home Assistant at {{ states('sensor.date__time') }}"
+# notify iOS
+  - service: notify.ios_iphwn666
+    data:
+      title: "System Restart"
+      message: "Restarting Home Assistant at {{ states('sensor.date__time') }}"

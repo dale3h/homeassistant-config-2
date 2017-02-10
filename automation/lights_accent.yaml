@@ -1,0 +1,45 @@
+# Turn Accent Lights ON
+- alias: turn on accent lights at sunset
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: '-00:05:00'
+
+  action:
+    - service: switch.turn_on
+      entity_id: switch.staircase_lamp
+
+# Turn Accent Lights OFF weekdays
+- alias: turn off accent lights weekdays
+  trigger:
+    platform: time
+    after: '22:59:59'
+
+  condition:
+    condition: time
+    weekday:
+      - sun
+      - mon
+      - tue
+      - wed
+      - thu
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.staircase_lamp
+
+# Turn Accent Lights OFF weekends
+- alias: turn off accent lamps weekends
+  trigger:
+    platform: time
+    after: '01:29:59'
+
+  condition:
+    condition: time
+    weekday:
+      - sat
+      - sun
+
+  action:
+    - service: switch.turn_off
+      entity_id: switch.staircase_lamp

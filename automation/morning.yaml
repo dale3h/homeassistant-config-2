@@ -1,0 +1,31 @@
+#####################################################################
+### Weekday Mornings
+#####################################################################
+
+- alias: weekday morning wakeup
+  trigger:
+    - platform: event
+      event_type: good_morning
+
+    - platform: time
+      after: '05:42:59'
+
+  condition:
+    - condition: state
+      entity_id: group.family
+      state: 'on' 
+
+    - condition: state
+      entity_id: input_boolean.holiday
+      state: 'off'
+
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: script.morning_weekday

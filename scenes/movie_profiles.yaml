@@ -1,0 +1,98 @@
+#####################################################################
+### Movie Time
+#####################################################################
+
+- name: Movie Time
+  entities:
+
+# turn off the hue entry_lighting
+    group.entry_lighting:
+      state: off
+      transition: 5
+
+# turn off the living room lamp
+    light.living_room_lamp:
+      state: off
+      transition: 15
+
+# turn on the hue living_room_ceiling lights
+    group.living_room_ceiling:
+      state: off
+      transition: 10
+
+# turn off the accent_lights "catch all"
+    group.accent_lights: off
+
+#####################################################################
+### Movie Paused
+#####################################################################
+
+- name: Movie Paused
+  entities:
+
+# turn on kitchen entry light
+    light.kitchen_entry:
+      state: on
+      brightness: 50
+      transition: 10
+
+# turn on the south entry light
+    light.south_entry:
+      state: on
+      brightness: 75
+      transition: 10
+
+# turn on the center entry light
+    light.center_entry:
+      state: on
+      brightness: 50
+      transition: 10
+
+# turn on the living room lamp
+    light.living_room_lamp:
+      state: on
+      brightness: 75
+      transition: 10
+
+# turn on the hue living_room_ceiling lights
+    group.living_room_ceiling:
+      state: on
+      brightness: 50
+      transition: 15
+
+#####################################################################
+### Movie Ended
+#####################################################################
+
+- name: Movie Ended
+  entities:
+
+# turn on kitchen entry light
+    light.kitchen_entry:
+      state: on
+      brightness: 160
+      transition: 30
+
+# turn on the south entry light
+    light.south_entry:
+      state: on
+      brightness: 100
+      transition: 10
+
+# turn on the center entry light
+    light.center_entry:
+      state: on
+      brightness: 50
+      transition: 10
+
+# turn on the living room lamp
+    light.living_room_lamp:
+      state: on
+      brightness: 200
+      transition: 60
+
+# turn off the hue living_room_ceiling lights
+    group.living_room_ceiling:
+      state: on
+      brightness: 100
+      transition: 30

@@ -1,0 +1,50 @@
+
+#####################################################################
+### MEDIA PLAYERS
+#####################################################################
+
+## OFFICE
+#- platform: mqtt
+#  state_topic: "kodi/office/status/playbackstate"
+#  name: "Office Kodi Playbackstate"
+
+- platform: mqtt
+  state_topic: "kodi/office/status/progress"
+  name: "Office Kodi Progress"
+
+#- platform: mqtt
+#  state_topic: "kodi/office/status/title"
+#  name: "Office Kodi Title"
+
+- platform: mqtt
+  state_topic: 'kodi/office/status/playbackstate'
+  name: "Office Kodi playback state"
+  value_template: '{{ value_json.kodi_state }}'
+
+- platform: mqtt
+  state_topic: 'kodi/office/status/playbackstate'
+  name: "Office Kodi Mediatype"
+  value_template: '{{ value_json.kodi_playertype }}'
+
+## LIVING ROOM - FireTV
+#- platform: mqtt
+#  state_topic: "kodi/firetv/status/playbackstate"
+#  name: "Living Room Kodi Playbackstate"
+
+- platform: mqtt
+  state_topic: "kodi/firetv/status/progress"
+  name: "Living Room Kodi Progress"
+
+#- platform: mqtt
+#  state_topic: "kodi/firetv/status/title"
+#  name: "Living Room Kodi Title"
+
+- platform: mqtt
+  state_topic: 'kodi/firetv/status/playbackstate'
+  name: "Living Room Kodi playback state"
+  value_template: '{{ value_json.kodi_state }}'
+
+- platform: mqtt
+  state_topic: 'kodi/firetv/status/playbackstate'
+  name: "Living Room Kodi Mediatype"
+  value_template: '{{ value_json.kodi_playertype }}'

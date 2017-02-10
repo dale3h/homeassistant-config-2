@@ -1,0 +1,30 @@
+# Heat for 2 hours
+heat_downstairs_120min:
+  sequence:
+    - service: climate.set_operation_mode
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_18_1
+      data:
+        operation_mode: 'Heat'
+
+    - service: climate.set_temperature
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_18_1
+      data:
+        temperature: 84
+
+#    - service: notify.notify
+#      data:
+#        title: "HVAC Event"
+#        target: "device/Chrome"
+#        message: "Downstairs Heat_120 started at {{ states('sensor.date__time') }}"
+## notify iOS
+    - service: notify.ios_iphwn666
+      data:
+        title: "HVAC Event"
+        message: "Downstairs Heat_120 started at {{ states('sensor.date__time') }}"
+
+    - delay: 02:00
+
+    - service: climate.set_temperature
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_18_1
+      data:
+        temperature: 63

@@ -1,0 +1,89 @@
+#####################################################################
+### Turn on the living room lamp at sunset everyday
+#####################################################################
+
+- alias: turn on living room lamp at sunset
+  hide_entity: True
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: '-00:08:00'
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.living_room_lamp
+        brightness: 255
+        transition: 600
+
+#####################################################################
+### Turn off the living room lamp on weekdays
+#####################################################################
+
+- alias: turn off living room lamp weekdays
+  trigger:
+    platform: time
+    after: '22:59:59'
+
+  condition:
+    condition: time
+    weekday:
+      - sun
+      - mon
+      - tue
+      - wed
+      - thu
+
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.living_room_lamp
+        transition: 10
+
+#####################################################################
+### Turn off the living room lamp on weekends
+#####################################################################
+
+- alias: turn off living room lamp weekends
+  trigger:
+    platform: time
+    after: '01:29:59'
+
+  condition:
+    condition: time
+    weekday:
+      - sat
+      - sun
+
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.living_room_lamp
+        transition: 10
+
+#####################################################################
+### Turn off the living room lamp when we are away during the daytime
+#####################################################################
+
+- alias: turn off living room lamp away
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: 'on'
+    to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+
+    - condition: state
+      entity_id: light.living_room_lamp
+      state: 'on'
+
+  action:
+    - delay:
+        minutes: 1
+
+    - service: light.turn_off
+      entity_id: light.living_room_lamp

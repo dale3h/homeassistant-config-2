@@ -1,0 +1,39 @@
+
+#####################################################################
+### SYSTEM
+#####################################################################
+
+# sensor: date & time
+- platform: time_date
+  display_options:
+    - "date_time"
+
+# sensor: speed test
+- platform: speedtest
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+# sensor: system monitor
+- platform: systemmonitor
+  resources:
+    - type: disk_free
+      arg: /home
+    - type: memory_free
+    - type: processor_use
+    - type: last_boot
+
+# sensor: SABNZBD
+- platform: sabnzbd
+  name: SAB
+  api_key: !secret sabnzb_api_key
+  host: 192.168.10.220
+  port: 8080
+  monitored_variables:
+    - 'current_status'
+    - 'speed'
+    - 'queue_size'
+    - 'queue_remaining'
+    - 'disk_size'
+    - 'disk_free'

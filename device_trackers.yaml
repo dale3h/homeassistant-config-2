@@ -1,0 +1,23 @@
+## Netgear
+- platform: netgear
+  host: !secret router_ip
+  port: 80
+  username: !secret netgear_user
+  password: !secret netgear_pass
+## Time to wait until marking someone as "not home" after not being seen (default: 180)
+  consider_home: 00:20:00
+  track_new_devices: no
+
+# iCloud
+- platform: icloud
+  account_name: rick
+  username: !secret icloud_rick
+  password: !secret icloud_rick_password
+
+## OwnTracks
+- platform: owntracks
+  max_gps_accuracy: 200
+  waypoints: True
+  waypoint_whitelist:
+    - rick
+    - megs

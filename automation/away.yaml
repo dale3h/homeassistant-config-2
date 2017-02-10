@@ -1,0 +1,35 @@
+#####################################################################
+### Detect Away
+#####################################################################
+
+- alias: Away Mode
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 5
+
+  action:
+    - service: script.away
+
+#####################################################################
+### Cancel Away if we return
+#####################################################################
+
+- alias: Away Mode Cancel
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: 'off'
+    to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: script.away
+      state: 'on'
+
+  action:
+    - service: script.turn_off
+      entity_id: script.away

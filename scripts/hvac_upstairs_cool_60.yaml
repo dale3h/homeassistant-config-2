@@ -1,0 +1,31 @@
+# Cool for 1 hour
+cool_upstairs_60min:
+  sequence:
+
+    - service: climate.set_operation_mode
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
+      data:
+        operation_mode: 'Cool'
+
+    - service: climate.set_temperature
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
+      data:
+        temperature: 76
+
+#    - service: notify.notify
+#      data:
+#        title: "HVAC Event"
+#        target: "device/Chrome"
+#        message: "Upstairs Cool_120 started at {{ states('sensor.date__time') }}"
+## notify iOS
+#    - service: notify.ios_iphwn666
+#      data:
+#        title: "HVAC Event"
+#        message: "Upstairs Cool_120 started at {{ states('sensor.date__time') }}"
+
+    - delay: 01:00
+
+    - service: climate.set_temperature
+      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
+      data:
+        temperature: 85
