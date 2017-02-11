@@ -51,11 +51,25 @@ rooms:
 climate:
   name: Climate
   view: yes
-  icon: mdi:weather-sunny
+  icon: mdi:air-conditioner
   entities:
     - group.climate_status
-    - group.downstairs_thermostat
-    - group.upstairs_thermostat
+    - group.downstairs_climate
+    - group.downstairs_heating
+    - group.downstairs_cooling
+    - group.upstairs_climate
+    - group.upstairs_heating
+    - group.upstairs_cooling
+
+#####################################################################
+### WEATHER VIEW
+#####################################################################
+
+weather:
+  name: Weather
+  view: yes
+  icon: mdi:weather-sunny
+  entities:
     - group.weather_summary
     - group.weather_details
     - group.precipitation
@@ -296,27 +310,37 @@ Climate Status:
   - sensor.fibaro_system_fgms001_motion_sensor_temperature_22_1
   - sensor.peak_hours_status
 
-Downstairs Thermostat:
+Downstairs Climate:
+  - sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1
+  - sensor.hvac_downstairs_climate
   - sensor.hvac_downstairs_mode
   - sensor.hvac_downstairs_fan
-  - sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1
-  - sensor.hvac_downstairs_ac_setpoint
-  - sensor.hvac_downstairs_heat_setpoint
-  - sensor.hvac_downstairs_climate
-  - input_slider.downstairs_heat
-  - script.cool_downstairs_60min
-  - script.heat_downstairs_60min
 
-Upstairs Thermostat:
+Upstairs Climate:
+  - sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
+  - sensor.hvac_upstairs_climate
   - sensor.hvac_upstairs_mode
   - sensor.hvac_upstairs_fan
-  - sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
-  - sensor.hvac_upstairs_ac_setpoint
+
+Downstairs Heating:
+  - sensor.hvac_downstairs_heat_setpoint
+  - input_slider.downstairs_heat
+  - script.heat_downstairs_60min
+
+Upstairs Heating:
   - sensor.hvac_upstairs_heat_setpoint
-  - sensor.hvac_upstairs_climate
   - input_slider.upstairs_heat
-  - script.cool_upstairs_60min
   - script.heat_upstairs_60min
+
+Downstairs Cooling:
+  - sensor.hvac_downstairs_ac_setpoint
+  - input_slider.downstairs_ac
+  - script.cool_downstairs_60min
+
+Upstairs Cooling:
+  - sensor.hvac_upstairs_ac_setpoint
+  - input_slider.upstairs_ac
+  - script.cool_upstairs_60min
 
 #HVAC Downstairs:
 #  - climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2

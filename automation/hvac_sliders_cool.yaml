@@ -2,60 +2,60 @@
 ### Downstairs Input slider temperature adjustment
 #####################################################################
 
-- alias: downstairs heat temperature adjustment
+- alias: downstairs ac temperature adjustment
   trigger:
     platform: state
-    entity_id: input_slider.downstairs_heat
+    entity_id: input_slider.downstairs_ac
 
   action:
     - service: climate.set_temperature
       data_template:
-        entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_18_1
+        entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_1
         temperature: '{{ trigger.to_state.state | int }}'
 
 #####################################################################
 ### Upstairs Input slider temperature adjustment
 #####################################################################
 
-- alias: upstairs heat temperature adjustment
+- alias: upstairs ac temperature adjustment
   trigger:
     platform: state
-    entity_id: input_slider.upstairs_heat
+    entity_id: input_slider.upstairs_ac
 
   action:
     - service: climate.set_temperature
       data_template:
-        entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_24_1
+        entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_1
         temperature: '{{ trigger.to_state.state | int }}'
 
 #####################################################################
-### Downstairs - Change Input slider adjust to match temperature (downstairs heat)
+### Downstairs - Change Input slider adjust to match temperature (downstairs ac)
 #####################################################################
 
-- alias: downstairs heat input slider
+- alias: downstairs ac input slider
   hide_entity: True
   trigger:
     platform: state
-    entity_id: sensor.hvac_downstairs_heat_setpoint
+    entity_id: sensor.hvac_downstairs_ac_setpoint
 
   action:
     service: input_slider.select_value
     data_template:
-      entity_id: input_slider.downstairs_heat
-      value: "{{ states.sensor.hvac_downstairs_heat_setpoint.state | int }}"
+      entity_id: input_slider.downstairs_ac
+      value: "{{ states.sensor.hvac_downstairs_ac_setpoint.state | int }}"
 
 #####################################################################
-### Upstairs - Change Input slider adjust to match temperature (upstairs heat)
+### Upstairs - Change Input slider adjust to match temperature (upstairs ac)
 #####################################################################
 
-- alias: upstairs heat input slider
+- alias: upstairs ac input slider
   hide_entity: True
   trigger:
     platform: state
-    entity_id: sensor.hvac_upstairs_heat_setpoint
+    entity_id: sensor.hvac_upstairs_ac_setpoint
 
   action:
     service: input_slider.select_value
     data_template:
-      entity_id: input_slider.upstairs_heat
-      value: "{{ states.sensor.hvac_upstairs_heat_setpoint.state | int }}"
+      entity_id: input_slider.upstairs_ac
+      value: "{{ states.sensor.hvac_upstairs_ac_setpoint.state | int }}"

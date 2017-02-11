@@ -395,7 +395,13 @@
     input_slider.downstairs_heat:
       icon: mdi:nest-thermostat
 
+    input_slider.downstairs_ac:
+      icon: mdi:nest-thermostat
+
     input_slider.upstairs_heat:
+      icon: mdi:nest-thermostat
+
+    input_slider.upstairs_ac:
       icon: mdi:nest-thermostat
 
 #####################################################################

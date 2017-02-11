@@ -20,7 +20,7 @@ bedtime:
   - service: light.turn_on
     entity_id: light.ge_12724_3way_dimmer_switch_level_8_0
     data:
-      brightness: 67
+      brightness: 50
 
   - delay:
       minutes: 4
@@ -29,7 +29,7 @@ bedtime:
   - service: light.turn_on
     entity_id: light.ge_12724_3way_dimmer_switch_level_8_0
     data:
-      brightness: 47
+      brightness: 39
 
   - delay:
       minutes: 5
