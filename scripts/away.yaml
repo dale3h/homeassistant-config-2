@@ -20,7 +20,7 @@ away:
     entity_id: group.things
 
 # Send notification
-  - service: notify.notify
+  - service: notify.pushbullet
     data:
       title: "Away Mode ON"
       target: "device/Chrome"

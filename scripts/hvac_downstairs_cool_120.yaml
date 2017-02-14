@@ -11,7 +11,7 @@ cool_downstairs_120min:
       data:
         temperature: 76
 
-#    - service: notify.notify
+#    - service: notify.pushbullet
 #      data:
 #        title: "HVAC Event"
 #        target: "device/Chrome"

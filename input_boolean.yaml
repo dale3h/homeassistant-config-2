@@ -23,50 +23,41 @@ rain:
 state_change:
   name: State Change Test
   initial: off
-  icon: mdi:power
 
 # Megs home
 megs_home:
   name: Megs Home
-  icon: mdi:home-map-marker
 
 # Rick home
 rick_home:
   name: Rick Home
-  icon: mdi:home-map-marker
 
 # Holiday
 holiday:
   name: Holiday Mode
   initial: off
-  icon: mdi:candy-cane
 
 ### TESTING
 condition_1:
   name: condition_1
   initial: off
-  icon: mdi:target
 
 ### TESTING
 condition_2:
   name: condition_2
   initial: off
-  icon: mdi:target
 
 ### TESTING
 condition_3:
   name: condition_3
   initial: off
-  icon: mdi:target
 
 ### TESTING
 condition_4:
   name: condition_4
   initial: off
-  icon: mdi:target
 
 ### TESTING
 condition_5:
   name: condition_5
   initial: off
-  icon: mdi:target

@@ -15,7 +15,7 @@ script_test:
 #####################################################################
 
 ## notify Pushbullet
-#    - service: notify.notify
+#    - service: notify.pushbullet
 #      data:
 #        title: "Testing!"
 #        target: "device/Chrome"

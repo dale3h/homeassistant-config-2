@@ -3,6 +3,8 @@
 ### WEATHER
 #####################################################################
 
+- platform: moon
+
 # sensor: weather - WUnderground
 - platform: wunderground
   api_key: !secret wu_api_key

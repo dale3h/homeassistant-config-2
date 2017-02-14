@@ -126,5 +126,5 @@
 # turn on the hue living_room_ceiling lights
     group.living_room_ceiling:
       state: on
-      brightness: 70
+      brightness: 75
       transition: 10

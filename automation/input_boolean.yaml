@@ -122,17 +122,23 @@
   trigger:
   - platform: state
     entity_id: sensor.pws_weather
-    state: 'Rain'
 
-  - platform: template
-    value_template: "{{ states.sensor.pws_precip_today_in.state | float > 0 }}"
+#  condition:
+#    - condition: or
+#      conditions:
+#      - condition: template
+#        value_template: "{{is_state('sensor.pws_weather', 'Rain')}}"
+#      - condition: template
+#        value_template: "{{is_state('sensor.pws_weather', 'Thunderstorm')}}"
 
   action:
     - service_template: >
-        {% if states.sensor.pws_precip_today_in.state | float > 0 %}
-          homeassistant.turn_on
-        {% else %}
-          homeassistant.turn_off
+        {%- if is_state('sensor.pws_weather', 'Rain') -%}
+            homeassistant.turn_on
+          {%- elif is_state('sensor.pws_weather', 'Thunderstorm') -%}
+            homeassistant.turn_on
+          {% else %}
+            homeassistant.turn_off
         {% endif %}
       entity_id: input_boolean.rain
 
@@ -141,11 +147,11 @@
 #        title: "Weather: Predicted Rain"
 #        target: "device/Chrome"
 #        message: "Chance of rain is: {{ states.sensor.dark_sky_precip_probability.state | int }}%"
-# notify iOS
-    - service: notify.ios_iphwn666
-      data:
-        title: "Weather: Predicted Rain"
-        message: "Weather shows {{ states.sensor.pws_weather.state }} with a possible {{ states.sensor.dark_sky_daily_max_precip_intensity.state | int }} inches of rain"
+## notify iOS
+#    - service: notify.ios_iphwn666
+#      data:
+#        title: "Weather: Predicted Rain"
+#        message: "Weather shows {{ states.sensor.pws_weather.state }} with a possible {{ states.sensor.dark_sky_daily_max_precip_intensity.state | int }} inches of rain"
 
 
 

@@ -2,7 +2,7 @@ restart_ha:
   sequence:
   - service: homeassistant.restart
 
-  - service: notify.notify
+  - service: notify.pushbullet
     data:
       title: "System Restart"
       target: "device/Chrome"

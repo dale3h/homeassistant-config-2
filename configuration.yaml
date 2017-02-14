@@ -157,7 +157,7 @@ logbook:
       - sensor.dark_sky_cloud_coverage
       - sensor.dark_sky_daily_summary
       - sensor.dark_sky_nearest_storm_distance
-      - sensor.pws_weather
+#      - sensor.pws_weather
       - sensor.pws_temp_f
       - sensor.pws_feelslike_string
       - sensor.pws_precip_today_string

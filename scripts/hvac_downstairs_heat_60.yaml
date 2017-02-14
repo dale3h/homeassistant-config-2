@@ -11,7 +11,7 @@ heat_downstairs_60min:
       data:
         temperature: 84
 
-#    - service: notify.notify
+#    - service: notify.pushbullet
 #      data:
 #        title: "HVAC Event"
 #        target: "device/Chrome"

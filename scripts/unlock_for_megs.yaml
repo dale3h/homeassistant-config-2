@@ -15,7 +15,7 @@ unlock_megs:
     entity_id: lock.assa_abloy_yale_real_living_captouch_lever_locked_16_0
 
 ## and notify Rick that Megs is home
-  - service: notify.notify
+  - service: notify.pushbullet
     data:
       title: "Arrived"
       target: "device/Chrome"

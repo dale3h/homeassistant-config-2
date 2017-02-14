@@ -6,7 +6,7 @@ desk_lamp:
         option: "Blue"
 
 ## notify Pushbullet
-#    - service: notify.notify
+#    - service: notify.pushbullet
 #      data:
 #        title: "Testing!"
 #        target: "device/Chrome"
