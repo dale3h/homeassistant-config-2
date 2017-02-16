@@ -1,0 +1,19 @@
+lost_iphone:
+  alias: "Find Ricks iPhone"
+  sequence:
+  - alias: "Play Sound"
+    service: device_tracker.icloud_lost_iphone
+    data:
+#      account_name: 'rick'
+      device_name: iphwn666
+
+#  - service: notify.pushbullet
+#    data:
+#      title: "System Restart"
+#      target: "device/Chrome"
+#      message: "Restarting Home Assistant at {{ states('sensor.date__time') }}"
+## notify iOS
+#  - service: notify.ios_iphwn666
+#    data:
+#      title: "System Restart"
+#      message: "Restarting Home Assistant at {{ states('sensor.date__time') }}"

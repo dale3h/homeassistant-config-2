@@ -108,7 +108,7 @@ switch: !include switches.yaml
 #                                                  #
 ####################################################
 logger:
-  default: critical
+  default: error
   logs:
 #    homeassistant.components.device_tracker: debug
 #    homeassistant.components.camera: debug

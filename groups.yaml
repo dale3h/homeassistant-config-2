@@ -484,6 +484,7 @@ Triggers:
   - automation.raining
   - script.time_temp
   - script.morning_weekday
+  - script.lost_iphone
 
 Test Conditions:
   - input_boolean.condition_1

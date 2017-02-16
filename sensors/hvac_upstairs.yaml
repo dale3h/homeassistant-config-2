@@ -12,27 +12,27 @@
 - platform: template
   sensors:
     hvac_upstairs_mode:
-      value_template: "{{ states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2') }}"
+      value_template: "{{ states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2') if states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2') is not none }}"
       friendly_name: "Upstairs Thermostat Mode"
 
 - platform: template
   sensors:
     hvac_upstairs_fan:
-      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes.fan_state }}"
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes.fan_state if states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2') is not none }}"
       friendly_name: "Upstairs HVAC Fan"
 
 ## Upstairs AC Temp Setpoint
 - platform: template
   sensors:
     hvac_upstairs_ac_setpoint:
-      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes.temperature }}"
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes.temperature if states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2') is not none }}"
       friendly_name: "Upstairs AC Setpoint"
       
 ## Upstairs Heat Temp Setpoint
 - platform: template
   sensors:
     hvac_upstairs_heat_setpoint:
-      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_24_1'].attributes.temperature }}"
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_24_1'].attributes.temperature if states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_24_1'] is not none }}"
       friendly_name: "Upstairs Heat Setpoint"
 
 ## Upstairs Climate

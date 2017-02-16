@@ -12,28 +12,28 @@
 - platform: template
   sensors:
     hvac_downstairs_mode:
-      value_template: "{{ states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2') }}"
+      value_template: "{{ states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2') if states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2') is not none }}"
       friendly_name: "Downstairs Thermostat Mode"
 
 ## Downstairs Fan State
 - platform: template
   sensors:
     hvac_downstairs_fan:
-      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes.fan_state }}"
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes.fan_state if states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'] is not none }}"
       friendly_name: "Downstairs HVAC Fan"
 
 ## Downstairs AC Temp Setpoint
 - platform: template
   sensors:
     hvac_downstairs_ac_setpoint:
-      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes.temperature }}"
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes.temperature if states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'] is not none }}"
       friendly_name: "Downstairs AC Setpoint"
 
 ## Downstairs Heat Temp Setpoint
 - platform: template
   sensors:
     hvac_downstairs_heat_setpoint:
-      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_18_1'].attributes.temperature }}"
+      value_template: "{{ states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_18_1'].attributes.temperature if states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_18_1'] is not none }}"
       friendly_name: "Downstairs Heat Setpoint"
 
 ## Downstairs Climate
