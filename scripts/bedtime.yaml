@@ -20,10 +20,10 @@ bedtime:
   - service: light.turn_on
     entity_id: light.ge_12724_3way_dimmer_switch_level_8_0
     data:
-      brightness: 50
+      brightness: 48
 
   - delay:
-      minutes: 4
+      minutes: 5
 
   # dim master bed chandelier
   - service: light.turn_on
@@ -39,7 +39,7 @@ bedtime:
     entity_id: switch.staircase_lamp
 
   - delay:
-      minutes: 3
+      minutes: 2
 
   # turn off all remaining lights
   - service: homeassistant.turn_off

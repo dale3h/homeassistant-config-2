@@ -208,11 +208,11 @@
 
 ## AppleTV
   - entity_id: media_player.apple_tv
-    friendly_name: "AppleTV 4"
+    friendly_name: "Apple TV"
 
 ## Chromecast
   - entity_id: media_player.rnmcast
-    friendly_name: Chromecast
+    friendly_name: "Chromecast"
 
 #####################################################################
 ## GROUPS (for Alexa friendly names)
@@ -650,6 +650,7 @@
     - group.*hvac*
     - group.default_view
     - group.*device*
+    - group.entry_lighting
     - group.*lock*
     - group.*security*
     - group.downloads
@@ -667,19 +668,22 @@
     - group.sensors
     - group.speedtest
     - group.system
-    - group.test*
+    - group.*test*
+    - group.*temp*
     - group.things
     - group.travel*
     - group.triggers
     - group.*weather*
     - group.yard
     - input_boolean.rick
-    - input_boolean.state_change_test
-    - script.script_test
-    - script.time_temp
+    - input_boolean.*test*
+    - script.*test*
+    - script.*temp*
     - script.morning_weekday
-    - scene.movie_paused
+    - script.*iphone
     - scene.movie_ended
+    - scene.movie_paused
+    - switch.*spare*
     haaska_hidden: true
 
 #####################################################################
