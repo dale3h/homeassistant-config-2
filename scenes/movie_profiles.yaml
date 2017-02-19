@@ -30,6 +30,11 @@
 - name: Movie Paused
   entities:
 
+# turn on the kitchen lights
+    light.ge_12724_3way_dimmer_switch_level_33_0:
+      state: on
+      brightness: 75
+
 # turn on kitchen entry light
     light.kitchen_entry:
       state: on

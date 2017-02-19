@@ -22,6 +22,11 @@
       brightness: 255
       transition: 5
 
+# turn on the kitchen lights
+    light.ge_12724_3way_dimmer_switch_level_33_0:
+      state: on
+      brightness: 255
+
 #####################################################################
 ### Living Room Normal
 #####################################################################

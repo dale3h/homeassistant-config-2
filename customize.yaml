@@ -17,7 +17,6 @@
     entity_picture: /local/rick.jpg
     haaska_hidden: true
 
-
   - entity_id: device_tracker.megs_iphone7
     friendly_name: "Megs iPhone"
     entity_picture: /local/megs.jpg
@@ -97,6 +96,16 @@
   - entity_id: light.ge_12724_3way_dimmer_switch_level_8_0
     friendly_name: "Master Bedroom Chandelier"
     haaska_name: "Master Bedroom Chandelier"
+    icon: mdi:white-balance-incandescent
+
+## Kitchen Lights
+  - entity_id: light.ge_12724_3way_dimmer_switch_level_33_0
+    friendly_name: "Kitchen Lights"
+    icon: mdi:white-balance-incandescent
+
+## Dining Room Chandelier
+  - entity_id: light.ge_12724_3way_dimmer_switch_level_34_0
+    friendly_name: "Dining Room Lights"
     icon: mdi:white-balance-incandescent
 
 ## Flux RGB bulb
@@ -638,28 +647,33 @@
 
 ## Hide Groups
   - entity_id: 
+    - group.*climate*
+    - group.*cool*
+    - group.*device*
+    - group.*heat*
+    - group.*hvac*
+    - group.*lock*
+    - group.*media*
+    - group.*security*
+    - group.*temp*
+    - group.*test*
+    - group.*weather*
     - group.all_automations
     - group.all_devices
     - group.all_locks
     - group.all_scripts
     - group.breaches
     - group.cameras
-    - group.*climate*
-    - group.*cool*
-    - group.*heat*
-    - group.*hvac*
     - group.default_view
-    - group.*device*
-    - group.entry_lighting
-    - group.*lock*
-    - group.*security*
+    - group.dining_room
     - group.downloads
+    - group.entry_lighting
     - group.family
     - group.ha_status
+    - group.kitchen
     - group.lab
     - group.light_and_switch_override
     - group.lighting_scenes
-    - group.*media*
     - group.pool
     - group.porch
     - group.precipitation
@@ -668,21 +682,18 @@
     - group.sensors
     - group.speedtest
     - group.system
-    - group.*test*
-    - group.*temp*
     - group.things
     - group.travel*
     - group.triggers
-    - group.*weather*
     - group.yard
-    - input_boolean.rick
     - input_boolean.*test*
-    - script.*test*
-    - script.*temp*
-    - script.morning_weekday
-    - script.*iphone
+    - input_boolean.rick
     - scene.movie_ended
     - scene.movie_paused
+    - script.*iphone
+    - script.*temp*
+    - script.*test*
+    - script.morning_weekday
     - switch.*spare*
     haaska_hidden: true
 

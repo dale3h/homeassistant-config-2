@@ -35,6 +35,8 @@ rooms:
   icon: mdi:lightbulb
   entities:
     - group.living_room
+    - group.kitchen
+    - group.dining_room
     - group.entry_lighting
     - group.accent_lights
     - group.office
@@ -189,6 +191,10 @@ Interior Lights:
   - light.ge_12724_3way_dimmer_switch_level_8_0
 # Billiards Room
   - switch.ge_45609_onoff_relay_switch_switch_2_0
+# Kitchen Ceiling Lights
+  - light.ge_12724_3way_dimmer_switch_level_33_0
+# Dining Room Chandelier
+  - light.ge_12724_3way_dimmer_switch_level_34_0
 
 #####################################################################
 ### EXTERIOR LIGHTS (excluding Porch Lights)
@@ -224,6 +230,12 @@ Entry Lighting:
   - light.kitchen_entry
   - light.center_entry
 
+Kitchen:
+  - light.ge_12724_3way_dimmer_switch_level_33_0
+
+Dining Room:
+  - light.ge_12724_3way_dimmer_switch_level_34_0
+
 Living Room:
   - light.living_room_lamp
   - group.living_room_ceiling
@@ -242,7 +254,6 @@ Master Bedroom:
   - light.ge_12724_3way_dimmer_switch_level_8_0
   - script.master_bedroom_night_time
   - switch.humidifier
-
 
 Billiards Room:
   - switch.ge_45609_onoff_relay_switch_switch_2_0

@@ -28,7 +28,7 @@
     - platform: numeric_state
       entity_id: sun.sun
       value_template: '{{ state.attributes.elevation }}'
-      above: 1.75
+      above: 1.8
 
   condition:
     - condition: state
@@ -87,7 +87,7 @@
       entity_id: scene.living_room_normal
 
 #####################################################################
-### Set the Living Room Cloudy Scene (if home)
+### Set the Living Room Cloudy Scene
 #####################################################################
 
 - alias: turn on living room scene if cloudy
@@ -95,11 +95,11 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.fibaro_system_fgms001_motion_sensor_luminance_22_3
-      below: 35.0
+      below: 30
 
     - platform: numeric_state
       entity_id: sensor.dark_sky_cloud_coverage
-      above: 80
+      above: 70
 
     - platform: numeric_state
       entity_id: sensor.dark_sky_precip_intensity
@@ -107,7 +107,6 @@
 
     - platform: state
       entity_id: input_boolean.rain
-      from: 'off'
       to: 'on'
 
   condition:
@@ -117,17 +116,17 @@
 
     - condition: time
       after: '08:00:00'
-      before: '18:00:00'
+      before: '17:00:00'
 
     - condition: numeric_state
-      entity_id: sensor.dark_sky_cloud_coverage
-      above: 80
+      entity_id: sensor.fibaro_system_fgms001_motion_sensor_luminance_22_3
+      below: 30
 
     - condition: or
       conditions:
-      - condition: numeric_state
-        entity_id: sensor.fibaro_system_fgms001_motion_sensor_luminance_22_3
-        below: 35.0
+      - condition: state
+        entity_id: input_boolean.rain
+        state: 'on'
 
       - condition: numeric_state
         entity_id: sensor.dark_sky_precip_intensity
@@ -155,19 +154,19 @@
 
     - platform: numeric_state
       entity_id: sensor.fibaro_system_fgms001_motion_sensor_luminance_22_3
-      above: 35.0
-
-    - platform: numeric_state
-      entity_id: sensor.dark_sky_cloud_coverage
-      below: 80
+      above: 30
 
   condition:
     - condition: state
       entity_id: group.living_room
       state: 'on'
 
+    - condition: numeric_state
+      entity_id: sensor.fibaro_system_fgms001_motion_sensor_luminance_22_3
+      above: 30
+
     - condition: time
-      before: '16:00:00'
+      before: '17:00:00'
 
   action:
     - service: homeassistant.turn_off
