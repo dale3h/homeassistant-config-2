@@ -105,3 +105,5 @@
       state: on
       brightness: 100
       transition: 30
+
+    group.accent_lights: on

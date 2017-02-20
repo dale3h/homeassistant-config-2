@@ -144,6 +144,9 @@ lab:
 #####################################################################
 
 Family:
+  icon: mdi:account-multiple
+  control: hidden
+  entities:
   - input_boolean.megs_home
   - input_boolean.rick_home
 
@@ -168,6 +171,8 @@ Travel Megs:
 #####################################################################
 
 Lighting Scenes:
+  control: hidden
+  entities:
   - script.bedtime
   - scene.early_morning
   - scene.movie_time
@@ -251,6 +256,8 @@ Office:
   - input_select.rgb_light
 
 Master Bedroom:
+  control: hidden
+  entities:
   - light.ge_12724_3way_dimmer_switch_level_8_0
   - script.master_bedroom_night_time
   - switch.humidifier
@@ -263,6 +270,8 @@ Billiards Room:
 #####################################################################
 
 Security Override:
+  control: hidden
+  entities:
   - input_boolean.visitor_mode
   - automation.away_mode
   - automation.unlock_door_for_megs
@@ -308,12 +317,16 @@ Breaches:
 #####################################################################
 
 Downstairs Climate Override:
+  control: hidden
+  entities:
   - script.heat_downstairs_120min
   - script.heat_downstairs_180min
   - script.cool_downstairs_120min
   - script.cool_downstairs_180min
 
 Upstairs Climate Override:
+  control: hidden
+  entities:
   - script.heat_upstairs_120min
   - script.heat_upstairs_180min
   - script.cool_upstairs_120min
@@ -370,6 +383,8 @@ Upstairs Cooling:
 #####################################################################
 
 Yard:
+  control: hidden
+  entities:
 # patio lights
   - switch.ge_12722_onoff_relay_switch_switch_7_0
 # GE Outdoor wireless outlet; for Christmas lights, etc.
@@ -424,6 +439,8 @@ Weather Details:
 #####################################################################
 
 Light and Switch Override:
+  control: hidden
+  entities:
   - automation.turn_on_lights_upon_arrival
   - automation.turn_on_fountains
   - automation.turn_on_living_room_lamp_at_sunset
@@ -489,6 +506,8 @@ HA Status:
 #####################################################################
 
 Triggers:
+  control: hidden
+  entities:
   - script.desk_lamp
   - script.light_test
   - input_boolean.state_change
@@ -498,6 +517,8 @@ Triggers:
   - script.lost_iphone
 
 Test Conditions:
+  control: hidden
+  entities:
   - input_boolean.condition_1
   - input_boolean.condition_2
   - input_boolean.condition_3
