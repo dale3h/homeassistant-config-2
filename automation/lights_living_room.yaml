@@ -14,6 +14,9 @@
       entity_id: group.family
       state: 'on'
 
+    - condition: template
+      value_template: "{{ states.media_player.kodi_living_room.state != 'playing' }}"
+
   action:
     - service: scene.turn_on
       entity_id: scene.living_room_normal
@@ -114,7 +117,8 @@
       entity_id: group.family
       state: 'on'
 
-## add condition for media players are not "Playing"
+    - condition: template
+      value_template: "{{ states.media_player.kodi_living_room.state != 'playing' }}"
 
     - condition: time
       after: '08:00:00'

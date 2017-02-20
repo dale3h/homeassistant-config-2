@@ -15,10 +15,14 @@
       state: off
       transition: 15
 
-# turn on the hue living_room_ceiling lights
+# turn off the hue living_room_ceiling lights
     group.living_room_ceiling:
       state: off
       transition: 10
+
+# turn off the Kitchen Lights
+    light.ge_12724_3way_dimmer_switch_level_33_0:
+      state: off
 
 # turn off the accent_lights "catch all"
     group.accent_lights: off
@@ -96,7 +100,7 @@
       brightness: 200
       transition: 60
 
-# turn off the hue living_room_ceiling lights
+# turn on the hue living_room_ceiling lights
     group.living_room_ceiling:
       state: on
       brightness: 100
