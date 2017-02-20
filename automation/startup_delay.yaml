@@ -9,7 +9,7 @@
     event_type: homeassistant_start
 
   action:
-  - service: notify.notify
+  - service: notify.pushbullet
     data:
       title: "Home Assistant Startup"
       target: "device/Chrome"

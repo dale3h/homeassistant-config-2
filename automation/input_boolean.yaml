@@ -142,7 +142,7 @@
         {% endif %}
       entity_id: input_boolean.rain
 
-#    - service: notify.notify
+#    - service: notify.pushbullet
 #      data:
 #        title: "Weather: Predicted Rain"
 #        target: "device/Chrome"
@@ -211,7 +211,7 @@
 #  action:
 #    - service: input_boolean.turn_on
 #      entity_id: input_boolean.peak_hours
-#  #  - service: notify.notify
+#  #  - service: notify.pushbullet
 #  #    data:
 #  #      message: "Peak Hours On. Downstairs temp is: {{ states('sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1') }}"
 ##################################################################################################################
@@ -239,7 +239,7 @@
 #  action:
 #    - service: input_boolean.turn_off
 #      entity_id: input_boolean.peak_hours
-#  #  - service: notify.notify
+#  #  - service: notify.pushbullet
 #  #    data:
 #  #      message: "Peak Hours Off. Downstairs temp is: {{ states('sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1') }}"
 ##################################################################################################################

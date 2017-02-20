@@ -7,7 +7,7 @@
 
   action:
 
-    - service: notify.notify
+    - service: notify.pushbullet
       data:
         title: "Door Unlocked"
         target: "device/Chrome"
