@@ -1,3 +1,5 @@
+//////  THIS IS NOT A PYTHON SCRIPT /////
+
 You can use this code to quickly create files from the template editor in HA.  I use it mainly for `emulated_hue` and to quickly add in new Customize options to all things HA!
 
 

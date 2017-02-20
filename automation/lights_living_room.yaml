@@ -114,6 +114,8 @@
       entity_id: group.family
       state: 'on'
 
+## add condition for media players are not "Playing"
+
     - condition: time
       after: '08:00:00'
       before: '17:00:00'
