@@ -183,7 +183,7 @@
   - entity_id: sensor.hvac_downstairs_heat_setpoint
     icon: mdi:fire
 
-# upstairs
+## upstairs
   - entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
     friendly_name: "Upstairs Temp"
 
