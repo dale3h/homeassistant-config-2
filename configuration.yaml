@@ -36,20 +36,20 @@ ifttt:
 zwave:
   usb_path: /dev/ttyACM0
   config_path: /srv/hass/hass_venv/lib/python3.4/site-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config
-#  polling_interval: 10000
+  polling_interval: 10000
   customize:
 ## MBR Chandelier
     light.ge_12724_3way_dimmer_switch_level_8_0:
       refresh_value: true
-      delay: 4
+      delay: 5
 ## Kitchen Lights
     light.ge_12724_3way_dimmer_switch_level_33_0:
       refresh_value: true
-      delay: 4
+      delay: 5
 ## Dining Room Chandelier
     light.ge_12724_3way_dimmer_switch_level_34_0:
       refresh_value: true
-      delay: 4
+      delay: 5
 
 ### HTTP
 http:
@@ -124,9 +124,9 @@ logger:
   default: error
   logs:
 #    homeassistant.components.device_tracker: debug
-#    homeassistant.components.camera: debug
+    homeassistant.components.camera: critical
 #    homeassistant.components.group: debug
-#    homeassistant.components.sensor: debug
+    homeassistant.components.sensor: critical
 #    homeassistant.components.media_player: debug
 #    homeassistant.components.switch: debug
     homeassistant.components.automation: debug
