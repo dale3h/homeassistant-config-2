@@ -39,7 +39,7 @@
 ## Billiards Room Lights
   - entity_id: switch.ge_45609_onoff_relay_switch_switch_2_0
     friendly_name: "Billiards Lights"
-    icon: mdi:lightbulb
+    icon: mdi:white-balance-incandescent
 
 ## Patio Lights
   - entity_id: switch.ge_12722_onoff_relay_switch_switch_7_0

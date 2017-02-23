@@ -1,13 +1,13 @@
 # FRONT DOOR
 - platform: generic
-  still_image_url: http://hq.rrubino.com:8081/image/jpeg.cgi
+  still_image_url: !secret front_door_url
   name: Front Door
   username: !secret tplink_user
   password: !secret tplink_password
 
 # GATE
 - platform: generic
-  still_image_url: http://hq.rrubino.com:8082/image/jpeg.cgi
+  still_image_url: !secret north_gate_url
   name: Gate
   username: !secret tplink_user
   password: !secret tplink_password
@@ -15,7 +15,7 @@
 # NORTH PTZ
 - platform: generic
 #- platform: amcrest
-  still_image_url: http://hq.rrubino.com:8083/cgi-bin/snapshot.cgi
+  still_image_url: !secret north_ptz_url
 #  host: 192.168.11.100
 #  port: 8083
   name: North PTZ
@@ -26,7 +26,7 @@
 # Kitchen PTZ
 - platform: generic
 #- platform: amcrest
-  still_image_url: http://hq.rrubino.com:8084/cgi-bin/snapshot.cgi
+  still_image_url: !secret kitchen_ptz_url
 #  host: 192.168.11.101
 #  port: 8084
   name: Kitchen PTZ

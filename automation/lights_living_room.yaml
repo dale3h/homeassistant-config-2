@@ -94,7 +94,7 @@
 #####################################################################
 
 - alias: turn on living room scene if cloudy
-  hide_entity: True
+#  hide_entity: True
   trigger:
     - platform: numeric_state
       entity_id: sensor.fibaro_system_fgms001_motion_sensor_luminance_22_3
@@ -147,7 +147,7 @@
 #####################################################################
 
 - alias: rain has stopped
-  hide_entity: True
+#  hide_entity: True
   trigger:
     - platform: numeric_state
       entity_id: sensor.dark_sky_precip_intensity

@@ -39,3 +39,9 @@ morning_weekday:
     data:
       brightness: 140
       transition: 600
+
+# turn on the kitchen lights
+  - service: light.turn_on
+    entity_id: light.ge_12724_3way_dimmer_switch_level_33_0
+    data:
+      brightness: 170

@@ -51,6 +51,8 @@
       entity_id: input_boolean.rain
       from: 'off'
       to: 'on'
+      for:
+        minutes: 5
 
   condition:
     - condition: state
