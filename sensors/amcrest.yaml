@@ -6,8 +6,8 @@
   password: !secret tplink_password
   monitored_conditions:
     - motion_detector
-    - sdcard
-    - ptz_preset
+#    - sdcard
+#    - ptz_preset
 
 - platform: amcrest
   host: 192.168.11.101
@@ -17,5 +17,5 @@
   password: !secret tplink_password
   monitored_conditions:
     - motion_detector
-    - sdcard
-    - ptz_preset
+#    - sdcard
+#    - ptz_preset

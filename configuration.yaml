@@ -5,8 +5,17 @@ homeassistant:
   elevation: 387
   unit_system: imperial
   time_zone: America/Phoenix
-  customize: !include customize.yaml
 
+#####################################################################
+### CUSTOMIZATION
+#####################################################################
+  customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
+#  customize_domain:
+
+#####################################################################
+### ZONE CONFIG
+#####################################################################
 zone 1:
   name: Rick Work
   latitude: !secret latitude_rick_work
@@ -21,6 +30,9 @@ zone 2:
   radius: 150
   icon: mdi:school
 
+#####################################################################
+### SERVICES CONFIG
+#####################################################################
 mqtt:
   broker: hq.rrubino.com
   port: 1883
@@ -32,26 +44,36 @@ mqtt:
 ifttt:
   key: !secret ifttt_api_key
 
-###  ZWAVE CONFIG ###
+#####################################################################
+### ZWAVE CONFIG
+#####################################################################
 zwave:
   usb_path: /dev/ttyACM0
   config_path: /srv/hass/hass_venv/lib/python3.4/site-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config
   polling_interval: 10000
-  customize:
-## MBR Chandelier
-    light.ge_12724_3way_dimmer_switch_level_8_0:
-      refresh_value: true
-      delay: 5
-## Kitchen Lights
-    light.ge_12724_3way_dimmer_switch_level_33_0:
-      refresh_value: true
-      delay: 5
-## Dining Room Chandelier
-    light.ge_12724_3way_dimmer_switch_level_34_0:
-      refresh_value: true
-      delay: 5
 
-### HTTP
+## Device config
+  device_config_domain:
+    lock:
+      polling_intensity: 1
+
+## Global config
+  device_config_glob:
+    "light.ge_12724_3way_dimmer_switch_*":
+      refresh_value: true
+      delay: 5
+### Kitchen Lights
+#    light.ge_12724_3way_dimmer_switch_level_33_0:
+#      refresh_value: true
+#      delay: 5
+### Dining Room Chandelier
+#    light.ge_12724_3way_dimmer_switch_level_34_0:
+#      refresh_value: true
+#      delay: 5
+
+#####################################################################
+### HTTP CONFIG
+#####################################################################
 http:
 #  base_url: !secret base_url
   api_password: !secret http_password
@@ -63,7 +85,9 @@ http:
     - !secret network_3
     - !secret network_4
 
-### iOS
+#####################################################################
+### IOS CONFIG
+#####################################################################
 ios:
   push_categories:
     - name: Alarm

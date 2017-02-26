@@ -13,6 +13,11 @@
       entity_id: sensor.living_room_kodi_playback_state
       to: 'resumed'
 
+    - platform: state
+      entity_id: media_player.kodi_living_room
+      to: 'playing'
+      from: 'idle'
+
   condition: 
     - condition: state
       entity_id: sun.sun

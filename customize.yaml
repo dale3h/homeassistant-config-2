@@ -2,28 +2,28 @@
 ### Device Trackers
 #####################################################################
 
-  - entity_id: input_boolean.rick_home
+  input_boolean.rick_home:
     friendly_name: "Rick"
     entity_picture: /local/rick.jpg
     haaska_hidden: true
 
-  - entity_id: input_boolean.megs_home
+  input_boolean.megs_home:
     friendly_name: "Megs"
     entity_picture: /local/megs.jpg
     haaska_hidden: true
 
-  - entity_id: device_tracker.iphwn666
-    friendly_name: "Ricks iPhone"
-    entity_picture: /local/rick.jpg
+  device_tracker.iphwn666:
+#      friendly_name: "Rick"
+#      entity_picture: /local/rick.jpg
     haaska_hidden: true
 
-  - entity_id: device_tracker.megs_iphone7
-    friendly_name: "Megs iPhone"
+  device_tracker.megs_iphone7:
+    friendly_name: "Megs"
     entity_picture: /local/megs.jpg
     haaska_hidden: true
 
-  - entity_id: device_tracker.iphone7
-    friendly_name: "Megs iPhone"
+  device_tracker.iphone7:
+    friendly_name: "Megs"
     entity_picture: /local/megs.jpg
     haaska_hidden: true
 
@@ -32,35 +32,35 @@
 #####################################################################
 
 ## Outdoor GE Zwave Outlet (Christmas Lights, etc.)
-  - entity_id: switch.ge_unknown_type4f50_id3031_switch_23_0
+  switch.ge_unknown_type4f50_id3031_switch_23_0:
     friendly_name: "Party Lights"
     icon: mdi:glass-mug
 
 ## Billiards Room Lights
-  - entity_id: switch.ge_45609_onoff_relay_switch_switch_2_0
+  switch.ge_45609_onoff_relay_switch_switch_2_0:
     friendly_name: "Billiards Lights"
     icon: mdi:white-balance-incandescent
 
 ## Patio Lights
-  - entity_id: switch.ge_12722_onoff_relay_switch_switch_7_0
+  switch.ge_12722_onoff_relay_switch_switch_7_0:
     friendly_name: "Patio Lights"
     icon: mdi:white-balance-incandescent
 
 ## Pool Light
-  - entity_id: switch.ge_12722_onoff_relay_switch_switch_25_0
+  switch.ge_12722_onoff_relay_switch_switch_25_0:
     friendly_name: "Pool Light"
     icon: mdi:pool
 
-  - entity_id: switch.linear_fs20z_isolated_contact_fixture_module_switch_21_0
+  switch.linear_fs20z_isolated_contact_fixture_module_switch_21_0:
     friendly_name: "Fountains"
     icon: mdi:beach
 
 ## Porch Lights
-  - entity_id: switch.ge_45609_onoff_relay_switch_switch_19_0
+  switch.ge_45609_onoff_relay_switch_switch_19_0:
     friendly_name: "South Porch Lights"
     icon: mdi:white-balance-incandescent
 
-  - entity_id: switch.ge_45609_onoff_relay_switch_switch_20_0
+  switch.ge_45609_onoff_relay_switch_switch_20_0:
     friendly_name: "Front Porch Lights"
     icon: mdi:white-balance-incandescent
 
@@ -68,23 +68,23 @@
 ### SWITCHES (RF)
 #####################################################################
 
-  - entity_id: switch.outdoor_speakers
+  switch.outdoor_speakers:
     friendly_name: "Outdoor Speakers"
     entity_picture: /local/music.ico
 
-  - entity_id: switch.humidifier
+  switch.humidifier:
     friendly_name: "Humidifier"
     icon: mdi:cup-water
 
-  - entity_id: switch.staircase_lamp
-    friendly_name: "Staircase Lamp"
-    icon: mdi:lamp
-
-#  - entity_id: switch.staircase_spare
+#  switch.staircase_xmas:
 #    friendly_name: "Staircase Christmas Lights"
 #    icon: mdi:stocking
 
-#  - entity_id: switch.wine_room_spare
+  switch.staircase_lamp:
+    friendly_name: "Staircase Lamp"
+    icon: mdi:lamp
+
+#  switch.wine_room_lamp:
 #    friendly_name: "Wine Room Lamp"
 #    icon: mdi:lamp
 
@@ -93,23 +93,22 @@
 #####################################################################
 
 ## MBR Chandelier
-  - entity_id: light.ge_12724_3way_dimmer_switch_level_8_0
+  light.ge_12724_3way_dimmer_switch_level_8_0:
     friendly_name: "Master Bedroom Chandelier"
     haaska_name: "Master Bedroom Chandelier"
     icon: mdi:white-balance-incandescent
 
 ## Kitchen Lights
-  - entity_id: light.ge_12724_3way_dimmer_switch_level_33_0
+  light.ge_12724_3way_dimmer_switch_level_33_0:
     friendly_name: "Kitchen Lights"
     icon: mdi:white-balance-incandescent
 
 ## Dining Room Chandelier
-  - entity_id: light.ge_12724_3way_dimmer_switch_level_34_0
+  light.ge_12724_3way_dimmer_switch_level_34_0:
     friendly_name: "Dining Room Lights"
     icon: mdi:white-balance-incandescent
-
 ## Flux RGB bulb
-  - entity_id: light.flux_rgb
+  light.flux_rgb:
     friendly_name: "Desk Lamp"
 #      haaska_name: "Desk Lamp"
     icon: mdi:lamp
@@ -118,143 +117,153 @@
 ### PHILIPS HUE (hidden from Alexa due to native integration)
 #####################################################################
 
-  - entity_id: light.living_room_lamp
+  light.living_room_lamp:
     haaska_hidden: true
     icon: mdi:lamp
 
-  - entity_id: light.south_entry
+  light.south_entry:
     haaska_hidden: true
     icon: mdi:white-balance-incandescent
-
-  - entity_id: light.kitchen_entry
+  light.kitchen_entry:
     haaska_hidden: true
     icon: mdi:white-balance-incandescent
-
-  - entity_id: light.center_entry
+  light.center_entry:
     haaska_hidden: true
     icon: mdi:white-balance-incandescent
-
-  - entity_id: light.northeast_ceiling
+  light.northeast_ceiling:
     haaska_hidden: true
     icon: mdi:white-balance-incandescent
-
-  - entity_id: light.northwest_ceiling
+#      entity_picture: /local/hue_white.png
+  light.northwest_ceiling:
     haaska_hidden: true
     icon: mdi:white-balance-incandescent
-
-  - entity_id: light.southeast_ceiling
+#      entity_picture: /local/hue_white.png
+  light.southeast_ceiling:
     haaska_hidden: true
     icon: mdi:white-balance-incandescent
-
-  - entity_id: light.southwest_ceiling
+#      entity_picture: /local/hue_white.png
+  light.southwest_ceiling:
     haaska_hidden: true
     icon: mdi:white-balance-incandescent
+#      entity_picture: /local/hue_white.png
 
 #####################################################################
 ### LOCKS
 #####################################################################
 
-  - entity_id: lock.assa_abloy_yale_real_living_captouch_lever_locked_12_0
+  lock.assa_abloy_yale_real_living_captouch_lever_locked_12_0:
     friendly_name: "Beach Bathroom Door"
+    haaska_hidden: true
 
-  - entity_id: lock.assa_abloy_yale_real_living_captouch_lever_locked_16_0
+  lock.assa_abloy_yale_real_living_captouch_lever_locked_16_0:
     friendly_name: "South Door"
+    haaska_hidden: true
 
 #####################################################################
 ### THERMOSTATS
 #####################################################################
 
 # downstairs
-  - entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1
+  sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1:
     friendly_name: "Downstairs Temp"
 
-  - entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
+  climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2:
     friendly_name: "Downstairs Cooling Setpoint"
 
-  - entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_18_1
+  climate.2gig_technologies_ct101_thermostat_iris_heating_1_18_1:
     friendly_name: "Downstairs Heating Setpoint"
 
-  - entity_id: sensor.hvac_downstairs_fan
+  sensor.hvac_downstairs_fan:
     icon: mdi:fan
+    haaska_hidden: true
 
-  - entity_id: sensor.hvac_downstairs_ac_setpoint
+  sensor.hvac_downstairs_ac_setpoint:
     icon: mdi:snowflake
+    haaska_hidden: true
 
-  - entity_id: sensor.hvac_downstairs_heat_setpoint
+  sensor.hvac_downstairs_heat_setpoint:
     icon: mdi:fire
+    haaska_hidden: true
 
-## upstairs
-  - entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
+# upstairs
+  sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1:
     friendly_name: "Upstairs Temp"
 
-  - entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
+  climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2:
     friendly_name: "Upstairs Cooling Setpoint"
 
-  - entity_id: climate.2gig_technologies_ct101_thermostat_iris_heating_1_24_1
+  climate.2gig_technologies_ct101_thermostat_iris_heating_1_24_1:
     friendly_name: "Upstairs Heating Setpoint"
 
-  - entity_id: sensor.hvac_upstairs_fan
+  sensor.hvac_upstairs_fan:
     icon: mdi:fan
+    haaska_hidden: true
 
-  - entity_id: sensor.hvac_upstairs_ac_setpoint
+  sensor.hvac_upstairs_ac_setpoint:
     icon: mdi:snowflake
+    haaska_hidden: true
 
-  - entity_id: sensor.hvac_upstairs_heat_setpoint
+  sensor.hvac_upstairs_heat_setpoint:
     icon: mdi:fire
+    haaska_hidden: true
 
 #####################################################################
 ### MEDIA PLAYERS
 #####################################################################
 
-  - entity_id: media_player.kodi_office
+  media_player.kodi_office:
     friendly_name: "Office Kodi"
+    haaska_hidden: true
 
-  - entity_id: media_player.kodi_living_room
+  media_player.kodi_living_room:
     friendly_name: "Living Room Kodi"
+    haaska_hidden: true
 
-  - entity_id: media_player.kodi_bedroom
+  media_player.kodi_bedroom:
     friendly_name: "Bedroom Kodi"
+    haaska_hidden: true
 
 ## AppleTV
-  - entity_id: media_player.apple_tv
+  media_player.apple_tv:
     friendly_name: "Apple TV"
 
 ## Chromecast
-  - entity_id: media_player.rnmcast
-    friendly_name: "Chromecast"
+  media_player.rnmcast:
+    friendly_name: Chromecast
+    haaska_hidden: true
 
 #####################################################################
 ## GROUPS (for Alexa friendly names)
 #####################################################################
 
-  - entity_id: group._lights
+  group.all_lights:
     friendly_name: "All Lights"
 
-  - entity_id: group.all_switches
+  group.all_switches:
     friendly_name: "All Switches"
     haaska_hidden: true
 
-  - entity_id: group.porch
+  group.porch:
     friendly_name: "Porch"
     haaska_name: "Porch Lights"
 
-  - entity_id: group.accent_lights
+  group.accent_lights:
     friendly_name: "Accent Lights"
     haaska_name: "Accent Lights"
 
-  - entity_id: group.master_bedroom
+  group.master_bedroom:
     friendly_name: "Master Bedroom"
     haaska_name: "Master Bedroom Lights"
 
-  - entity_id: group.wine_room
+  group.wine_room:
     friendly_name: "Wine Room"
     haaska_name: "Wine Room Lights"
 
-  - entity_id: group.billiards_room
+  group.billiards_room:
     friendly_name: "Billiards Room"
     haaska_name: "Billiards Room Lights"
 
-  - entity_id: group.office
+  group.office:
     friendly_name: "Office"
     haaska_name: "Office Lights"
 
@@ -264,60 +273,60 @@
 
 ### HEAT ###
 
-  - entity_id: script.heat_downstairs_60min
+  script.heat_downstairs_60min:
     friendly_name: "Downstairs Quick Heating"
     entity_picture: /local/flame.png
 
-  - entity_id: script.heat_upstairs_60min
+  script.heat_upstairs_60min:
     friendly_name: "Upstairs Quick Heating"
     entity_picture: /local/flame.png
 
-  - entity_id: script.heat_downstairs_120min
+  script.heat_downstairs_120min:
     friendly_name: "Downstairs Max Heating"
     icon: mdi:fire
 #      haaska_hidden: true
 
-  - entity_id: script.heat_upstairs_120min
+  script.heat_upstairs_120min:
     friendly_name: "Upstairs Max Heating"
     icon: mdi:fire
 #      haaska_hidden: true
 
-  - entity_id: script.heat_downstairs_180min
+  script.heat_downstairs_180min:
     friendly_name: "Downstairs Auto Heating"
     icon: mdi:fire
     haaska_hidden: true
 
-  - entity_id: script.heat_upstairs_180min
+  script.heat_upstairs_180min:
     friendly_name: "Upstairs Auto Heating"
     icon: mdi:fire
     haaska_hidden: true
 
 ### COOL ###
 
-  - entity_id: script.cool_downstairs_60min
+  script.cool_downstairs_60min:
     friendly_name: "Downstairs Quick Cooling"
     entity_picture: /local/snowflake.png
 
-  - entity_id: script.cool_upstairs_60min
+  script.cool_upstairs_60min:
     friendly_name: "Upstairs Quick Cooling"
     entity_picture: /local/snowflake.png
 
-  - entity_id: script.cool_downstairs_120min
+  script.cool_downstairs_120min:
     friendly_name: "Downstairs Max Cooling"
     icon: mdi:snowflake
 #      haaska_hidden: true
 
-  - entity_id: script.cool_upstairs_120min
+  script.cool_upstairs_120min:
     friendly_name: "Upstairs Max Cooling"
     icon: mdi:snowflake
 #      haaska_hidden: true
 
-  - entity_id: script.cool_downstairs_180min
+  script.cool_downstairs_180min:
     friendly_name: "Downstairs Auto Cooling"
     icon: mdi:snowflake
     haaska_hidden: true
 
-  - entity_id: script.cool_upstairs_180min
+  script.cool_upstairs_180min:
     friendly_name: "Upstairs Auto Cooling"
     icon: mdi:snowflake
     haaska_hidden: true
@@ -327,48 +336,85 @@
 #####################################################################
 
 ## Restart Home Assistant
-  - entity_id: script.restart_ha
+  script.restart_ha:
     friendly_name: "Restart Home Assistant"
     icon: mdi:recycle
     haaska_hidden: true
 
 #####################################################################
-### SCENARIOS - SCRIPT BASED
+### SCENARIOS
 #####################################################################
 
-## global icon setting
-  - entity_id: script, scene
-    icon: mdi:play-circle
-
 ## bedtime mode
-  - entity_id: script.bedtime
+  script.bedtime:
     friendly_name: "Bedtime"
+    icon: mdi:hotel
 
 ## master bedroom night mode
-  - entity_id: script.master_bedroom_night_time
+  script.master_bedroom_night_time:
     friendly_name: "Master Bedroom Night Time"
+    icon: mdi:weather-night
+
+## early morning scene
+  scene.early_morning:
+    icon: mdi:weather-sunset-up
+
+## Shutdown lights and devices
+  script.shutdown_lights:
+    icon: mdi:play-circle
+
+## Movie Bright
+  scene.living_room_bright:
+    icon: mdi:play-circle
+
+## Living Room Normal
+  scene.living_room_normal:
+    icon: mdi:play-circle
+
+## Living Room Cloudy
+  scene.living_room_cloudy:
+    icon: mdi:play-circle
+
+## Movie Dim
+  scene.living_room_dim:
+    icon: mdi:play-circle
+
+## Movie Playing
+  scene.movie_time:
+    icon: mdi:play-circle
 
 ## Test script
-  - entity_id: script.desk_lamp
+  script.desk_lamp:
     friendly_name: "Desk Lamp Test"
+    icon: mdi:play-circle
     haaska_hidden: true
 
 #####################################################################
 ### BOOLEANS (and stuff)
 #####################################################################      
 
-  - entity_id: input_boolean.visitor_mode
-
-  - entity_id: input_boolean.peak_hours
+  input_boolean.visitor_mode:
     haaska_hidden: true
 
-  - entity_id: input_boolean.rain
+  input_boolean.peak_hours:
     haaska_hidden: true
 
-  - entity_id: input_boolean.state_change_test
+  input_boolean.rain:
     haaska_hidden: true
 
-  - entity_id: input_slider
+  input_boolean.state_change_test:
+    haaska_hidden: true
+
+  input_slider.downstairs_heat:
+    icon: mdi:nest-thermostat
+
+  input_slider.downstairs_ac:
+    icon: mdi:nest-thermostat
+
+  input_slider.upstairs_heat:
+    icon: mdi:nest-thermostat
+
+  input_slider.upstairs_ac:
     icon: mdi:nest-thermostat
 
 #####################################################################
@@ -376,50 +422,56 @@
 #####################################################################
 
 ## Door Lock Batteries
-  - entity_id: sensor.*battery*
+  sensor.lock_beach_battery:
     icon: mdi:battery-charging
+
+  sensor.lock_south_battery:
+    icon: mdi:battery-charging
+
+## Phone Batteries
+  sensor.iphone_battery_rick:
+    icon: mdi:cellphone-iphone
+
+  sensor.iphone_battery_megs:
+    icon: mdi:cellphone-iphone
 
 #####################################################################
 ### SENSORS (security)
 #####################################################################
 
 ## Fibaro Motion
-#    sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10
-  - entity_id: sensor.fibaro_state
+#    sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10:
+  sensor.fibaro_state:
     friendly_name: "Fibaro Motion Status"
     icon: mdi:run
-
-  - entity_id: sensor.fibaro_system_fgms001_motion_sensor_luminance_22_3
+  sensor.fibaro_system_fgms001_motion_sensor_luminance_22_3:
     friendly_name: "Fibaro Light Sensor"
     icon: mdi:white-balance-sunny
 
 ## Camera Sensors
-  - entity_id: sensor.kitchen_ptz_motion_detected
+  sensor.kitchen_ptz_motion_detected:
     friendly_name: "Kitchen PTZ Motion"
     icon: mdi:run
-
-  - entity_id: sensor.north_ptz_motion_detected
+  sensor.north_ptz_motion_detected:
     friendly_name: "North PTZ Motion"
     icon: mdi:run
-
-  - entity_id: sensor.kitchen_ptz_ptz_preset
+  sensor.kitchen_ptz_ptz_preset:
     friendly_name: "Kitchen PTZ Preset"
     icon: mdi:arrow-expand-all
-
-  - entity_id: sensor.north_ptz_ptz_preset
+  sensor.north_ptz_ptz_preset:
     friendly_name: "North PTZ Preset"
     icon: mdi:arrow-expand-all
-
-  - entity_id: sensor.kitchen_ptz_sd_used
+  sensor.kitchen_ptz_sd_used:
     friendly_name: "Kitchen PTZ SD Card"
     icon: mdi:sd
-
-  - entity_id: sensor.north_ptz_sd_used
+  sensor.north_ptz_sd_used:
     friendly_name: "North PTZ SD Card"
     icon: mdi:sd
 
 ## Breaches (Have I Been Pwned)
-  - entity_id: sensor.breaches*
+  sensor.breaches_ricknmegsgmailcom:
+    icon: mdi:email-secure
+  sensor.breaches_rixjunkcoxnet:
     icon: mdi:email-secure
 
 #####################################################################
@@ -427,34 +479,38 @@
 #####################################################################
 
 ## HVAC Downstairs Thermostat Mode
-  - entity_id: sensor.hvac*mode
+  sensor.hvac_downstairs_mode:
+    icon: mdi:nest-thermostat
+
+## HVAC Upstairs Thermostat Mode
+  sensor.hvac_upstairs_mode:
     icon: mdi:nest-thermostat
 
 ## HVAC Downstairs Mean Temp
-  - entity_id: sensor.downstairs_thermostat_statistics_mean
+  sensor.downstairs_thermostat_statistics_mean:
     friendly_name: Downstairs Thermostat Mean Temp
     icon: mdi:chart-areaspline
 
 # Downstairs Front Entry Fibaro Temperature
-  - entity_id: sensor.fibaro_system_fgms001_motion_sensor_temperature_22_1
+  sensor.fibaro_system_fgms001_motion_sensor_temperature_22_1:
     friendly_name: Front Entry Temperature
     icon: mdi:thermometer
 
 ## HVAC Upstairs Mean Temp
-  - entity_id: sensor.upstairs_thermostat_statistics_mean
+  sensor.upstairs_thermostat_statistics_mean:
     friendly_name: Upstairs Thermostat Mean Temp
     icon: mdi:chart-areaspline
 
 ## HVAC Downstairs Climate
-  - entity_id: sensor.hvac_downstairs_climate
+  sensor.hvac_downstairs_climate:
     icon: mdi:air-conditioner
 
 ## HVAC Upstairs Climate
-  - entity_id: sensor.hvac_upstairs_climate
+  sensor.hvac_upstairs_climate:
     icon: mdi:air-conditioner
 
 ## Peak Hours
-  - entity_id: sensor.peak_hours_status
+  sensor.peak_hours_status:
     icon: mdi:clock
 
 #####################################################################
@@ -462,239 +518,296 @@
 #####################################################################
 
 ## Speed Test
-  - entity_id: sensor.speedtest_ping
+  sensor.speedtest_ping:
     friendly_name: "Ping"
     icon: mdi:clock
 
-  - entity_id: sensor.speedtest_download
+  sensor.speedtest_download:
     friendly_name: "Download"
     icon: mdi:arrow-down
 
-  - entity_id: sensor.speedtest_upload
+  sensor.speedtest_upload:
     icon: mdi:arrow-up
     friendly_name: "Upload"
 
 ## SabNZB
-  - entity_id: sensor.sab_disk
+  sensor.sab_disk:
     friendly_name: "Total Storage"
     icon: mdi:harddisk
 
-  - entity_id: sensor.sab_disk_free
+  sensor.sab_disk_free:
     friendly_name: "Storage Remaining"
     icon: mdi:chart-pie
 
-  - entity_id: sensor.sab_queue
+  sensor.sab_queue:
     friendly_name: "Queued for Download"
     icon: mdi:clipboard-arrow-down
 
-  - entity_id: sensor.sab_speed
+  sensor.sab_speed:
     friendly_name: "DL Speed"
     icon: mdi:speedometer
 
-  - entity_id: sensor.sab_status
+  sensor.sab_status:
     friendly_name: "Current State"
     icon: mdi:check
 
 ## Commute Times (google traffic)
-  - entity_id: sensor.rick_work_commute
+  sensor.rick_work_commute:
     friendly_name: "Rick Commute to Work"
     icon: mdi:car
 
-  - entity_id: sensor.rick_home_commute
+  sensor.rick_home_commute:
     friendly_name: "Rick Commute Home"
     icon: mdi:car
 
-  - entity_id: sensor.megs_work_commute
+  sensor.megs_work_commute:
     friendly_name: "Megs Commute to Work"
     icon: mdi:car
 
-  - entity_id: sensor.megs_home_commute
+  sensor.megs_home_commute:
     friendly_name: "Megs Commute Home"
     icon: mdi:car
 
 # ETA Times
-  - entity_id: sensor.rick_eta_home
+  sensor.rick_eta_home:
     friendly_name: "Ricks ETA"
     icon: mdi:timer
 
-  - entity_id: sensor.ricks_eta
+  sensor.ricks_eta:
     icon: mdi:timer
 
-  - entity_id: sensor.megs_eta_home
+  sensor.megs_eta_home:
     friendly_name: "Megs ETA"
     icon: mdi:timer
 
-  - entity_id: sensor.megs_eta
+  sensor.megs_eta:
     icon: mdi:timer
 
 #####################################################################
 ### Test Booleans for Condition Testing
 #####################################################################
 
-  - entity_id: input_boolean.condition*
-    haaska_hidden: true
-    icon: mdi:checkbox-marked-circle
-
-  - entity_id: input_boolean.condition_1
+  input_boolean.condition_1:
     friendly_name: "Test Condition 1"
-  - entity_id: input_boolean.condition_2
+    icon: mdi:checkbox-marked-circle
+  input_boolean.condition_2:
     friendly_name: "Test Condition 2"
-  - entity_id: input_boolean.condition_3
+    icon: mdi:checkbox-marked-circle
+  input_boolean.condition_3:
     friendly_name: "Test Condition 3"
-  - entity_id: input_boolean.condition_4
+    icon: mdi:checkbox-marked-circle
+  input_boolean.condition_4:
     friendly_name: "Test Condition 4"
-  - entity_id: input_boolean.condition_5
+    icon: mdi:checkbox-marked-circle
+  input_boolean.condition_5:
     friendly_name: "Test Condition 5"
+    icon: mdi:checkbox-marked-circle
 
 #####################################################################
 ### SENSORS (weather)
 #####################################################################
 
-  - entity_id: sensor.dark_sky_humidity
+  sensor.dark_sky_humidity:
     friendly_name: "Humidity"
     icon: mdi:water-percent
-  - entity_id: sensor.dark_sky_dew_point
+  sensor.dark_sky_dew_point:
     friendly_name: "Dew Point"
     icon: mdi:water
-  - entity_id: sensor.dark_sky_daily_summary
+  sensor.dark_sky_daily_summary:
     friendly_name: "Daily Summary"
     icon: mdi:calendar-clock
-  - entity_id: sensor.dark_sky_pressure
+  sensor.dark_sky_pressure:
     friendly_name: "Pressure"
     icon: mdi:nature
-  - entity_id: sensor.dark_sky_temperature
+  sensor.dark_sky_temperature:
     icon: mdi:thermometer
     friendly_name: "Temperature"
-  - entity_id: sensor.dark_sky_wind_speed
+  sensor.dark_sky_wind_speed:
     icon: mdi:weather-windy
     friendly_name: "Wind Speed"
-  - entity_id: sensor.dark_sky_summary
+  sensor.dark_sky_summary:
     friendly_name: "Current Conditions"
     icon: mdi:map-marker-radius
-  - entity_id: sensor.dark_sky_precip_probability
+  sensor.dark_sky_precip_probability:
     friendly_name: "Chance Rain"
     icon: mdi:weather-rainy
-  - entity_id: sensor.dark_sky_precip_intensity
+  sensor.dark_sky_precip_intensity:
     friendly_name: "Predicted Rain"
     icon: mdi:weather-rainy
-  - entity_id: sensor.dark_sky_visibility
+  sensor.dark_sky_visibility:
     friendly_name: "Visibility"
-  - entity_id: sensor.dark_sky_cloud_coverage
+  sensor.dark_sky_cloud_coverage:
     friendly_name: "Cloud Cover"
     icon: mdi:weather-partlycloudy
-  - entity_id: sensor.dark_sky_wind_bearing
+  sensor.dark_sky_wind_bearing:
     friendly_name: "Wind Bearing"
     icon: mdi:compass
-  - entity_id: sensor.dark_sky_apparent_temperature
+  sensor.dark_sky_apparent_temperature:
     friendly_name: "Feels Like"
-  - entity_id: sensor.dark_sky_nearest_storm_distance
+  sensor.dark_sky_nearest_storm_distance:
     friendly_name: "Nearest Storm"
     icon: mdi:weather-lightning-rainy
 
 ## WUnderground PWS 
-  - entity_id: sensor.pws_weather
+  sensor.pws_weather:
     friendly_name: "Current Condition"
-  - entity_id: sensor.pws_temp_f
+  sensor.pws_temp_f:
     friendly_name: "Temperature"
-  - entity_id: sensor.pws_feelslike_string
+  sensor.pws_feelslike_string:
     friendly_name: "Feels Like"
     icon: mdi:thermometer
-  - entity_id: sensor.pws_precip_today_string
+  sensor.pws_precip_today_string:
     friendly_name: "Precipitation"
     icon: mdi:weather-rainy
-  - entity_id: sensor.pws_wind_string
+  sensor.pws_wind_string:
     friendly_name: "Wind"
     icon: mdi:weather-windy
-  - entity_id: sensor.pws_heat_index_string
+  sensor.pws_heat_index_string:
     friendly_name: "Heat Index"
     icon: mdi:weather-sunny
-  - entity_id: sensor.pws_relative_humidity
+  sensor.pws_relative_humidity:
     friendly_name: "Humidity"
     icon: mdi:water-percent
-  - entity_id: sensor.pws_dewpoint_string
+  sensor.pws_dewpoint_string:
     friendly_name: "Dew Point"
     icon: mdi:water
-  - entity_id: sensor.pws_pressure_in
+  sensor.pws_pressure_in:
     friendly_name: "Pressure Inches"
     icon: mdi:thermometer-lines
-  - entity_id: sensor.pws_pressure_mb
+  sensor.pws_pressure_mb:
     friendly_name: "Pressure Mbar"
     icon: mdi:nature
-  - entity_id: sensor.pws_solarradiation
+  sensor.pws_solarradiation:
     friendly_name: "Radiation"
     icon: mdi:radioactive
-  - entity_id: sensor.pws_uv
+  sensor.pws_uv:
     friendly_name: "UV Index"
     icon: mdi:sunglasses
-  - entity_id: sensor.pws_visibility_mi
+  sensor.pws_visibility_mi:
     friendly_name: "Visibility"
 
 #####################################################################
-### HAASKA HIDDEN
+### Other Haaska Masking
 #####################################################################
 
-## Hide Global Domains
-  - entity_id: device_tracker,sensor,input_slider,automation,camera,lock
+  group.default_view:
     haaska_hidden: true
 
-## Hide Scripts
-  - entity_id: script.hvac_operating_mode,morning_weekday,script.kodi_time_and_temp,script.away,script.unlock_megs,script.pool*
+  group.cameras:
     haaska_hidden: true
 
-## Hide Input Booleans
-  - entity_id: input_boolean.after_hours
+  group.automations:
     haaska_hidden: true
 
-## Hide Groups
-  - entity_id: 
-    - group.*climate*
-    - group.*cool*
-    - group.*device*
-    - group.*heat*
-    - group.*hvac*
-    - group.*lock*
-    - group.*media*
-    - group.*security*
-    - group.*temp*
-    - group.*test*
-    - group.*weather*
-    - group.all_automations
-    - group.all_devices
-    - group.all_locks
-    - group.all_scripts
-    - group.breaches
-    - group.cameras
-    - group.default_view
-    - group.dining_room
-    - group.downloads
-    - group.entry_lighting
-    - group.family
-    - group.ha_status
-    - group.kitchen
-    - group.lab
-    - group.light_and_switch_override
-    - group.lighting_scenes
-    - group.pool
-    - group.porch
-    - group.precipitation
-    - group.rooms
-    - group.scenes
-    - group.sensors
-    - group.speedtest
-    - group.system
-    - group.things
-    - group.travel*
-    - group.triggers
-    - group.yard
-    - input_boolean.*test*
-    - input_boolean.rick
-    - scene.movie_ended
-    - scene.movie_paused
-    - script.*iphone
-    - script.*temp*
-    - script.*test*
-    - script.morning_weekday
-    - switch.*spare*
+  group.scripts:
+    haaska_hidden: true
+
+  group.rooms:
+    haaska_hidden: true
+
+  group.scenes:
+    haaska_hidden: true
+
+  group.scenarios:
+    haaska_hidden: true
+
+  group.travel:
+    haaska_hidden: true
+
+  group.people:
+    haaska_hidden: true
+
+  group.device_status:
+    haaska_hidden: true
+
+  group.family:
+    haaska_hidden: true
+
+  group.sensors:
+    haaska_hidden: true
+
+  group.system:
+    haaska_hidden: true
+
+  group.speedtest:
+    haaska_hidden: true
+
+  group.breaches:
+    haaska_hidden: true
+
+  group.weather:
+    haaska_hidden: true
+
+  group.door_locks:
+    haaska_hidden: true
+
+## Overrides
+  group.light_and_switch_override:
+    haaska_hidden: true
+
+  group.security_override:
+    haaska_hidden: true
+
+  group.hvac_override:
+    haaska_hidden: true
+
+  group.triggers:
+    haaska_hidden: true
+
+  group.hvac_downstairs:
+    haaska_hidden: true
+
+  group.hvac_upstairs:
+    haaska_hidden: true
+
+  group.climate_status:
+    haaska_hidden: true
+
+  group.lab:
+    haaska_hidden: true
+
+  group.ha_status:
+    haaska_hidden: true
+
+  group.downloads:
+    haaska_hidden: true
+
+  group.media:
+    haaska_hidden: true
+
+  group.media_players:
+    haaska_hidden: true
+
+  group.climate:
+    haaska_hidden: true
+
+  group.living_room:
+    haaska_hidden: true
+
+  group.living_room_ceiling:
+    haaska_hidden: true
+
+  group.entry_lighting:
+    haaska_hidden: true
+
+## "All" Groups
+  group.all_locks:
+    haaska_hidden: true
+
+  group.all_devices:
+    haaska_hidden: true
+
+  group.all_automations:
+    haaska_hidden: true
+
+  group.all_scripts:
+    haaska_hidden: true
+
+## Scripts
+  script.hvac_operating_mode:
+    haaska_hidden: true
+
+  script.kodi_time_and_temp:
     haaska_hidden: true
 
 #####################################################################
