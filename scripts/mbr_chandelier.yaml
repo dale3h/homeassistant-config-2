@@ -3,4 +3,4 @@ master_bedroom_night_time:
   - service: light.turn_on
     data:
       entity_id: light.ge_12724_3way_dimmer_switch_level_8_0
-      brightness: 48
+      brightness: 50

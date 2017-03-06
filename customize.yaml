@@ -32,7 +32,7 @@
 #####################################################################
 
 ## Outdoor GE Zwave Outlet (Christmas Lights, etc.)
-  switch.ge_unknown_type4f50_id3031_switch_23_0:
+  switch.ge_Unknown_type4f50_id3031_switch_23_0:
     friendly_name: "Party Lights"
     icon: mdi:glass-mug
 
@@ -76,17 +76,21 @@
     friendly_name: "Humidifier"
     icon: mdi:cup-water
 
-#  switch.staircase_xmas:
-#    friendly_name: "Staircase Christmas Lights"
-#    icon: mdi:stocking
-
   switch.staircase_lamp:
     friendly_name: "Staircase Lamp"
     icon: mdi:lamp
 
-#  switch.wine_room_lamp:
-#    friendly_name: "Wine Room Lamp"
-#    icon: mdi:lamp
+  switch.wine_room_spare:
+    hidden: true
+    haaska_hidden: true
+    friendly_name: "Wine Room Lamp"
+    icon: mdi:lamp
+
+  switch.staircase_spare:
+    hidden: true
+    haaska_hidden: true
+    friendly_name: "Staircase Christmas Lights"
+    icon: mdi:stocking
 
 #####################################################################
 ### LIGHTS
@@ -107,10 +111,10 @@
   light.ge_12724_3way_dimmer_switch_level_34_0:
     friendly_name: "Dining Room Lights"
     icon: mdi:white-balance-incandescent
+
 ## Flux RGB bulb
   light.flux_rgb:
     friendly_name: "Desk Lamp"
-#      haaska_name: "Desk Lamp"
     icon: mdi:lamp
 
 #####################################################################
@@ -226,6 +230,7 @@
 ## AppleTV
   media_player.apple_tv:
     friendly_name: "Apple TV"
+    haaska_hidden: true
 
 ## Chromecast
   media_player.rnmcast:
@@ -332,6 +337,80 @@
     haaska_hidden: true
 
 #####################################################################
+### SCRIPTS (pool light)
+#####################################################################
+  script.pool_blue:
+    hidden: true
+    friendly_name: "Pool Blue"
+    icon: mdi:lightbulb
+    haaska_hidden: true
+
+  script.pool_green:
+    hidden: true
+    friendly_name: "Pool Green"
+    icon: mdi:lightbulb
+    haaska_hidden: true
+
+  script.pool_color_magenta:
+    hidden: true
+    friendly_name: "Pool Magenta"
+    icon: mdi:lightbulb
+    haaska_hidden: true
+
+  script.pool_red:
+    hidden: true
+    friendly_name: "Pool Red"
+    icon: mdi:lightbulb
+    haaska_hidden: true
+
+  script.pool_color_white:
+    hidden: true
+    friendly_name: "Pool White"
+    icon: mdi:lightbulb
+    haaska_hidden: true
+
+  script.pool_caribbean:
+    hidden: true
+    friendly_name: "Pool Caribbean"
+    icon: mdi:lightbulb
+    haaska_hidden: true
+
+  script.pool_cycle:
+    hidden: true
+    friendly_name: "Pool Cycle"
+    icon: mdi:lightbulb
+    haaska_hidden: true
+
+  script.pool_party:
+    hidden: true
+    friendly_name: "Pool Party"
+    icon: mdi:lightbulb
+
+  script.pool_patriotic:
+    hidden: true
+    friendly_name: "Pool Patriotic"
+    icon: mdi:lightbulb
+    haaska_hidden: true
+
+  script.pool_romance:
+    hidden: true
+    friendly_name: "Pool Romance"
+    icon: mdi:lightbulb
+    haaska_hidden: true
+
+  script.pool_royal:
+    hidden: true
+    friendly_name: "Pool Royal"
+    icon: mdi:lightbulb
+    haaska_hidden: true
+
+  script.pool_sunset:
+    hidden: true
+    friendly_name: "Pool Sunset"
+    icon: mdi:lightbulb
+    haaska_hidden: true
+
+#####################################################################
 ### SCRIPTS (other)
 #####################################################################
 
@@ -340,6 +419,43 @@
     friendly_name: "Restart Home Assistant"
     icon: mdi:recycle
     haaska_hidden: true
+
+  script.script_test:
+    friendly_name: "Test Script"
+    icon: mdi:play-circle
+    haaska_hidden: true
+
+  script.morning_weekday:
+    friendly_name: "Weekday Morning"
+    hidden: true
+    icon: mdi:play-circle
+    haaska_hidden: true
+
+  script.away:
+    friendly_name: "Away Mode"
+    hidden: true
+    icon: mdi:play-circle
+    haaska_hidden: true
+
+  script.unlock_megs:
+    friendly_name: "Unlock Door for Megan"
+    hidden: true
+    icon: mdi:play-circle
+    haaska_hidden: true
+
+  script.time_temp:
+    friendly_name: "Time and Temp"
+    hidden: true
+    icon: mdi:play-circle
+    haaska_hidden: true
+
+  script.mbr_night_light:
+#    friendly_name: "Night Light"
+    icon: mdi:weather-night
+
+  script.tv_power_off:
+    friendly_name: "TV Shutdown"
+    icon: mdi:power
 
 #####################################################################
 ### SCENARIOS
@@ -363,12 +479,14 @@
   script.shutdown_lights:
     icon: mdi:play-circle
 
-## Movie Bright
+## Living Room Bright
   scene.living_room_bright:
+    friendly_name: "Living Room Bright"
     icon: mdi:play-circle
 
 ## Living Room Normal
   scene.living_room_normal:
+    friendly_name: "Living Room Normal"
     icon: mdi:play-circle
 
 ## Living Room Cloudy
@@ -377,11 +495,25 @@
 
 ## Movie Dim
   scene.living_room_dim:
+    friendly_name: "Living Room Dim"
     icon: mdi:play-circle
 
 ## Movie Playing
   scene.movie_time:
+    friendly_name: "Movie Time"
     icon: mdi:play-circle
+
+## Movie Paused
+  scene.movie_paused:
+    icon: mdi:play-circle
+    hidden: true
+    haaska_hidden: true
+
+## Movie Ended
+  scene.movie_ended:
+    icon: mdi:play-circle
+    hidden: true
+    haaska_hidden: true
 
 ## Test script
   script.desk_lamp:
@@ -405,6 +537,9 @@
   input_boolean.state_change_test:
     haaska_hidden: true
 
+  input_boolean.after_hours:
+    haaska_hidden: true
+
   input_slider.downstairs_heat:
     icon: mdi:nest-thermostat
 
@@ -417,6 +552,10 @@
   input_slider.upstairs_ac:
     icon: mdi:nest-thermostat
 
+  input_select.living_room_fan_speed:
+    icon: mdi:fan
+    haaska_hidden: true
+
 #####################################################################
 ### SENSORS (batteries)
 #####################################################################
@@ -428,12 +567,12 @@
   sensor.lock_south_battery:
     icon: mdi:battery-charging
 
-## Phone Batteries
-  sensor.iphone_battery_rick:
-    icon: mdi:cellphone-iphone
-
-  sensor.iphone_battery_megs:
-    icon: mdi:cellphone-iphone
+### Phone Batteries
+#  sensor.iphone_battery_rick:
+#    icon: mdi:cellphone-iphone
+#
+#  sensor.iphone_battery_megs:
+#    icon: mdi:cellphone-iphone
 
 #####################################################################
 ### SENSORS (security)
@@ -494,6 +633,11 @@
 # Downstairs Front Entry Fibaro Temperature
   sensor.fibaro_system_fgms001_motion_sensor_temperature_22_1:
     friendly_name: Front Entry Temperature
+    icon: mdi:thermometer
+
+# Downstairs Broadlink Sensor
+  sensor.broadlink_sensor_temperature:
+    friendly_name: Entryway Temperature
     icon: mdi:thermometer
 
 ## HVAC Upstairs Mean Temp
@@ -589,18 +733,27 @@
 
   input_boolean.condition_1:
     friendly_name: "Test Condition 1"
+    haaska_hidden: true
     icon: mdi:checkbox-marked-circle
+
   input_boolean.condition_2:
     friendly_name: "Test Condition 2"
+    haaska_hidden: true
     icon: mdi:checkbox-marked-circle
+
   input_boolean.condition_3:
     friendly_name: "Test Condition 3"
+    haaska_hidden: true
     icon: mdi:checkbox-marked-circle
+
   input_boolean.condition_4:
     friendly_name: "Test Condition 4"
+    haaska_hidden: true
     icon: mdi:checkbox-marked-circle
+
   input_boolean.condition_5:
     friendly_name: "Test Condition 5"
+    haaska_hidden: true
     icon: mdi:checkbox-marked-circle
 
 #####################################################################
@@ -694,101 +847,69 @@
     haaska_hidden: true
 
   group.cameras:
-    haaska_hidden: true
+    order: 2
 
-  group.automations:
-    haaska_hidden: true
+  group.upstairs_climate:
+    order: 6
 
-  group.scripts:
-    haaska_hidden: true
+  group.downstairs_climate:
+    order: 7
 
-  group.rooms:
-    haaska_hidden: true
+  group.weather_summary:
+    order: 1
 
-  group.scenes:
-    haaska_hidden: true
+  group.weather_details:
+    order: 2
 
-  group.scenarios:
-    haaska_hidden: true
+  group.upstairs_heating:
+    order: 4
 
-  group.travel:
-    haaska_hidden: true
+  group.upstairs_cooling:
+    order: 2
 
-  group.people:
-    haaska_hidden: true
+  group.downstairs_heating:
+    order: 5
 
-  group.device_status:
-    haaska_hidden: true
+  group.downstairs_cooling:
+    order: 3
 
-  group.family:
-    haaska_hidden: true
+  group.precipitation:
+    order: 3
 
   group.sensors:
-    haaska_hidden: true
-
-  group.system:
-    haaska_hidden: true
-
-  group.speedtest:
+    order: 3
     haaska_hidden: true
 
   group.breaches:
-    haaska_hidden: true
-
-  group.weather:
+    order: 5
     haaska_hidden: true
 
   group.door_locks:
+    order: 4
+    haaska_hidden: true
+
+  group.directv:
+    haaska_hidden: true
+
+  group.onkyo_amp:
+    haaska_hidden: true
+
+  group.living_room_tv:
+    haaska_hidden: true
+
+  group.living_room_fan:
+    haaska_hidden: true
+
+  group.master_bedroom_fan:
     haaska_hidden: true
 
 ## Overrides
-  group.light_and_switch_override:
-    haaska_hidden: true
 
   group.security_override:
-    haaska_hidden: true
-
-  group.hvac_override:
-    haaska_hidden: true
-
-  group.triggers:
-    haaska_hidden: true
-
-  group.hvac_downstairs:
-    haaska_hidden: true
-
-  group.hvac_upstairs:
-    haaska_hidden: true
+    order: 1
 
   group.climate_status:
-    haaska_hidden: true
-
-  group.lab:
-    haaska_hidden: true
-
-  group.ha_status:
-    haaska_hidden: true
-
-  group.downloads:
-    haaska_hidden: true
-
-  group.media:
-    haaska_hidden: true
-
-  group.media_players:
-    haaska_hidden: true
-
-  group.climate:
-    haaska_hidden: true
-
-  group.living_room:
-    haaska_hidden: true
-
-  group.living_room_ceiling:
-    haaska_hidden: true
-
-  group.entry_lighting:
-    haaska_hidden: true
+    order: 1
 
 ## "All" Groups
   group.all_locks:
@@ -811,7 +932,7 @@
     haaska_hidden: true
 
 #####################################################################
-### Ceiling Fan Controls ...someday it will be done!
+### Ceiling Fan Controls
 #####################################################################
 
 ## MBR Fan

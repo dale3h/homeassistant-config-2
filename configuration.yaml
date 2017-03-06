@@ -10,6 +10,7 @@ homeassistant:
 ### CUSTOMIZATION
 #####################################################################
   customize: !include customize.yaml
+  packages: !include_dir_named packages
   customize_glob: !include customize_glob.yaml
 #  customize_domain:
 
@@ -34,7 +35,7 @@ zone 2:
 ### SERVICES CONFIG
 #####################################################################
 mqtt:
-  broker: hq.rrubino.com
+  broker: !secret broker
   port: 1883
   client_id: home-assistant-100
   keepalive: 60
@@ -50,8 +51,9 @@ ifttt:
 zwave:
   usb_path: /dev/ttyACM0
   config_path: /srv/hass/hass_venv/lib/python3.4/site-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config
-  polling_interval: 10000
+  polling_interval: 40000
 
+## 0.39 syntax ###
 ## Device config
   device_config_domain:
     lock:
@@ -62,6 +64,13 @@ zwave:
     "light.ge_12724_3way_dimmer_switch_*":
       refresh_value: true
       delay: 5
+
+### pre-0.39 syntax
+#  customize:
+### Master Bedroom Chandelier
+#    light.ge_12724_3way_dimmer_switch_level_8_0:
+#      refresh_value: true
+#      delay: 5
 ### Kitchen Lights
 #    light.ge_12724_3way_dimmer_switch_level_33_0:
 #      refresh_value: true
@@ -71,11 +80,12 @@ zwave:
 #      refresh_value: true
 #      delay: 5
 
+
+
 #####################################################################
 ### HTTP CONFIG
 #####################################################################
 http:
-#  base_url: !secret base_url
   api_password: !secret http_password
   ssl_certificate: !secret ssl_cert
   ssl_key: !secret ssl_key
@@ -144,6 +154,16 @@ switch: !include switches.yaml
 #                     Enables                 #
 #                                                  #
 ####################################################
+updater:
+sun:
+conversation:
+frontend:
+#discovery:
+
+#####################################################################
+### LOGGER
+#####################################################################
+
 logger:
   default: error
   logs:
@@ -152,29 +172,58 @@ logger:
 #    homeassistant.components.group: debug
     homeassistant.components.sensor: critical
 #    homeassistant.components.media_player: debug
-#    homeassistant.components.switch: debug
+    homeassistant.components.switch: debug
     homeassistant.components.automation: debug
 #    homeassistant.components.notify: debug
 #    homeassistant.components.script: debug
 #    homeassistant.components.scene: debug
 
+#####################################################################
+### RECORDER
+#####################################################################
+
 recorder:
   purge_days: 3
+  exclude:
+    domains:
+      - camera
+      - sensor
+      - media_player
+      - notify
 
-updater:
+#    entities:
+
+#####################################################################
+### HISTORY
+#####################################################################
 
 history:
+  exclude:
+    domains:
+      - camera
+      - climate
+      - device_tracker
+      - input_boolean
+      - input_select
+      - input_slider
+      - media_player
+      - sensor
+      - zwave
 
-#discovery:
 
-sun:
 
-conversation:
+#    entities:
 
-frontend:
+#####################################################################
+### LOGBOOK
+#####################################################################
 
 logbook:
   exclude:
+    domains:
+      - camera
+      - media_player
+
     entities:
       - binary_sensor.fibaro_system_fgms001_motion_sensor_sensor_22_0
       - sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10
@@ -221,9 +270,27 @@ logbook:
       - automation.rgb_red
       - automation.rgb_violet
       - automation.rgb_yellow
-#    domains:
-#      - sun
-#      - weblink
-#      - camera
-#      - proximity
-#      - zone
+
+## the complete list of domains ##
+#      - automation
+#      - climate
+#      - conversation
+#      - device_tracker
+#      - group
+#      - homeassistant
+#      - ifttt
+#      - input_boolean
+#      - input_select
+#      - input_slider
+#      - light
+#      - lock
+#      - logbook
+#      - media_player
+#      - mqtt
+#      - notify
+#      - persistent_notification
+#      - scene
+#      - script
+#      - sensor
+#      - switch
+#      - zwave

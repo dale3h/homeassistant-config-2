@@ -8,7 +8,7 @@ default_view:
   entities:
     - group.travel_megs
     - group.travel_rick
-    - group.device_status
+#    - group.device_status
 
 #####################################################################
 ### SECURITY VIEW
@@ -128,6 +128,11 @@ lab:
   entities:
     - group.family
     - group.triggers
+    - group.living_room_tv
+    - group.directv
+    - group.onkyo_amp
+    - group.living_room_fan
+    - group.master_bedroom_fan
     - group.test_conditions
     - group.hvac_downstairs
     - group.hvac_upstairs
@@ -150,9 +155,9 @@ Family:
   - input_boolean.megs_home
   - input_boolean.rick_home
 
-Device Status:
-  - sensor.iphone_battery_rick
-  - sensor.iphone_battery_megs
+#Device Status:
+#  - sensor.iphone_battery_rick
+#  - sensor.iphone_battery_megs
 
 Travel Rick:
   - device_tracker.iphwn666
@@ -209,7 +214,7 @@ Exterior Lights:
 # patio lights
   - switch.ge_12722_onoff_relay_switch_switch_7_0
 # GE Outdoor wireless outlet: Party/Christmas lights
-  - switch.ge_unknown_type4f50_id3031_switch_23_0
+  - switch.ge_Unknown_type4f50_id3031_switch_23_0
 
 #####################################################################
 ### THINGS (appliances, outlets, etc.) that are not lights
@@ -260,6 +265,7 @@ Master Bedroom:
   entities:
   - light.ge_12724_3way_dimmer_switch_level_8_0
   - script.master_bedroom_night_time
+  - script.mbr_night_light
   - switch.humidifier
 
 Billiards Room:
@@ -336,6 +342,7 @@ Climate Status:
   - sensor.upstairs_thermostat_statistics_mean
   - sensor.downstairs_thermostat_statistics_mean
   - sensor.fibaro_system_fgms001_motion_sensor_temperature_22_1
+  - sensor.broadlink_sensor_temperature
   - sensor.peak_hours_status
 
 Downstairs Climate:
@@ -388,7 +395,7 @@ Yard:
 # patio lights
   - switch.ge_12722_onoff_relay_switch_switch_7_0
 # GE Outdoor wireless outlet; for Christmas lights, etc.
-  - switch.ge_unknown_type4f50_id3031_switch_23_0
+  - switch.ge_Unknown_type4f50_id3031_switch_23_0
 # Pool fountains
   - switch.linear_fs20z_isolated_contact_fixture_module_switch_21_0
   - switch.outdoor_speakers
@@ -495,6 +502,8 @@ Downloads:
 
 HA Status:
   - sensor.date__time
+  - sensor.ha_current_version
+  - sensor.ha_installed_version
   - script.restart_ha
   - sensor.cpu_use
   - sensor.ram_free
@@ -533,25 +542,65 @@ HVAC Upstairs:
   - climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
   - climate.2gig_technologies_ct101_thermostat_iris_heating_1_24_1
 
-#####################################################################
-### CURRENTLY UNUSED
-#####################################################################
+Living Room TV:
+  control: hidden
+  entities:
+  - switch.tv_power
+  - switch.tv_volume
+  - switch.mute_tv
+  - input_select.living_room_tv_input
+#  - switch.directv
+#  - switch.fire_tv
+#  - switch.chromecast
 
-#Master BR Fan:
-#  - switch.master_bed_fan_power
-#  - switch.master_bed_fan_1
-#  - switch.master_bed_fan_2
-#  - switch.master_bed_fan_3
-#  - switch.master_bed_fan_4
-#  - switch.master_bed_fan_5
-#  - switch.master_bed_fan_6
-#  - switch.master_bed_fan_variable
-#  - switch.master_bed_fan_vacation
-#  - switch.master_bed_fan_light
-#  - switch.master_bed_fan_timer
-#  - switch.master_bed_fan_2h
-#  - switch.master_bed_fan_4h
-#  - switch.master_bed_fan_8h
+DirecTV:
+  control: hidden
+  entities:
+  - switch.directv_power
+  - switch.directv_play
 
-# New Devices:
-#  - sensor.new_devices
+Onkyo Amp:
+  control: hidden
+  entities:
+  - switch.amp_power
+  - switch.amp_volume
+  - switch.amp_mute
+  - input_select.onkyo_amp_input
+#  - switch.amp_input_movie
+#  - switch.amp_input_tv
+#  - switch.amp_input_dvd
+#  - switch.amp_input_ipod
+  - switch.amp_movie_mode
+  - switch.amp_music_mode
+
+Living Room Fan:
+  control: hidden
+  entities:
+  - input_select.living_room_fan_speed
+#  - switch.living_room_fan_low
+#  - switch.living_room_fan_medium
+#  - switch.living_room_fan_high
+#  - switch.living_room_fan_off
+  - switch.living_room_fan_light
+
+Master Bedroom Fan:
+  control: hidden
+  entities:
+  - input_select.living_room_fan_speed
+  - input_select.living_room_fan_options
+#  - switch.master_bedroom_fan_summer_mode
+#  - switch.master_bedroom_fan_off
+  - switch.master_bedroom_fan_light
+  - switch.master_bedroom_fan_delay
+#  - switch.master_bedroom_fan_vacation
+#  - switch.master_bedroom_fan_2_hour
+#  - switch.master_bedroom_fan_4_hour
+#  - switch.master_bedroom_fan_8_hour
+#  - switch.master_bedroom_fan_random
+#  - switch.master_bedroom_fan_1
+#  - switch.master_bedroom_fan_2
+#  - switch.master_bedroom_fan_3
+#  - switch.master_bedroom_fan_4
+#  - switch.master_bedroom_fan_5
+#  - switch.master_bedroom_fan_6
+

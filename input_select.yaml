@@ -1,38 +1,93 @@
 rgb_light:
   name: RGB Light
-  options:
-   - "Off"
-   - "Random"
-   - "Cool"
-   - "Warm"
-   - "Warm Dim"
-   - "Red"
-   - "Blue"
-   - "Green"
-   - "Cyan"
-   - "Pink"
-   - "Violet"
-   - "Yellow"
   initial: "Off"
+  options:
+    - "Off"
+    - "Random"
+    - "Cool"
+    - "Warm"
+    - "Warm Dim"
+    - "Red"
+    - "Blue"
+    - "Green"
+    - "Cyan"
+    - "Pink"
+    - "Violet"
+    - "Yellow"
 
 pool_scene:
   name: Pool Scene
+  initial: "None"
   options:
-   - "None"
-   - "Cycle"
-   - "Party"
-   - "Romance"
-   - "Caribbean"
-   - "Patriotic"
-   - "Sunset"
-   - "Royal"
+    - "None"
+    - "Cycle"
+    - "Party"
+    - "Romance"
+    - "Caribbean"
+    - "Patriotic"
+    - "Sunset"
+    - "Royal"
 
 pool_color:
   name: Pool Color
+  initial: "None"
   options:
-   - "None"
-   - "Blue"
-   - "Green"
-   - "Red"
-   - "White"
-   - "Magenta"
+    - "None"
+    - "Blue"
+    - "Green"
+    - "Red"
+    - "White"
+    - "Magenta"
+
+living_room_fan_speed:
+  name: Living  Room Fan
+  initial: "Select an option..."
+  options:
+    - "Select an option..."
+    - "Off"
+    - "Low"
+    - "Medium"
+    - "High"
+
+master_bedroom_fan_speed:
+  name: Master Bedroom Fan Speed
+  initial: "Select an option..."
+  options:
+    - "Select an option..."
+    - "Off"
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+    - "6"
+    - "Random"
+
+master_bedroom_fan_options:
+  name: Master Bedroom Fan Options
+  initial: "Select an option..."
+  options:
+    - "Select an option..."
+    - "2 Hour"
+    - "4 Hour"
+    - "8 Hour"
+    - "Vacation"
+
+living_room_tv_input:
+  name: Living Room TV Input
+  initial: "Select an option..."
+  options:
+    - "Select an option..."
+    - "DirecTV"
+    - "Fire TV"
+    - "Chromecast"
+
+onkyo_amp_input:
+  name: Onkyo Amp Input
+  initial: "Select an option..."
+  options:
+    - "Select an option..."
+    - "TV"
+    - "Movie"
+    - "DVD"
+    - "iPod"

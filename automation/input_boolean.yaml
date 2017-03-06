@@ -133,11 +133,13 @@
 
   action:
     - service_template: >
-        {%- if is_state('sensor.pws_weather', 'Rain') -%}
+        {%- if states.sensor.pws_weather == None -%}
+            Unknown
+        {%- elif is_state('sensor.pws_weather', 'Rain') -%}
             homeassistant.turn_on
-          {%- elif is_state('sensor.pws_weather', 'Thunderstorm') -%}
+        {%- elif is_state('sensor.pws_weather', 'Thunderstorm') -%}
             homeassistant.turn_on
-          {% else %}
+        {% else %}
             homeassistant.turn_off
         {% endif %}
       entity_id: input_boolean.rain

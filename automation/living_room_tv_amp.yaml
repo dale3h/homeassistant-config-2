@@ -1,0 +1,49 @@
+######################################################################
+#### Living Room TV Input Select
+######################################################################
+
+- alias: living_room_tv_input_selector
+  trigger:
+    - platform: state
+      entity_id: input_select.living_room_tv_input
+
+  condition:
+    - condition: template
+      value_template: "{{ trigger.to_state.state != 'Select an option...' }}"
+
+  action:
+    # Turn the corresponding switch on to send the fan speed command
+    - service: switch.turn_on
+      data_template:
+        entity_id: "switch.living_room_tv_input_{{ trigger.to_state.state|lower|replace(' ', '_') }}"
+
+    # Reset the Input Select to "Select an option..."
+    - service: input_select.select_option
+      data_template:
+        entity_id: "{{ trigger.to_state.entity_id }}"
+        option: Select an option...
+
+######################################################################
+#### Living Room Amp Input Select
+######################################################################
+
+- alias: onkyo_amp_input_selector
+  trigger:
+    - platform: state
+      entity_id: input_select.onkyo_amp_input
+
+  condition:
+    - condition: template
+      value_template: "{{ trigger.to_state.state != 'Select an option...' }}"
+
+  action:
+    # Turn the corresponding switch on to send the fan speed command
+    - service: switch.turn_on
+      data_template:
+        entity_id: "switch.amp_input_{{ trigger.to_state.state|lower|replace(' ', '_') }}"
+
+    # Reset the Input Select to "Select an option..."
+    - service: input_select.select_option
+      data_template:
+        entity_id: "{{ trigger.to_state.entity_id }}"
+        option: Select an option...

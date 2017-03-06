@@ -9,17 +9,32 @@
     fibaro_state:
 # {{ states('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10') }}
       value_template: >-
-        {%- if is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '0') -%}
+        {%- if states.sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10 == None -%}
+            Unknown
+        {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '0') -%}
             Idle
-          {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '8') -%}
+        {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '8') -%}
             Motion Detected
-          {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '3') -%}
+        {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '3') -%}
             Tamper
-          {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '254') -%}
+        {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '254') -%}
             Sleeping
         {%- else -%}
             {{ states('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10') }}
         {%- endif %}
+
+## original config -- trying to account for sensor attributes that are "NONE"
+#        {%- if is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '0') -%}
+#            Idle
+#          {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '8') -%}
+#            Motion Detected
+#          {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '3') -%}
+#            Tamper
+#          {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '254') -%}
+#            Sleeping
+#        {%- else -%}
+#            {{ states('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10') }}
+#        {%- endif %}
 
 #  Beach Door Status
 - platform: template

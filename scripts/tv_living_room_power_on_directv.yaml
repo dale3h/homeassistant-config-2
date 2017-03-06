@@ -1,0 +1,19 @@
+#####################################################################
+### Watch DirecTV - Power on TV
+#####################################################################
+
+tv_power_on_directv:
+  sequence:
+
+#  - condition: state
+#    entity_id: switch.tv_power
+#    state: 'off'
+
+  - service: switch.turn_on
+    entity_id: switch.tv_power
+
+  - service: switch.turn_on
+    entity_id: switch.directv_power
+
+  - service: switch.turn_on
+    entity_id: switch.directv

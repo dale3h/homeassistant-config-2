@@ -8,6 +8,14 @@ bedtime:
 ### Lock the doors
   - service: lock.lock
 
+### Turn off the living room fan
+  - service: switch.turn_off
+    entity_id: switch.living_room_fan_off
+
+### Turn off the TV
+  - service: script.turn_on
+    entity_id: script.tv_power_off
+
 ### Turn off outlets and devices
   - service: homeassistant.turn_off
     entity_id: group.things

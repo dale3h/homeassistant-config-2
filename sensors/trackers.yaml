@@ -48,11 +48,25 @@
 - platform: template
   sensors:
     ricks_eta:
-      value_template: "{% if is_state('sensor.rick_eta_home', '0') %}Home{% else %}{{states('sensor.rick_eta_home') }}{% endif %}"
       friendly_name: "Rick's ETA"
+      value_template: >-
+        {%- if states.sensor.rick_eta_home == None -%}
+            Unknown
+        {% elif is_state('sensor.rick_eta_home', '0') %}
+            Home
+        {% else %}
+           {{ states('sensor.rick_eta_home') }}
+        {% endif %}
 
 - platform: template
   sensors:
     megs_eta:
-      value_template: "{% if is_state('sensor.megs_eta_home', '0') %}Home{% else %}{{states('sensor.megs_eta_home') }}{% endif %}"
       friendly_name: "Meg's ETA"
+      value_template: >-
+        {%- if states.sensor.megs_eta_home == None -%}
+            Unknown
+        {% elif is_state('sensor.megs_eta_home', '0') %}
+            Home
+        {% else %}
+           {{ states('sensor.megs_eta_home') }}
+        {% endif %}

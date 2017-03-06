@@ -1,4 +1,7 @@
-# Raspberry Pi RF Switches
+#####################################################################
+### Raspberry Pi RF Switch
+#####################################################################
+
 - platform: rpi_rf
   gpio: 17
   switches:
@@ -32,96 +35,296 @@
       code_on: !secret code5_on
       code_off: !secret code5_off
 
-## MASTER BEDROOM CEILING FAN
-#    master_bed_fan_power:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_power
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_1:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_1
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_2:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_2
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_3:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_3
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_4:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_4
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_5:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_5
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_6:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_6
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_variable:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_variable
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_vacation:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_vacation
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_light:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_light
-#      code_off: !secret mbr_fan_light
-#    master_bed_fan_timer:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_timer
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_2h:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_2h
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_4h:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_4h
-#      code_off: !secret mbr_fan_power
-#    master_bed_fan_8h:
-#      protocol: 3
-#      pulselength: 146
-#      code_on: !secret mbr_fan_8h
-#      code_off: !secret mbr_fan_power
+#####################################################################
+### Broadlink RM Pro
+#####################################################################
 
-# LIVING ROOM CEILING FAN
-#    living_room_fan_light:
-#      protocol: 1
-#      pulselength: 186
-#      code_on: !secret lr_fan_light
-#    living_room_fan_0:
-#      protocol: 1
-#      pulselength: 186
-#      code_on: !secret lr_fan_0
-#    living_room_fan_1:
-#      protocol: 1
-#      pulselength: 186
-#      code_on: !secret lr_fan_1
-#    living_room_fan_2:
-#      protocol: 1
-#      pulselength: 186
-#      code_on: !secret lr_fan_2
-#    living_room_fan_3:
-#      protocol: 1
-#      pulselength: 186
-#      code_on: !secret lr_fan_3
+- platform: broadlink
+  host: !secret broadlink_ip
+  mac: !secret broadlink_mac
+  timeout: 15
+  switches:
+######################################################################
+#### Living Room TV
+######################################################################
+    living_room_tv_power:
+      friendly_name: "Living Room TV Power"
+      command_on: 'JgBQAAABKZIUEBUQFTQVEBUQFBAVEBUQFDUUNhMRFDUVNBU0FTQVNBUQFRAVEBQ2FBAVEBUQFBAVNBU0FTQVEBU1FDUVNBU0FQAFJAABKkcUAA0FAAAAAAAAAAA='
+      command_off: 'JgBQAAABKZIUEBUQFTQVEBUQFBAVEBUQFDUUNhMRFDUVNBU0FTQVNBUQFRAVEBQ2FBAVEBUQFBAVNBU0FTQVEBU1FDUVNBU0FQAFJAABKkcUAA0FAAAAAAAAAAA='
+
+    living_room_tv_volume:
+      friendly_name: "TVLiving Room TV Volume"
+      command_on: 'JgBQAAABKJIUEBUQFTQVEBQQFRAVEBUQFDUUNhQQFTQVNBU0FTQVNRQRFDUUERQQFRAVEBUQFBAVNBUQFTQVNRQ1FDUVNBU0FQAFJQABKEcVAA0FAAAAAAAAAAA='
+      command_off: 'JgBQAAABKZEVEBUPFjQVEBUQFBEUEBUQFTQVNBUQFDUVNBU1FDUUNRQ1FDUUEBUQFRAVEBUQFRAVEBQQFTQVNBU0FTQVNBY0FQAFJAABKUcWAA0FAAAAAAAAAAA='
+
+    living_room_tv_mute:
+      friendly_name: "Living Room TV Mute"
+      command_on: 'JgBYAAABKZEVEBQQFTUUERQRFBEUEBUQFTQVNBUQFDUUNRQ2FDUUNRQ1FBAVEBU0FRAVEBQRFBEUERM2FDUUEBU0FTQVNBU1FAAFJQABKUcVAAxMAAEpRxUADQU='
+
+    living_room_tv_input_directv:
+      friendly_name: "Living Room TV Input DirecTV"
+      command_on: 'JgBQAAABKJIUERQSEzUVEBQRFBAVEBQQFTQVNBURFDUUNRQ1FTQVNBUQFTQVEBQRFBEUERMRFDUVNBURFDQVNBU1FDUUNRUQFQAFJAABKEgVAA0FAAAAAAAAAAA='
+
+    living_room_tv_input_firetv:
+      friendly_name: "Living Room TV Input Fire TV"
+      command_on: 'JgBQAAABKZIUEBQRFTQVEBQQFRAVEBUQFDUUNRQRFDUUNRU0FTQVNBU0FREUERMRFBEUEhMRFDUUEBU0FTQVNRQ1FDUVNBUQFQAFJAABKUgUAA0FAAAAAAAAAAA='
+
+    living_room_tv_input_chromecast:
+      friendly_name: "Living Room TV Input Chromecast"
+      command_on: 'JgBQAAABKZEUERQQFTQVEBUQFBEUERQRFDUUNRQRFDUUNRQ1FDUUNhQ1FDUUEBUQFRAUEBUQFTQVEBQRFDYUNRQ1FDUUNRQQFQAFJQABKUcUAA0FAAAAAAAAAAA='
+
+######################################################################
+#### DirecTV
+######################################################################
+    directv_power:
+      friendly_name: "DirecTV Power"
+      command_on: 'JgBYAMYmKSUWESoRFhIWEhUSKSYoEhYAA9ZkJikmFhIoEhYSFRIWEigmKBIWAAPXZCYpJRYSKBIWEhUSFhIoJigTFQAD12UlKSYVEikSFRIVExUTKCYpEhUADQU='
+      command_off: 'JgBYAMYmKSUWEigTFRMVEhUmKSYoJhUAA9dlJigmFRIpEhUSFhIVJigmKSYVAAPXZSUpJhUSKRIVExQTFSYpJigmFQAD12UlKSYWEigSFhIVEhUmKSUpJhUADQU='
+
+    directv_play:
+      friendly_name: "DirecTV Play"
+      command_on: 'JgCEAMglKSYVEhUSKSYVEhYSKCYpJhUAA9dkJignFRMVEiklFhIVEiklKSYVAAPYZCYoJhUSFhIoJhYRFxEpJSolFgAD1mQmKiQXERYRKiUWEhUSKSYoJhUAA9dlJigmFRIWEigmFhIVEigmKSUXAAPXZCUpJhUSFRIqJRYRFxEpJigmFQANBQAAAAA='
+## pause:
+      command_off: 'JgCEAMYmKCYVEhYSKCYVEykSFRIWJhUAA9dkJSknFRIWEigmFRIpEhUSFiUWAAPWZiUpJhUSFRIpJhUSKRIVEhYlFgAD12QmKSUWEhUSKSUWEigTFRIWJhUAA9dkJigmFhIVEikmFhIoEhYSFSYVAAPXZCYoJxQTFRMoJhUSKRIVEhYmFQANBQAAAAA='
+
+######################################################################
+#### Onkyo Amp
+######################################################################
+    amp_power:
+      friendly_name: "Amp Power"
+      command_on: 'JgBgAAABKpEVEBQ1FBAVEBU0FRAUNRU0FRAVEBU0FTQVEBU0FTQVEBU0FTUUEBU0FRAVEBQ1FDUUERQQFTQWEBU0FTQVEBQQFQAFJAABKkcUAAxNAAEoRxUADEwAASlHFQANBQAAAAAAAAAA'
+      command_off: 'JgBgAAABKpEVEBQ1FBAVEBU0FRAUNRU0FRAVEBU0FTQVEBU0FTQVEBU0FTUUEBU0FRAVEBQ1FDUUERQQFTQWEBU0FTQVEBQQFQAFJAABKkcUAAxNAAEoRxUADEwAASlHFQANBQAAAAAAAAAA'
+
+    amp_volume:
+      friendly_name: "Amp Volume"
+## volume up:
+      command_on: 'JgDYAAABKZEVEBQ1FBIUEBQ2FBEUNBU1FDYUERQ1FTQVEBQ2FDUVEBQRFDYUEBQRFBEUEBQRFBEUNRQRFTUUNRU0FTUUNRQ2FAAFAQABKJIUERQ1FRAUERU0FRAVNRQ1FTQVEBU1FDYUEBQ2FDUUEBURFDUUERQRFBAUEhQQFBEUNRUQFDYUNRQ2FDUUNRQ2FAAFAAABKZIUERQ1FRAUEBU1FBEUNhQ1FDUVEBQ2FDUUERQ1FDYUERQQFDYUEBQSFBAUERQQFREUNRQRFDUUNhQ1FDYUNRQ1FAANBQ=='
+## volume down:
+      command_off: 'JgDYAAABKZEVERQ1FBAVERQ1FBEUNRQ2FDUVEBQ1FDYUERQ1FDUUEhQ1FDUVEBQQFREUEBQRFBEUERQQFDYUNRU1FDYUNRQ1FAAFAAABKZIUERQ2FBAUERQ2FBETNhQ1FTUUEBQ2FDUVERM1FDYUEhM2FDUUERQRFBAUERQRFBAUEhQQFDUVNRQ2FDUUNhQ1FAAFAAABKpEVEBQ1FBEUERQ2FBAUNRU1FDYUEBQ1FTUUERQ2FDUUERQ1FTUUEBQSFBAUERQRFBETERQQFTUUNhQ1FDYUNRQ2FAANBQ=='
+
+    amp_mute:
+      friendly_name: "Amp Mute"
+      command_on: 'JgBgAAABKpEVEBQ1FBAVEBU0FRAUNRQ1FTUUERQ1FDUUEBU0FTQVEBU0Fg8VNRQQFRAVEBQRFBAVEBU0FRAUNRQ1FTUUNRQ1FAAFAAABKkcUAAxNAAEoRxUADEwAAShIFAANBQAAAAAAAAAA'
+      command_off: 'JgBgAAABKpEVEBQ1FBAVEBU0FRAUNRQ1FTUUERQ1FDUUEBU0FTQVEBU0Fg8VNRQQFRAVEBQRFBAVEBU0FRAUNRQ1FTUUNRQ1FAAFAAABKkcUAAxNAAEoRxUADEwAAShIFAANBQAAAAAAAAAA'
+
+    amp_input_movie:
+      friendly_name: "Amp Input Movie"
+      command_on: 'JgBgAAABKJIUEBU0FRAVERM2FBAVNBU0FTQVEBU0FTUUERQ1FDUUERQ1FBAVEBU0FRAUERQRFBETEhM2FDUUEBU0FTQVNBU1FAAFAQABKEcVAAxMAAEpSBQADEwAASlHFQANBQAAAAAAAAAA'
+
+    amp_input_tv:
+      friendly_name: "Amp Input TV"
+      command_on: 'JgBgAAABKZEVEBQ1FBEUEhM1FBEVNBU0FTQVEBQ1FDYTERQ1FTQVEBU0FTQVNRQ1FBITEBUQFREUEBQQFREUEBQ1FDUUNRQ2EwAFAQABKUcVAAxMAAEpRxUADEwAAShHFQANBQAAAAAAAAAA'
+
+    amp_input_dvd:
+      friendly_name: "Amp Input DVD"
+      command_on: 'JgBgAAABKZEUERQ1FBEUERQ1FBAVNBU0FRAVEBU0FTUUERQ1FDUUERQQFRAUNRQ1FBEUERQRFDUUNRU0FRAUERQ0FTUUNRQRFAAFJQABKEgUAAxNAAEpRxQADE0AAShHFQANBQAAAAAAAAAA'
+
+    amp_input_ipod:
+      friendly_name: "Amp Input iPod"
+      command_on: 'JgBgAAABKZEVEBU0FRAUEBU0FRAVNBU1FBEUNRQQFRAVEBUQFBAVEBUQFDUUNRQ2FBAVEBU0FRAVNBUQFBAVEBU0FTQVERQ1FAAFkgABKUcVAAxMAAEoRxUADEwAASpHFAANBQAAAAAAAAAA'
+
+    amp_mode_movie:
+      friendly_name: "Amp Movie Mode"
+      command_on: 'JgBgAAABKZEUERQ1FRAVEBQ1FBEUNRQ1FBEUERQ1FDUVEBQ1FBAVNBUQFRAUERQQFTUUERQ1FTQVNBU0FTQVNRQRFDUUEBUQFQAFJAABKUgUAAxMAAEpRxQADE0AAShIFAANBQAAAAAAAAAA'
+
+    amp_mode_music:
+      friendly_name: "Amp Music Mode"
+      command_on: 'JgBgAAABKJEVEBU0FRAUERQ1FBEUNRU0FRAUERQ1FDUUERQ1FBEUNRU0FRAUEBUQFTQVEBQ1FDYUERQ1FDUUNRQQFTQVEBUQFAAFJgABKEcVAAxMAAEpRxUADEwAASlHFAANBQAAAAAAAAAA'
+
+######################################################################
+#### Living Room Ceiling Fan
+######################################################################
+    living_room_fan_speed_1:
+      friendly_name: "Living room fan low"
+      command_on: 'sgCeAA0NDQ0NDg0NDQ0NDQ0ODA4NDQ0NDQ4MqxoNGg4NGg0aGg4aDQ0bDBsaDRoOGg0NGhoODBsNGhoNGw0NGhoOGg0aDQ0bDRoaDQ0bDRoaDRoNGw0NGhsNGg0aDRsMGw0aDRoNDhoaDQ0bGg0NGg0bDRoNGg0bDRoNGg0bDRoNGhsNDRoaDhoNGg0bDBsNGg0aDRsNGg0aDQ4aGg0NAAXcAAAAAAAAAAAAAA=='
+
+      command_off: 'sgDoAAQEEA4EBBQOGg4ZDhkODRsZDgwbGg4MGwwbDRsMGwwcDBsZDg0bDBsMGxoODBsZDhoOGQ4ZDhoOGQ4MGxoOGQ4aDQ0bGQ4MAANKDQ0NDQ0ODA4NDQ0NDQ4MDg0NDQ0NDgyrGg4ZDg0aDRsaDRoNDRsMGxoNGg4aDQ0aGg0OGg0aGg0bDQ0aGg0bDRoNDRoOGhoNDRsNGhoNGg4aDQ0aGg4aDRoNGg4aDRoNGw0NGhoNDRsaDQ0aDRsNGg0aDRsNGhoNDRsNGg0aGw0NGhoNGw0aDRoOGg0aDQ0bGg0aDRoNDhoaDQ0ABdw='
+
+    living_room_fan_speed_2:
+      friendly_name: "Living room fan medium"
+      command_on: 'sgAcAhsNGg0aDg0aGg0NGxoNDRoNGw0aDRoNGw0aGg4MGw0aDRoNGw0aGg4aDRoNGg0bDRoNDRsaDRoNGg4aDRoNDQADSgwODQ0NDQ0NDQ4NDQ0NDQ0NDg0NDQ0NqxoNGg4MGw0aGg0aDg0aDRoaDhoNGg0NGxoNDRsMGxoNGg4MGxoNGg4aDQ0aDRsaDQ0bDBsaDRoNGg4MGxoNGg4aDRoNGg4aDRoNDRsaDQ0aGg4NGg0bDBsMGw0aDRsaDQ0bDBsNGg0bDBsaDRoOGg0aDRoNGw0NGhoOGg0aDRoOGg0NAANJDQ4MDg0NDQ0NDgwODQ0NDQ0NDQ4MDg2qGg4aDQ0aDRsaDRoODBsNGhoOGQ4aDQ0aGw0NGg0bGg0aDQ0bGg0aDRoNDhoNGhoODBsNGhoOGg0aDQ0bGg0aDRoOGg0aDRoOGg0NGhoODRoaDQ0bDRoNGg0bDRoNGhoODRoNGwwbDRoNGxoNGg0aDhoNGg0aDgwbGg0aDhoNGg0aDg0AA0kNDQ0NDQ4MDg0NDQ0NDQ0ODQ0NDQ0ODKsaDRoODRoNGhoOGg0NGwwbGg0aDRoODRoaDQ0bDRoaDhoNDRoaDRsNGg0NGg0bGg0NGg0bGg0aDRsNDRoaDRsNGg0aDRsNGg0aDg0aGg0NGhsNDRoNGw0aDRoNGw0aGg0NGw0aDRoNGw0aGg0bDRoNGg4aDRoNDRobDRoNGg4aDRoNDQAF3A0aDRsaDQ0bDBsNGg=='
+
+      command_off: 'sgDoAAQEEA4EBBQOGg4ZDhkODRsZDgwbGg4MGwwbDRsMGwwcDBsZDg0bDBsMGxoODBsZDhoOGQ4ZDhoOGQ4MGxoOGQ4aDQ0bGQ4MAANKDQ0NDQ0ODA4NDQ0NDQ4MDg0NDQ0NDgyrGg4ZDg0aDRsaDRoNDRsMGxoNGg4aDQ0aGg0OGg0aGg0bDQ0aGg0bDRoNDRoOGhoNDRsNGhoNGg4aDQ0aGg4aDRoNGg4aDRoNGw0NGhoNDRsaDQ0aDRsNGg0aDRsNGhoNDRsNGg0aGw0NGhoNGw0aDRoOGg0aDQ0bGg0aDRoNDhoaDQ0ABdw='
+
+    living_room_fan_speed_3:
+      friendly_name: "Living room fan high"
+      command_on: 'sgA8AQ4NDQ0ODA4NDQ0NDQ0NDgwODQ0NDgwOqhoNGwwOGg0aGwwbDQ0aDhkbDRsMGw0NGhsMDhoNGhsMGw0NGhsMGw0aDQ4ZDhoaDQ4aDRoaDRsNGg0NGhsMGw0aDRsMGw0aDRsMDhobDA4ZGw0NGg4aDRoNGg4ZGw0NGg4aDRoOGQ4aDRobDBsNGg0bDBsNDRobDBsNGg0bDBsNGg0OAANIDgwODQ0NDgwODA4NDQ0NDQ4MDg0NDQ2qGw0aDQ0aDhoaDRsMDhoNGhsMGw0bDA4ZGw0NGg4aGg0aDQ4aGg0aDRsNDRoOGRsNDRoOGRsNGg0bDA4aGg0bDBsNGg0bDBsNGg0OGRsNDRobDA4aDRoOGQ4aDRobDA4aDRoOGg0aDRoOGhoNGg0bDRoNGg0OGhoNGwwbDRoNGwwbDQ0ABdwAAAAAAAAAAAAAAAA='
+
+      command_off: 'sgDoAAQEEA4EBBQOGg4ZDhkODRsZDgwbGg4MGwwbDRsMGwwcDBsZDg0bDBsMGxoODBsZDhoOGQ4ZDhoOGQ4MGxoOGQ4aDQ0bGQ4MAANKDQ0NDQ0ODA4NDQ0NDQ4MDg0NDQ0NDgyrGg4ZDg0aDRsaDRoNDRsMGxoNGg4aDQ0aGg0OGg0aGg0bDQ0aGg0bDRoNDRoOGhoNDRsNGhoNGg4aDQ0aGg4aDRoNGg4aDRoNGw0NGhoNDRsaDQ0aDRsNGg0aDRsNGhoNDRsNGg0aGw0NGhoNGw0aDRoOGg0aDQ0bGg0aDRoNDhoaDQ0ABdw='
+
+    living_room_fan_off:
+      friendly_name: "Living room fan off"
+      command_on: 'sgCaARsMDhkOGhoNDhkOGhoNGwwbDQ0aGwwbDRsMGw0aDRsMGwwOGhsMDhoaDQ4ZDhkOGg0aDhkOGg4ZDhoNGg0aDhoaDRsMGw0aDRsMGw0aDRsMGw0aDRsMGw0NGg0AA4QNDQ4MDg0NDQ0NDQ0ODA4MDg0NDQ4MDqobDBsNDRoNGhsNGg0NGg4aGg0bDBsNDRobDA4aDRobDBsNDRobDRoNGg0OGg0aGg0OGg0aGg0bDRoNDRobDRoNGwwbDRoNGwwbDQ0aGg0OGhoNDRoOGQ4aDRoOGQ4aGg0OGg0aDRobDQ0aGg0bDRoNGwwbDRoNDRobDRoNGwwOGhoNDQADSQ4NDQ0NDQ4MDgwODQ0NDgwODA4NDQ0NqhsNGwwOGQ4aGwwbDQ0aDRobDRoNGwwOGhoNDhkOGhoNGwwOGhoNGwwbDQ0aDhkbDQ0aDhoaDRoNGwwOGhoNGwwbDRoNGwwbDRsMDhoaDQ0aGwwOGg0aDhkOGg4ZDhoaDQ0aDhoNGhsMDhoaDRoNGw0aDRsMGw0NGhsMGw0aDQ4ZGw0NAAXcAAAAAAAAAAAAAAAAAAA='
+
+      command_off: 'sgDoAAQEEA4EBBQOGg4ZDhkODRsZDgwbGg4MGwwbDRsMGwwcDBsZDg0bDBsMGxoODBsZDhoOGQ4ZDhoOGQ4MGxoOGQ4aDQ0bGQ4MAANKDQ0NDQ0ODA4NDQ0NDQ4MDg0NDQ0NDgyrGg4ZDg0aDRsaDRoNDRsMGxoNGg4aDQ0aGg0OGg0aGg0bDQ0aGg0bDRoNDRoOGhoNDRsNGhoNGg4aDQ0aGg4aDRoNGg4aDRoNGw0NGhoNDRsaDQ0aDRsNGg0aDRsNGhoNDRsNGg0aGw0NGhoNGw0aDRoOGg0aDQ0bGg0aDRoNDhoaDQ0ABdw='
+
+    living_room_fan_light:
+      friendly_name: "Living room fan light"
+      command_on: 'sgDcAg0aGg4aDRoNDRsNGhoNDRsNGhoNGw0aDQ0aGw0aDRoNGw0aDRoNGw0NGhoNDhoaDQ0aDhoNGhoNDhoNGg0bDRoNGg0bDRoNGhoOGg0aDQ0bGg0aDRsNGg0aDRsNGg0aDQ0AA0oNDQ0NDQ0NDg0NDQ0NDQ0NDg0NDQ0NDasaDRoNDhoNGhoOGg0NGg0bGg0aDRoODRoaDQ0bDRoaDRsNDRoaDRoOGg0NGg0bGg0NGg0bGg0aDRsNDRoaDRsNGg0bDBsNGg0aDQ4aGg0NGxoNDRoNGg4aGg0OGQ4aDRoNGw0aDRoNGw0aGg0aDhoNDRobDRoNGg0bDRoNGg0bDRoNDQADSQ0ODQ0NDQ0NDQ0ODQ0NDQ0NDQ4NDQ0NqhsNGg0NGg4aGg0aDg0aDRoaDRsNGg0NGxoNDRoNGhsNGg0NGxoNGg0bDQ0aDRobDQ0aDRobDRoNGg0OGhoNGg0bDRoNGwwbDRoNDRobDQ0aGg0OGg0aDRsaDQ0aDhoNGg0aDhoNGg0aDRobDRoOGg0NGhoNGw0aDRsMGw0aDRoNGwwOAAOnDQ0NDQ4NDQ0NDQ0NDgwODQ0NDQ0NDQ6qGg0bDQ0aDRobDRoNDRsNGhoNGg4aDQ0aGwwNGw0aGw0aDQ0aGg0bDRoNDRoOGhoNDRoOGhoNGwwbDQ0aGw0aDRoNGg4aDRoNGw0NGhoODRoaDQ0aDRsNGg0bDRoNGhoNDhoNGhsMGw0NGhsMGw0aDRoNGw0aDQ0bGg0aDQ0aDhoaDQ0AA0kODQ0NDQ0ODQ0NDQ0NDQ0NDQ4NDQ0NDasaDRoNDhoNGhoNGw0NGg0bGg0aDRoNDRsaDQ0bDRoaDRsMDhoaDRoNGw0NGg0aGw0NGg0aGw0aDRoNDhoaDRoOGg0aDRoOGg0aDQ0bGg0NGhsNDRoNGg0bDRoNGg0bGg0NGg0bGg0aDQ0bGg0aDRsNGg0aDRsNDRoaDRsNDRoNGhsNDQAF3A0aDhoaDQ0AA0kODQ=='
+
+      command_off: 'sgDcAg0aGg4aDRoNDRsNGhoNDRsNGhoNGw0aDQ0aGw0aDRoNGw0aDRoNGw0NGhoNDhoaDQ0aDhoNGhoNDhoNGg0bDRoNGg0bDRoNGhoOGg0aDQ0bGg0aDRsNGg0aDRsNGg0aDQ0AA0oNDQ0NDQ0NDg0NDQ0NDQ0NDg0NDQ0NDasaDRoNDhoNGhoOGg0NGg0bGg0aDRoODRoaDQ0bDRoaDRsNDRoaDRoOGg0NGg0bGg0NGg0bGg0aDRsNDRoaDRsNGg0bDBsNGg0aDQ4aGg0NGxoNDRoNGg4aGg0OGQ4aDRoNGw0aDRoNGw0aGg0aDhoNDRobDRoNGg0bDRoNGg0bDRoNDQADSQ0ODQ0NDQ0NDQ0ODQ0NDQ0NDQ4NDQ0NqhsNGg0NGg4aGg0aDg0aDRoaDRsNGg0NGxoNDRoNGhsNGg0NGxoNGg0bDQ0aDRobDQ0aDRobDRoNGg0OGhoNGg0bDRoNGwwbDRoNDRobDQ0aGg0OGg0aDRsaDQ0aDhoNGg0aDhoNGg0aDRobDRoOGg0NGhoNGw0aDRsMGw0aDRoNGwwOAAOnDQ0NDQ4NDQ0NDQ0NDgwODQ0NDQ0NDQ6qGg0bDQ0aDRobDRoNDRsNGhoNGg4aDQ0aGwwNGw0aGw0aDQ0aGg0bDRoNDRoOGhoNDRoOGhoNGwwbDQ0aGw0aDRoNGg4aDRoNGw0NGhoODRoaDQ0aDRsNGg0bDRoNGhoNDhoNGhsMGw0NGhsMGw0aDRoNGw0aDQ0bGg0aDQ0aDhoaDQ0AA0kODQ0NDQ0ODQ0NDQ0NDQ0NDQ4NDQ0NDasaDRoNDhoNGhoNGw0NGg0bGg0aDRoNDRsaDQ0bDRoaDRsMDhoaDRoNGw0NGg0aGw0NGg0aGw0aDRoNDhoaDRoOGg0aDRoOGg0aDQ0bGg0NGhsNDRoNGg0bDRoNGg0bGg0NGg0bGg0aDQ0bGg0aDRsNGg0aDRsNDRoaDRsNDRoNGhsNDQAF3A0aDhoaDQ0AA0kODQ=='
+
+######################################################################
+#### Master Bedroom Ceiling Summer Modes
+######################################################################
+    mbr_fan_summer:
+      friendly_name: "Master Bedroom Fan Summer Mode"
+      command_on: 'eACIAA8eDx4PHg4fDh4PHg8PHg8eDx0fDhAdHg8QHR8OAAFVDh4PHg8eDx4PHg4fDh4PHg8eDx4PHg8eDh8OHg8eDx4PDx4PHRAdHw8PHR8OEB0eDwABVQ4fDh4PHg8eDh8OHg8eDx4PHg8eDx4OHw4fDh4PHg8eDxAdDx0QHh4PDx0fDhAdHg8ABdw='
+
+    mbr_fan_off:
+      friendly_name: "Master Bedroom Fan Off"
+      command_on: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+    mbr_fan_light:
+      friendly_name: "Master Bedroom Fan Light"
+      command_on: 'eAA4AQ4eDx4PHg4fDh8OHw4eDx4PHg8eDh8OHg8fDh4PHg8eDh8OEB0QHR8OEB0eDxAdHg8AAVUOHg4fDx4OHw4eDx4PHg8eDh8OHw4fDh8OHg8eDx4OHw4fDhAdEB0eDw8eHg4QHR8OAAFVDx4OHw4fDh4PHg8eDx4OHw4fDh8OHg8eDx4PHg8eDh8OHw4QHRAdHg8QHR4OEB0fDgABVQ8eDx4OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDx4OHw4fDh4PEB0QHR4PEBwfDw8dHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHg8eDx4OHw8eDh4PHg8eDxAdEBwfDhAdHw4QHR8OAAFVDh4PHg8eDx4OHw8eDh8OHg8eDx4PHg8eDh8OHg8eDx4PHg8PHg8dHw4QHR4PEB0eDwAF3A=='
+
+      command_off: 'eAA4AQ4eDx4PHg4fDh8OHw4eDx4PHg8eDh8OHg8fDh4PHg8eDh8OEB0QHR8OEB0eDxAdHg8AAVUOHg4fDx4OHw4eDx4PHg8eDh8OHw4fDh8OHg8eDx4OHw4fDhAdEB0eDw8eHg4QHR8OAAFVDx4OHw4fDh4PHg8eDx4OHw4fDh8OHg8eDx4PHg8eDh8OHw4QHRAdHg8QHR4OEB0fDgABVQ8eDx4OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDx4OHw4fDh4PEB0QHR4PEBwfDw8dHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHg8eDx4OHw8eDh4PHg8eDxAdEBwfDhAdHw4QHR8OAAFVDh4PHg8eDx4OHw8eDh8OHg8eDx4PHg8eDh8OHg8eDx4PHg8PHg8dHw4QHR4PEB0eDwAF3A=='
+
+    mbr_fan_delay:
+      friendly_name: "Master Bedroom Fan Delay"
+      command_on: 'eAA4AQ8eDh8OHw4eDx4PHg4fDh8OHw4fDh4PHg8eDh8OHw4eDx4PHg8PHR8OHw4fDhAdHg8AAVUOHg8eDh8OHw4fDh8OHg8eDx4PHg4fDh8OHw4fDh4PHg4fDh8OEB0fDh8OHg8QHR4PAAFVDh4PHg4fDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDx4OHw4fDhAdHg8eDx4PDx0fDgABVg4eDh8OHw4fDh8OHg4fDh8OHw4fDh8OHw4eDx4OHw4fDh8OHw4QHR4PHg8eDhAdHw4AAVYOHg4fDh8OHw4eDx4OHw4fDh8OHw4fDh4OHw8eDh8OHw4fDh8OEB0eDh8OHw4QHR8OAAFVDh8OHw4fDh4PHg4fDh8OHg8fDh4PHg8eDx4OHw4fDh8OHw4eDw8eHg4fDh8OEB0fDgAF3A=='
+
+    mbr_fan_vacation:
+      friendly_name: "Master Bedroom Fan Vacation"
+      command_on: 'eAA4AQ8eDh4PHw4eDx4PHg4fDh8OHg8eDx4PHg4fDx4OHg8fDh4PHg8eDh8OEB0QHRAdHg8AAVUOHw4eDx4PHg4fDh8OHg8eDx4PHg8eDh8OHw4eDx4PHg8eDx4OHw4eDxAdEB0PHh4OAAFVDx4OHw4fDh4PHg8eDx4OHw4fDh4PHg8eDx4OHw8eDh8OHg8eDx4PHg8PHRAdEB0eDwABVQ4eDx4PHg8eDx4OHw4fDh4PHg8eDh8OHw4fDh4PHg8eDx4OHw4fDh8OEB0QHQ8eHg8AAVUOHg4fDh8OHw4eDx4PHg8eDh8OHg8eDx4PHg8eDh8OHw4fDh4PHg8eDw8dEB0QHR8OAAFVDx4OHw4eDx4PHg8eDx4OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDx4OHw4QHRAdEB0eDwAF3A=='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+    mbr_fan_2h:
+      friendly_name: "Master Bedroom Fan 2 Hour"
+      command_on: 'eADQAA4eDx4PHg4fDh4PHg8eDx4PHg8eDh8OHg8eDx4PHg8eDh8OEB0QHR4PEB0PHg8eHg4AAVUPHg4fDh8OHg8eDx4PHg8eDx4OHg8eDx4PHg8eDx4OHw4fDhAdEB0eDxAdDx4PHh4PAAFUDx4PHg4fDh4PHg8eDx4PHg8eDh8OHw4eDx4PHg8eDh8PHg4QHRAdHg8QHQ8eDx4eDgABVg4eDh8PHg4fDh4PHg8eDx4OHw4fDh8OHg8eDx4PHg8eDh8OEB0QHR4PEB0QHRAdHg8ABdwAAAAAAAAAAA=='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+    mbr_fan_4h:
+      friendly_name: "Master Bedroom Fan 4 Hour"
+      command_on: 'eAAUAQ8QHR4PDx4PHg8eHg4AAVUPHg4fDx0PHg8eDx4PHg4fDx0QHQ8eDx4PHg8eDx4PHg4QHR8OEB0eDw8eDx4PHh4PAAFUDx4PHg8eDh4PHg8eDx4PHg8eDx4OHg8eDx4PHg8eDx4OEB0fDhAdHg8QHRAdDx4eDwABVBAdDx4PHg4fDh8OHg8eDx4PHg8eDx4OHg8eDx4PHg8eDw8eHg8PHh0PEB0QHRAdHg8AAVQPHg8eDx4PHg8eDh4PHg8eDx4PHg8eDx4PHg4eDx4PHg8PHh4OEB0fDhAdEB0QHR4PAAFVDx0PHg8eDx4PHg8dDx8OHg8eDx4PHg8eDx4OHg8eDx4PDx4eDw8eHg8PHRAdEB0eDwAF3AAAAAA='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+    mbr_fan_8h:
+      friendly_name: "Master Bedroom Fan 8 Hour"
+      command_on: 'eAB+AA4fDh4PHg8PHh4PDx0QHRAdHw4AAVUPHg4fDh4PHg8eDx4PHg4fDh8OHw4eDx4PHg8eDh8OHw4eDx4PEB0eDw8dEB0QHR8OAAFVDx4OHg8eDx4PHg8eDx4OHw4fDh4PHg8eDx4PHg4fDh8OHw4eDxAdHg8PHRAdEB0eDwAF3AAAAAAAAAAAAAA='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+    mbr_fan_random:
+      friendly_name: "Master Bedroom Fan Random"
+      command_on: 'eADMAA8eDh4PHw4eDx4PHg8eDh8OHw4eDx4PHg8eDh8PHQ8fDh4PDx4PHh4PDx4eDgABVQ8eDx0PHw4eDx4PHg8eDx4OHw4fDh4PHg8eDx4PHg4eDx4PHg8eDw8eDx4eDw8dHg8AAVUPHg4eDx4PHg8eDx4PHg8eDh8OHg8eDx4PHg8eDh8OHg8eDx4PHg8PHg8eHg8PHR4PAAFVDx0PHg8eDx4PHg8eDh8OHg8eDx4PHg8eDx4PHg4eDx4PHg8eDx4OEB0QHR4PEB0eDwAF3AAAAAAAAAAAAAAAAA=='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+    mbr_fan_speed_1:
+      friendly_name: "Master Bedroom Fan 1"
+      command_on: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDh8OHw4fDh8OHw4fDh4PEBwQHRAdEB0fDhAdHg8AAVUOHw4eDx4PHg4fDh8OHw4fDh8NHw4fDh8OHw4fDh8OHw0fDhEcEB0QHRAdHw4QHR8OAAFVDh8OHg4fDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4fDh4PHg4QHREcEB0QHR8OEB0fDgABVQ4fDh4OHw4fDh8OHw4fDh4PHg8eDh8OHw4fDh8OHg8eDh8OEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDR8PHg4fDhAdEB0QHRAdHg8QHR4PAAFVDh4OHw4fDh8OHw4fDR8PHg4fDh8OHw4fDh8OHg8eDh8OHw4QHRAdEB0QHR4PEB0eDgAF3A=='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+    mbr_fan_speed_2:
+      friendly_name: "Master Bedroom Fan 2"
+      command_on: 'eAA4AQ8eDh8OHg8eDx8NHw8eDh8OHw4fDh8OHg8eDh8OHw4fDhAdHw4QHRAdDx4eDhAdHw4AAVUOHw4fDh8OHg8eDx4OHw4fDh8OHw4fDh4OHw8eDh8OHw4QHR4PEBwRHRAdHg4QHR8OAAFVDx4OHw4fDh8OHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OEB0eDxAdEB0QHR4OEB0fDgABVQ8eDh8OHw4eDx4OHw4fDh8OHw4fDh4PHg8eDh8OHw4fDhAdHg8PHg8dEB0fDhAdHg8AAVUOHw4eDx4PHg4fDh8OHw4fDh8OHw4eDx4OHw4fDh4PHg8QHB8PDx4PHRAdHw4QHR8OAAFVDh4PHg8eDx4PHg4fDh8OHw4fDh4PHg4fDh8OHw4fDh8OEBwfDxAcEB0QHR8OEB0eDwAF3A=='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+    mbr_fan_speed_3:
+      friendly_name: "Master Bedroom Fan 3"
+      command_on: 'eAA4AQ4eDx4PHg4fDh8OHw4fDh8OHw0fDh8OHw4fDh8OHg8eDh8OHw4RHBAdEB0fDhAdHg4AAVYOHg8eDh8OHw4fDh8OHg8eDh8PHg4fDh8OHw4fDh4PHg8eDh8OEB0QHRAdHw0RHR4OAAFWDh4OHw4fDh8OHw4fDh8NHw4fDh8OHw4fDh8OHg8eDh8OHw4fDhAdEB0QHR4OEB0fDgABVg4eDh8OHw4fDh8OHw4fDR8OHw4fDh8OHw0fDx4OHw4fDh8OHw4QHRAdEB0eDhEcHw4AAVYOHg4fDh8OHw4fDR8OIA0fDh8OHw4fDh8OHw0fDh8OHw4fDh8OEB0QHRAdHg4RHB8OAAFWDh4OHw4fDh8OHw0gDR8OHw4fDh8OHw4fDh8OHg4fDh8OHw4fDhAdEB0QHR8NERwfDgAF3A=='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+    mbr_fan_speed_4:
+      friendly_name: "Master Bedroom Fan 4"
+      command_on: 'eAByAB0eDw8dHw4AAVUPHg4fDh8OHw4eDx4PHg4fDh8OHw4eDx8OHw4eDh8OHw4QHRAdHw4QHRAdHg8QHR4PAAFVDh4PHg4fDh8OHw4fDh4PHg8eDx4OHw8eDh8OHg8eDx4OEB0QHR8OEB0QHR4PEB0eDwAF3AAAAAAAAA=='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+    mbr_fan_speed_5:
+      friendly_name: "Master Bedroom Fan 5"
+      command_on: 'eAA4AQ4eDh8OHw4fDh8OHw0gDh8NHw4fDh8OHw4fDh8OHw0fDh8OERwfDhAdEB0fDhAcHw4AAVYOHg4fDh8OHw4fDh8OHw4fDh4OHw4fDh8OHw4fDh8NIA0fDhEcHw4QHRAdHw4QHR4OAAFWDh8NHw4fDh8OHw4fDh8OHw4fDR8OHw4fDh8OHw4eDx8NHw4RHB8OEB0QHR8OEB0eDwABVQ4eDx8NHw4fDh8OHw4fDh8OHw0fDh8OHw4fDh8OHw4fDR8OERwfDhAdEB0fDhAdHw4AAVUOHw4eDiANHw4fDh8OHw4fDh4OIA4eDh8OHw4fDh8OHg4fDhEcHw4QHRAdHw4QHR4PAAFVDh8OHw4fDR8OHw4fDh8OHw4fDh8OHg4fDh8OHw4fDh8OHg8QHCANERwRHB8OERwfDgAF3A=='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+    mbr_fan_speed_6:
+      friendly_name: "Master Bedroom Fan 6"
+      command_on: 'eAB4AA8eDhAdEB0eDxAdHg8AAVUOHg8eDh8OHw4eDx4PHg8eDx4PHg4fDh4PHg8eDx4PHg4QHR8OHg8QHRAdHg8PHh4OAAFVDx4OHw4fDh8OHg8eDx4PHg4fDx4OHg8eDx4PHg8eDx4OEB0eDx8OEB0PHh4PDx4eDgAF3A=='
+
+      command_off: 'eAA4AQ4fDh8OHg8eDh8OHw4fDh8OHg8eDx4OHw4fDh8OHw4fDREcEB0QHRAdEB0fDhAdHg8AAVUOHg8eDx4OHw4fDh8OHw4eDx4OHw4fDh8OHw4eDx4PHg4QHRAdEB0QHRAdHw4QHR4PAAFVDh4PHg4fDh8OHw4eDx4OHw4fDh8OHg8eDx4OHw4fDh8OEB0QHRAdEB0QHR4PEBwfDgABVQ8eDh8OHw4eDx4PHg8eDh8OHw4fDh4PHg8eDh8OHw4fDhAdEB0QHRAcERwfDhAdHw4AAVUPHg4fDh4PHg8eDx4OHw4fDh8OHw4eDx4PHg4fDh8OHw4QHRAdEB0PHRAdHw4QHR8OAAFVDh8OHg8fDR8PHg4fDh8OHw4eDx4PHg4fDh8OHw4fDh4PDx4PHRAdEB0QHR8OEB0eDwAF3A=='
+
+
+
+
+######################################################################
+#### Master Bedroom Ceiling Winter Modes
+######################################################################
+#    mbr_fan_winter:
+#      friendly_name: "Master Bedroom Fan Winter Mode"
+#      command_on: 
+
+
+######################################################################
+#### Logitech Harmony One Commands
+######################################################################
+#
+###    logitech_power:
+#      friendly_name: "Power Down"
+#      command_on: 'JgBQAAABKJEVEBUQFDUUERQQFREUERMRFDUVNBUQFTQVNBU0FTQVNRU0FRAUERQ1FBAVEBU0FRAUERQ1FTQVEBU0FTQVEBQ1FAAFJgABKEcVAA0FAAAAAAAAAAA='
+#
+#      friendly_name: "Watch DirecTV"
+#      command_on: 'JgBQAAABKJIUERQRFDUUEBUQFRAUERQQFTQVNBURFDUUNRU0FTQVNBUQFDUUERQRFBEUERMRFTQVNBUQFTQVNBU0FTUUNRUQFAAFJQABKEgVAA0FAAAAAAAAAAA='
+#
+
+
+#    logitech_activity:
+#      friendly_name: "Activities"
+#      command_on: ''
+##      command_off: 
+#
+#    logitech_activity:
+#      friendly_name: "Activities"
+#      command_on: ''
+##      command_off: 
+#
+#    logitech_activity:
+#      friendly_name: "Activities"
+#      command_on: ''
+##      command_off: 
+#
+#    logitech_activity:
+#      friendly_name: "Activities"
+#      command_on: ''
+##      command_off: 
+#
+#    logitech_activity:
+#      friendly_name: "Activities"
+#      command_on: ''
+##      command_off: 
+#
+#    logitech_activity:
+#      friendly_name: "Activities"
+#      command_on: ''
+##      command_off: 
+#
+#    logitech_activity:
+#      friendly_name: "Activities"
+#      command_on: ''
+##      command_off: 
+#
+#    logitech_activity:
+#      friendly_name: "Activities"
+#      command_on: ''
+##      command_off: 
+#
+#    logitech_activity:
+#      friendly_name: "Activities"
+#      command_on: ''
+##      command_off: 
+#
+#    logitech_activity:
+#      friendly_name: "Activities"
+#      command_on: ''
+##      command_off: 
+
+##    logitech_activity_directv:

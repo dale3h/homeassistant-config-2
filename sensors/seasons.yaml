@@ -3,14 +3,16 @@
   sensors:
     season:
       value_template: >-
-        {%- if 70 <= states('sensor.pws_temp_f') | float <= 83 -%}
+        {%- if states('sensor.pws_temp_f') == None -%}
+            Unknown
+        {%- elif 70 <= states('sensor.pws_temp_f') | float <= 83 -%}
             Awesome
-          {%- elif states('sensor.pws_temp_f') | float < 70 -%}
-            Winter
-          {%- elif states('sensor.pws_temp_f') | float > 83 -%}
-            Summer
+        {%- elif states('sensor.pws_temp_f') | float < 70 -%}
+          Winter
+        {%- elif states('sensor.pws_temp_f') | float > 83 -%}
+          Summer
         {%- else -%}
-            {{ states('sensor.pws_temp_f') }}
+            states('sensor.pws_temp_f')
         {%- endif %}
       friendly_name: "Season"
 
