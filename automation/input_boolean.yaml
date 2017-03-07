@@ -10,7 +10,8 @@
 
   action:
     - service: input_boolean.turn_on
-      entity_id: input_boolean.peak_hours
+      data:
+        entity_id: input_boolean.peak_hours
 
 #####################################################################
 ### Peak Hours OFF
@@ -24,7 +25,8 @@
 
   action:
     - service: input_boolean.turn_off
-      entity_id: input_boolean.peak_hours
+      data:
+        entity_id: input_boolean.peak_hours
 
 #####################################################################
 ### After Hours ON Weekdays
@@ -39,15 +41,16 @@
   condition:
     - condition: time
       weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - sun
+        - mon
+        - tue
+        - wed
+        - thu
+        - sun
 
   action:
     - service: input_boolean.turn_on
-      entity_id: input_boolean.after_hours
+      data:
+        entity_id: input_boolean.after_hours
 
 #####################################################################
 ### After Hours OFF Weekdays
@@ -62,15 +65,16 @@
   condition:
     - condition: time
       weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
 
   action:
     - service: input_boolean.turn_off
-      entity_id: input_boolean.after_hours
+      data:
+        entity_id: input_boolean.after_hours
 
 #####################################################################
 ### After Hours ON Weekends
@@ -86,12 +90,13 @@
   condition:
     - condition: time
       weekday:
-      - sat
-      - sun
+        - sat
+        - sun
 
   action:
     - service: input_boolean.turn_on
-      entity_id: input_boolean.after_hours
+      data:
+        entity_id: input_boolean.after_hours
 
 #####################################################################
 ### After Hours OFF Weekends
@@ -106,12 +111,13 @@
   condition:
     - condition: time
       weekday:
-      - sat
-      - sun
+        - sat
+        - sun
 
   action:
     - service: input_boolean.turn_off
-      entity_id: input_boolean.after_hours
+      data:
+        entity_id: input_boolean.after_hours
 
 #####################################################################
 ### RAIN SENSOR ON/OFF
@@ -120,40 +126,39 @@
 - alias: rain sensor
   hide_entity: True
   trigger:
-  - platform: state
-    entity_id: sensor.pws_weather
+    - platform: state
+      entity_id: sensor.pws_weather
 
 #  condition:
 #    - condition: or
 #      conditions:
-#      - condition: template
-#        value_template: "{{is_state('sensor.pws_weather', 'Rain')}}"
-#      - condition: template
-#        value_template: "{{is_state('sensor.pws_weather', 'Thunderstorm')}}"
+#        - condition: template
+#          value_template: "{{ is_state('sensor.pws_weather', 'Rain') }}"
+#        - condition: template
+#          value_template: "{{ is_state('sensor.pws_weather', 'Thunderstorm') }}"
 
   action:
-    - service_template: >
-        {%- if states.sensor.pws_weather == None -%}
-            Unknown
-        {%- elif is_state('sensor.pws_weather', 'Rain') -%}
-            homeassistant.turn_on
-        {%- elif is_state('sensor.pws_weather', 'Thunderstorm') -%}
-            homeassistant.turn_on
+    - service_template: >-
+        {% if is_state('sensor.pws_weather', 'Rain') %}
+          homeassistant.turn_on
+        {% elif is_state('sensor.pws_weather', 'Thunderstorm') %}
+          homeassistant.turn_on
         {% else %}
-            homeassistant.turn_off
+          homeassistant.turn_off
         {% endif %}
-      entity_id: input_boolean.rain
+      data:
+        entity_id: input_boolean.rain
 
 #    - service: notify.pushbullet
-#      data:
+#      data_template:
 #        title: "Weather: Predicted Rain"
 #        target: "device/Chrome"
-#        message: "Chance of rain is: {{ states.sensor.dark_sky_precip_probability.state | int }}%"
-## notify iOS
+#        message: "Chance of rain is: {{ states('sensor.dark_sky_precip_probability')|int }}%"
+#    ## notify iOS
 #    - service: notify.ios_iphwn666
-#      data:
+#      data_template:
 #        title: "Weather: Predicted Rain"
-#        message: "Weather shows {{ states.sensor.pws_weather.state }} with a possible {{ states.sensor.dark_sky_daily_max_precip_intensity.state | int }} inches of rain"
+#        message: "Weather shows {{ states('sensor.pws_weather') }} with a possible {{ states('sensor.dark_sky_daily_max_precip_intensity')|int }} inches of rain"
 
 
 
@@ -167,26 +172,28 @@
 ###    syntax for else if service_template logic (simplified in producton, above)
 ##
 #  action:
-#    - service_template: >
-#        {% if states.sensor.pws_precip_today_in.state | float > 0 %}
+#    - service_template: >-
+#        {% if states('sensor.pws_precip_today_in')|float > 0 %}
 #          input_boolean.turn_on
-#        {% elif states.sensor.pws_precip_today_in.state | float == 0 %}
+#        {% elif states('sensor.pws_precip_today_in')|float == 0 %}
 #          input_boolean.turn_off
 #        {% else %}
 #        {% endif %}
-#      entity_id: input_boolean.rain
+#      data:
+#        entity_id: input_boolean.rain
 
 
 ## pretty much same as example above, but here for redundancy with a homeassistant.turn_on/off
 #  action:
-#    - service_template: >
-#        {% if states.sensor.pws_precip_today_in.state | float > 0 %}
+#    - service_template: >-
+#        {% if states('sensor.pws_precip_today_in')|float > 0 %}
 #          homeassistant.turn_on
-#        {% elif states.sensor.pws_precip_today_in.state | float == 0  %}
+#        {% elif states('sensor.pws_precip_today_in')|float == 0  %}
 #          homeassistant.turn_off
 #        {% else %}
 #        {% endif %}
-#      entity_id: input_boolean.rain
+#      data:
+#        entity_id: input_boolean.rain
 
 #####################################################
 #- alias: peak hours on
@@ -200,22 +207,23 @@
 #      event_type: homeassistant_start
 #
 #  condition:
-#    condition: or
-#    conditions:
-#      - condition: time
-#        after: '14:59:59'
-#        before: '17:59:59'
+#    - condition: or
+#      conditions:
+#        - condition: time
+#          after: '14:59:59'
+#          before: '17:59:59'
 #
-#      - condition: time
-#        after: '01:29:59'
-#        before: '03:59:59'
+#        - condition: time
+#          after: '01:29:59'
+#          before: '03:59:59'
 #
 #  action:
 #    - service: input_boolean.turn_on
-#      entity_id: input_boolean.peak_hours
-#  #  - service: notify.pushbullet
-#  #    data:
-#  #      message: "Peak Hours On. Downstairs temp is: {{ states('sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1') }}"
+#      data:
+#        entity_id: input_boolean.peak_hours
+#    - service: notify.pushbullet
+#      data_template:
+#        message: "Peak Hours On. Downstairs temp is: {{ states('sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1') }}"
 ##################################################################################################################
 #- alias: peak hours off
 #  hide_entity: True
@@ -228,20 +236,21 @@
 #      event_type: homeassistant_start
 #
 #  condition:
-#    condition: or
-#    conditions:
-#      - condition: time
-#        after: '03:59:59'
-#        before: '15:00:00'
+#    - condition: or
+#      conditions:
+#        - condition: time
+#          after: '03:59:59'
+#          before: '15:00:00'
 #
-#      - condition: time
-#        after: '18:00:00'
-#        before: '01:29:59'
+#        - condition: time
+#          after: '18:00:00'
+#          before: '01:29:59'
 #
 #  action:
 #    - service: input_boolean.turn_off
-#      entity_id: input_boolean.peak_hours
-#  #  - service: notify.pushbullet
-#  #    data:
-#  #      message: "Peak Hours Off. Downstairs temp is: {{ states('sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1') }}"
+#      data:
+#        entity_id: input_boolean.peak_hours
+#    - service: notify.pushbullet
+#      data_template:
+#        message: "Peak Hours Off. Downstairs temp is: {{ states('sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1') }}"
 ##################################################################################################################
