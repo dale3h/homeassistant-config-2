@@ -4,10 +4,11 @@
 
 - alias: heat upstairs if too cold
   trigger:
-    - platform: template
-      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state < '66' }}"
+    - platform: numeric_state
+      entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
+      below: 66
 
-# kick the heat on for 3 hours
+  # kick the heat on for 3 hours
   action:
     - service: script.heat_upstairs_180min
 
@@ -17,8 +18,9 @@
 
 - alias: upstairs heating triggered
   trigger:
-    - platform: template
-      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state < '69' }}"
+    - platform: numeric_state
+      entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
+      below: 69
 
   condition:
     - condition: state
@@ -47,7 +49,7 @@
           entity_id: input_boolean.visitor_mode
           state: 'on'
 
-# kick the heat on for 3 hours
+  # kick the heat on for 3 hours
   action:
     - service: script.heat_upstairs_180min
 
@@ -75,11 +77,11 @@
 
     - condition: time
       weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
 
     - condition: or
       conditions:
@@ -91,7 +93,7 @@
           entity_id: input_boolean.visitor_mode
           state: 'on'
 
-# kick the heat on for 3 hours
+  # kick the heat on for 3 hours
   action:
     - service: script.heat_upstairs_180min
 
@@ -119,11 +121,11 @@
 
     - condition: time
       weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - sun
+        - mon
+        - tue
+        - wed
+        - thu
+        - sun
 
     - condition: or
       conditions:
@@ -145,7 +147,6 @@
 
 - alias: upstairs heating weekend nights
   trigger:
-
     - platform: time
       after: '21:59:59'
 
@@ -164,8 +165,8 @@
 
     - condition: time
       weekday:
-      - fri
-      - sat
+        - fri
+        - sat
 
     - condition: or
       conditions:
@@ -177,7 +178,7 @@
           entity_id: input_boolean.visitor_mode
           state: 'on'
 
-# kick the heat on for 3 hours
+  # kick the heat on for 3 hours
   action:
     - service: script.heat_upstairs_180min
 
@@ -187,7 +188,6 @@
 
 - alias: upstairs heating weekend mornings
   trigger:
-
     - platform: time
       after: '06:59:59'
 
@@ -206,8 +206,8 @@
 
     - condition: time
       weekday:
-      - sat
-      - sun
+        - sat
+        - sun
 
     - condition: or
       conditions:
@@ -219,6 +219,6 @@
           entity_id: input_boolean.visitor_mode
           state: 'on'
 
-# kick the heat on for 3 hours
+  # kick the heat on for 3 hours
   action:
     - service: script.heat_upstairs_180min
