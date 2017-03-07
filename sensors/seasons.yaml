@@ -2,27 +2,19 @@
 - platform: template
   sensors:
     season:
-      value_template: >-
-        {%- if states('sensor.pws_temp_f') == None -%}
-            Unknown
-        {%- elif 70 <= states('sensor.pws_temp_f') | float <= 83 -%}
-            Awesome
-        {%- elif states('sensor.pws_temp_f') | float < 70 -%}
-          Winter
-        {%- elif states('sensor.pws_temp_f') | float > 83 -%}
-          Summer
-        {%- else -%}
-            states('sensor.pws_temp_f')
-        {%- endif %}
       friendly_name: "Season"
+      # @dale3h: Added optional input_slider to set temperature thresholds
+      value_template: >-
+        {% set temperature = states('sensor.pws_temp_f')|float(none) %}
+        {% set winter_temp = states.input_slider.season_winter.state|default(70)|float %}
+        {% set summer_temp = states.input_slider.season_summer.state|default(83)|float %}
 
-### old values (working but trying to remover "undefined error"
-#        {%- if 70 <= states.sensor.pws_temp_f.state | float <= 83 -%}
-#            Awesome
-#          {%- elif states.sensor.pws_temp_f.state | float < 70 -%}
-#            Winter
-#          {%- elif states.sensor.pws_temp_f.state | float > 83 -%}
-#            Summer
-#        {%- else -%}
-#            {{ states.sensor.pws_temp_f.state }}
-#        {%- endif %}
+        {% if temperature is none %}
+          {{ states('sensor.pws_temp_f') }}
+        {% elif temperature < winter_temp %}
+          Winter
+        {% elif temperature > summer_temp %}
+          Summer
+        {% else %}
+          Awesome
+        {% endif %}
