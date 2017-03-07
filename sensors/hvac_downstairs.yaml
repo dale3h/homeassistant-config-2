@@ -1,4 +1,3 @@
-
 #####################################################################
 ### HVAC Downstairs
 #####################################################################
@@ -8,84 +7,43 @@
   entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1
   name: Downstairs Thermostat Statistics
 
-## Downstairs Thermostat Mode
 - platform: template
   sensors:
+    ## Downstairs Thermostat Mode
     hvac_downstairs_mode:
       friendly_name: "Downstairs Thermostat Mode"
-      value_template: >-
-        {%- if states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2') != None -%}
-          {{ states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2') }}
-        {%- else -%}
-          Unknown
-        {%- endif -%}
+      # This automatically returns "unknown" if the state is not set
+      value_template: "{{ states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2') }}"
 
-## Downstairs Fan State
-- platform: template
-  sensors:
+    ## Downstairs Fan State
     hvac_downstairs_fan:
       friendly_name: "Downstairs HVAC Fan"
-      value_template: >-
-        {%- if states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes.fan_state != None -%}
-          {{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes.fan_state }}
-        {%- else -%}
-          Unknown
-        {%- endif -%}
+      value_template: "{{ (states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes|default({})).fan_state|default('unknown') }}"
 
-## Downstairs AC Temp Setpoint
-- platform: template
-  sensors:
+    ## Downstairs AC Temp Setpoint
     hvac_downstairs_ac_setpoint:
       friendly_name: "Downstairs AC Setpoint"
-      value_template: >-
-        {%- if states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes.temperature != None -%}
-          {{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes.temperature }}
-        {%- else -%}
-          Unknown
-        {%- endif -%}
+      value_template: "{{ (states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_18_2'].attributes|default({})).temperature|default('unknown') }}"
 
-## Downstairs Heat Temp Setpoint
-- platform: template
-  sensors:
+    ## Downstairs Heat Temp Setpoint
     hvac_downstairs_heat_setpoint:
       friendly_name: "Downstairs Heat Setpoint"
-      value_template: >-
-        {%- if states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_18_1'].attributes.temperature != None -%}
-          {{ states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_18_1'].attributes.temperature }}
-        {%- else -%}
-          Unknown
-        {%- endif -%}
+      value_template: "{{ (states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_18_1'].attributes|default({})).temperature|default('unknown') }}"
 
-## Downstairs Climate
-- platform: template
-  sensors:
+    ## Downstairs Climate
     hvac_downstairs_climate:
-      value_template: >-
-        {%- if states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state == None -%}
-            Unknown
-        {%- elif 69.5 <= states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state|float <= 80.5 -%}
-            Comfy
-        {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1") | float < 69.5 -%}
-          Cold
-        {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1") | float > 80.5 -%}
-            Hot
-        {%- else -%}
-            states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state
-        {%- endif %}
       friendly_name: "Downstairs Climate"
-      
-### Downstairs Climate
-#- platform: template
-#  sensors:
-#    hvac_downstairs_climate:
-#      value_template: >-
-#        {%- if 69.5 <= states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state|float <= 80.5 -%}
-#            Comfy
-#          {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1") | float < 69.5 -%}
-#            Cold
-#          {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1") | float > 80.5 -%}
-#            Hot
-#        {%- else -%}
-#            Unknown
-#        {%- endif %}
-#      friendly_name: "Downstairs Climate"
+      value_template: >-
+        {% set temperature = states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state|default(0)|float %}
+
+        {% if not temperature %}
+          {{ states('sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1') }}
+        {% elif 68.5 <= temperature <= 83.5 %}
+          Comfy
+        {% elif temperature < 68.5 %}
+          Cold
+        {% elif temperature > 83.5 %}
+          Hot
+        {% else %}
+          {{ temperature }}
+        {% endif %}
