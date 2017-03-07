@@ -4,10 +4,11 @@
 
 - alias: cool upstairs if too hot
   trigger:
-    - platform: template
-      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state > '87' }}"
+    - platform: numeric_state
+      entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
+      above: 87
 
-# kick the AC on for 3 hours
+  # kick the AC on for 3 hours
   action:
     - service: script.cool_upstairs_180min
 
@@ -17,8 +18,9 @@
 
 - alias: upstairs cooling triggered
   trigger:
-    - platform: template
-      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state > '82.5' }}"
+    - platform: numeric_state
+      entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
+      above: 82.5
 
   condition:
     - condition: state
@@ -47,7 +49,7 @@
           entity_id: input_boolean.visitor_mode
           state: 'on'
 
-# kick the AC on for 3 hours
+  # kick the AC on for 3 hours
   action:
     - service: script.cool_upstairs_180min
 
@@ -75,11 +77,11 @@
 
     - condition: time
       weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
 
     - condition: or
       conditions:
@@ -91,7 +93,7 @@
           entity_id: input_boolean.visitor_mode
           state: 'on'
 
-# kick the AC on for 3 hours
+  # kick the AC on for 3 hours
   action:
     - service: script.cool_upstairs_180min
 
@@ -119,11 +121,11 @@
 
     - condition: time
       weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - sun
+        - mon
+        - tue
+        - wed
+        - thu
+        - sun
 
     - condition: or
       conditions:
@@ -135,7 +137,7 @@
           entity_id: input_boolean.visitor_mode
           state: 'on'
 
-# kick the AC on for 3 hours
+  # kick the AC on for 3 hours
   action:
     - service: script.cool_upstairs_180min
 
@@ -163,8 +165,8 @@
 
     - condition: time
       weekday:
-      - fri
-      - sat
+        - fri
+        - sat
 
     - condition: or
       conditions:
@@ -176,7 +178,7 @@
           entity_id: input_boolean.visitor_mode
           state: 'on'
 
-# kick the AC on for 3 hours
+  # kick the AC on for 3 hours
   action:
     - service: script.cool_upstairs_180min
 
@@ -196,9 +198,10 @@
       entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
       state: 'Cool'
 
-    - condition: template
-      value_template: "{{ states.sensor.hvac_upstairs_ac_setpoint.state > '80' }}"
+    - condition: numeric_state
+      entity_id: sensor.hvac_upstairs_ac_setpoint
+      above: 80
 
-# kick the AC on for 3 hours
+  # kick the AC on for 3 hours
   action:
     - service: script.cool_upstairs_120min
