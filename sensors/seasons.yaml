@@ -5,15 +5,16 @@
       friendly_name: "Season"
       # @dale3h: Added optional input_slider to set temperature thresholds
       value_template: >-
-        {% set temperature = states('sensor.pws_temp_f')|float(none) %}
-        {% set winter_temp = states.input_slider.season_winter.state|default(70)|float %}
-        {% set summer_temp = states.input_slider.season_summer.state|default(83)|float %}
-
-        {% if temperature is none %}
-          {{ states('sensor.pws_temp_f') }}
-        {% elif temperature < winter_temp %}
+        {% set temp_entity = 'sensor.pws_temp_f' %}
+        {% set temp = states(temp_entity)|float(none) %}
+        {% set temp_min = states.input_slider.season_winter.state|default(70)|float %}
+        {% set temp_max = states.input_slider.season_summer.state|default(83)|float %}
+        
+        {% if temp is none %}
+          {{ states(temp_entity) }}
+        {% elif temp < temp_min %}
           Winter
-        {% elif temperature > summer_temp %}
+        {% elif temp > temp_max %}
           Summer
         {% else %}
           Awesome
