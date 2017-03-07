@@ -7,5 +7,5 @@
 - platform: template
   sensors:
     peak_hours_status:
-      value_template: "{{ states.input_boolean.peak_hours.state }}"
+      value_template: "{{ is_state('input_boolean.peak_hours', 'on') or false }}"
       friendly_name: "Peak Hours"
