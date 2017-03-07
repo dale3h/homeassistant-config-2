@@ -4,15 +4,15 @@
 
 - alias: test input_boolean condition 1
   trigger:
-
     - platform: state
       entity_id: input_boolean.state_change
       from: 'off'
       to: 'on'
 
   condition:
-    - condition: template
-      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state < '72' }}"
+    - condition: numeric_state
+      entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
+      below: 72
 
     - condition: time
       weekday:
@@ -59,7 +59,6 @@
 
 - alias: test input_boolean condition 2
   trigger:
-
     - platform: state
       entity_id: input_boolean.state_change
       from: 'off'
@@ -100,7 +99,6 @@
 
 - alias: test input_boolean condition 3
   trigger:
-
     - platform: state
       entity_id: input_boolean.state_change
       from: 'off'
@@ -138,7 +136,6 @@
 ####################################################
 - alias: test input_boolean off
   trigger:
-
     - platform: state
       entity_id: input_boolean.state_change
       from: 'on'
