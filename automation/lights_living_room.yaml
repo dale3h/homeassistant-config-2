@@ -15,11 +15,12 @@
       state: 'on'
 
     - condition: template
-      value_template: "{{ states.media_player.kodi_living_room.state != 'playing' }}"
+      value_template: "{{ not is_state('media_player.kodi_living_room', 'playing') }}"
 
   action:
     - service: scene.turn_on
-      entity_id: scene.living_room_normal
+      data:
+        entity_id: scene.living_room_normal
 
 #####################################################################
 ### Turn off the lights if the sun is up
@@ -30,7 +31,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sun.sun
-      value_template: '{{ state.attributes.elevation }}'
+      value_template: "{{ state.attributes.elevation }}"
       above: 1.8
 
   condition:
@@ -54,10 +55,10 @@
 
 - alias: turn on lights upon arrival
   trigger:
-    platform: state
-    entity_id: group.family
-    from: 'off'
-    to: 'on'
+    - platform: state
+      entity_id: group.family
+      from: 'off'
+      to: 'on'
 
   condition:
     - condition: state
@@ -65,13 +66,14 @@
       state: 'below_horizon'
 
   action:
-# notify Chrome
+    # notify Chrome
     - service: notify.pushbullet
       data:
         title: "Welcome Home"
         target: "device/Chrome"
         message: "Turning on some lights"
-# notify iOS
+
+    # notify iOS
     - service: notify.ios_iphwn666
       data:
         title: "Welcome Home"
@@ -81,13 +83,15 @@
             sound: "US-EN-Alexa-Welcome-Home.wav"
 
     - service: scene.turn_on
-      entity_id: scene.living_room_bright
+      data:
+        entity_id: scene.living_room_bright
 
     - delay:
         minutes: 5
 
     - service: scene.turn_on
-      entity_id: scene.living_room_normal
+      data:
+        entity_id: scene.living_room_normal
 
 #####################################################################
 ### Set the Living Room Cloudy Scene
@@ -118,7 +122,7 @@
       state: 'on'
 
     - condition: template
-      value_template: "{{ states.media_player.kodi_living_room.state != 'playing' }}"
+      value_template: "{{ not is_state('media_player.kodi_living_room', 'playing') }}"
 
     - condition: time
       after: '08:00:00'
@@ -130,17 +134,18 @@
 
     - condition: or
       conditions:
-      - condition: state
-        entity_id: input_boolean.rain
-        state: 'on'
+        - condition: state
+          entity_id: input_boolean.rain
+          state: 'on'
 
-      - condition: numeric_state
-        entity_id: sensor.dark_sky_precip_intensity
-        above: 1
+        - condition: numeric_state
+          entity_id: sensor.dark_sky_precip_intensity
+          above: 1
 
   action:
     - service: scene.turn_on
-      entity_id: scene.living_room_cloudy
+      data:
+        entity_id: scene.living_room_cloudy
 
 #####################################################################
 ### Turn off the lights when rain has stopped
@@ -176,7 +181,9 @@
 
   action:
     - service: homeassistant.turn_off
-      entity_id: group.living_room
+      data:
+        entity_id: group.living_room
 
     - service: homeassistant.turn_off
-      entity_id: group.entry_lighting
+      data:
+        entity_id: group.entry_lighting
