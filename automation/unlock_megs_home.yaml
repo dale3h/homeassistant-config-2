@@ -9,11 +9,11 @@
       from: 'off'
       to: 'on'
 
-# door should be locked
+  # door should be locked
   condition:
     - condition: template
-      value_template: "{{ states.lock.assa_abloy_yale_real_living_captouch_lever_locked_16_0.state == 'locked' }}"
+      value_template: "{{ is_state('lock.assa_abloy_yale_real_living_captouch_lever_locked_16_0', 'locked') or false }}"
 
-# unlock the south door for Megs
+  # unlock the south door for Megs
   action:
     - service: script.unlock_megs
