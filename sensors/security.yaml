@@ -3,104 +3,91 @@
 ### SECURITY
 #####################################################################
 
-# Fibaro Motion Detector status
 - platform: template
   sensors:
+    # Fibaro Motion Detector status
     fibaro_state:
-# {{ states('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10') }}
       value_template: >-
-        {%- if states.sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10 == None -%}
-            Unknown
-        {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '0') -%}
-            Idle
-        {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '8') -%}
-            Motion Detected
-        {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '3') -%}
-            Tamper
-        {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '254') -%}
-            Sleeping
-        {%- else -%}
-            {{ states('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10') }}
-        {%- endif %}
+        {% set state = states('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10') %}
+        {% if state == '0' %}
+          Idle
+        {% elif state == '8' %}
+          Motion Detected
+        {% elif state == '3' %}
+          Tamper
+        {% elif state == '254' %}
+          Sleeping
+        {% else %}
+          {{ state|title }}
+        {% endif %}
 
-## original config -- trying to account for sensor attributes that are "NONE"
-#        {%- if is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '0') -%}
-#            Idle
-#          {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '8') -%}
-#            Motion Detected
-#          {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '3') -%}
-#            Tamper
-#          {%- elif is_state('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10', '254') -%}
-#            Sleeping
-#        {%- else -%}
-#            {{ states('sensor.fibaro_system_fgms001_motion_sensor_burglar_22_10') }}
-#        {%- endif %}
-
-#  Beach Door Status
-- platform: template
-  sensors:
+    # Beach Door Status
     lock_beach_door_status:
-      value_template: >-
-        {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '19') -%}
-          {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1', '1') -%}
-            Unlocked by Rick
-          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1', '2') -%}
-            Unlocked by Megs
-          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1', '3') -%}
-            Unlocked by Guest
-          {%- else -%}
-            Unlocked by user {{ sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1 }}
-          {%- endif %}
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '21') %}
-          Manually Locked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '22') %}
-          Manually Unlocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '24') %}
-          Auto Locked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '25') %}
-          Auto Unlocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '27') %}
-          Auto-Relocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '161') %}
-          Tamper
-        {%- else -%}
-            {{ states('sensor.lock_beach_door_status') }}
-        {%- endif %}
       friendly_name: "Beach Door Status"
-
-# South Door Status
-- platform: template
-  sensors:
-    lock_south_door_status:
       value_template: >-
-        {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '19') -%}
-          {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '1') -%}
+        {% set state = states('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0') %}
+        {% set user = states('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1') %}
+        
+        {% if state == '19' %}
+          {% if user == '1' %}
             Unlocked by Rick
-          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '2') -%}
+          {% elif user == '2' %}
             Unlocked by Megs
-          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '3') -%}
-            Unlocked by Angelica
-          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '4') -%}
-            Unlocked by Dog Sitter
-          {%- else -%}
-            Unlocked by user {{ sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1 }}
-          {%- endif %}
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '21') %}
+          {% elif user == '3' %}
+            Unlocked by Guest
+          {% else %}
+            Unlocked by user {{ user }}
+          {% endif %}
+        {% elif state == '21' %}
           Manually Locked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '22') %}
+        {% elif state == '22' %}
           Manually Unlocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '24') %}
+        {% elif state == '24' %}
           Auto Locked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '25') %}
+        {% elif state == '25' %}
           Auto Unlocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '27') %}
+        {% elif state == '27' %}
           Auto-Relocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '161') %}
+        {% elif state == '161' %}
           Tamper
-        {%- else -%}
-            {{ states('sensor.lock_south_door_status') }}
-        {%- endif %}
+        {% else %}
+          {{ state|title }}
+        {% endif %}
+
+    # South Door Status
+    lock_south_door_status:
       friendly_name: "South Door Status"
+      value_template: >-
+        {% set state = states('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0') %}
+        {% set user = states('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1') %}
+        
+        {% if state == '19' %}
+          {% if user == '1' %}
+            Unlocked by Rick
+          {% elif user == '2' %}
+            Unlocked by Megs
+          {% elif user == '3' %}
+            Unlocked by Angelica
+          {% elif user == '4' %}
+            Unlocked by Dog Sitter
+          {% else %}
+            Unlocked by user {{ user }}
+          {% endif %}
+        {% elif state == '21' %}
+          Manually Locked
+        {% elif state == '22' %}
+          Manually Unlocked
+        {% elif state == '24' %}
+          Auto Locked
+        {% elif state == '25' %}
+          Auto Unlocked
+        {% elif state == '27' %}
+          Auto-Relocked
+        {% elif state == '161' %}
+          Tamper
+        {% else %}
+          {{ state|title }}
+        {% endif %}
 
 ## Breaches
 - platform: haveibeenpwned
