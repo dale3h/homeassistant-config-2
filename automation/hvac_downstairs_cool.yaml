@@ -4,10 +4,11 @@
 
 - alias: cool downstairs if too hot
   trigger:
-    - platform: template
-      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state > '84.5' }}"
+    - platform: numeric_state
+      entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1
+      above: 84.5
 
-# kick the AC on for 3 hours
+  # kick the AC on for 3 hours
   action:
     - service: script.cool_downstairs_180min
 
@@ -17,11 +18,13 @@
 
 - alias: downstairs cooling triggered
   trigger:
-    - platform: template
-      value_template: "{{ states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state > '79.5' }}"
+    - platform: numeric_state
+      entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1
+      above: 79.5
 
-#    - platform: template
-#      value_template: "{% if is_state('sensor.hvac_downstairs_climate', 'Hot') %}true{% endif %}"
+#    - platform: state
+#      entity_id: sensor.hvac_downstairs_climate
+#      to: 'Hot'
 
   condition:
     - condition: state
@@ -54,7 +57,7 @@
           entity_id: input_boolean.visitor_mode
           state: 'on'
 
-# kick the AC on for 3 hours
+  # kick the AC on for 3 hours
   action:
     - service: script.cool_downstairs_180min
 
@@ -82,11 +85,11 @@
 
     - condition: time
       weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
 
     - condition: or
       conditions:
@@ -98,7 +101,7 @@
           entity_id: input_boolean.visitor_mode
           state: 'on'
 
-# kick the AC on for 3 hours
+  # kick the AC on for 3 hours
   action:
     - service: script.cool_downstairs_180min
 
@@ -129,8 +132,8 @@
 
     - condition: time
       weekday:
-      - sat
-      - sun
+        - sat
+        - sun
 
     - condition: or
       conditions:
@@ -142,7 +145,7 @@
           entity_id: input_boolean.visitor_mode
           state: 'on'
 
-# kick the AC on for 3 hours
+  # kick the AC on for 3 hours
   action:
     - service: script.cool_downstairs_180min
 
@@ -169,11 +172,12 @@
 
   action:
     - service: script.turn_off
-      entity_id: script.cool_downstairs_180min
+      data:
+        entity_id: script.cool_downstairs_180min
 
     - service: climate.set_temperature
-      entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
       data:
+        entity_id: climate.2gig_technologies_ct101_thermostat_iris_cooling_1_18_2
         temperature: 82
 
 #####################################################################
@@ -182,12 +186,12 @@
 
 - alias: cool downstairs upon arrival
   trigger:
-    platform: state
-    entity_id: group.family
-    from: 'off'
-    to: 'on'
-    for:
-      minutes: 2
+    - platform: state
+      entity_id: group.family
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 2
 
   condition:
     - condition: state
