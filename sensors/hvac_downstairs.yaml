@@ -34,16 +34,17 @@
     hvac_downstairs_climate:
       friendly_name: "Downstairs Climate"
       value_template: >-
-        {% set temperature = states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_18_1'].state|default(0)|float %}
+        {% set temp_entity = 'sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1' %}
+        {% set temp = states(temp_entity)|float(none) %}
+        {% set temp_min = states.input_slider.comfort_min.state|default(68.5)|float %}
+        {% set temp_max = states.input_slider.comfort_hax.state|default(83.5)|float %}
 
-        {% if not temperature %}
-          {{ states('sensor.2gig_technologies_ct101_thermostat_iris_temperature_18_1') }}
-        {% elif 68.5 <= temperature <= 83.5 %}
-          Comfy
-        {% elif temperature < 68.5 %}
+        {% if temp is none %}
+          {{ states(temp_entity) }}
+        {% elif temp < temp_min %}
           Cold
-        {% elif temperature > 83.5 %}
+        {% elif temp > temp_max %}
           Hot
         {% else %}
-          {{ temperature }}
+          Comfy
         {% endif %}
