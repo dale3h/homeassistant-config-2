@@ -8,67 +8,43 @@
   entity_id: sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1
   name: Upstairs Thermostat Statistics
 
-## Upstairs Thermostat Mode
 - platform: template
   sensors:
+    ## Upstairs Thermostat Mode
     hvac_upstairs_mode:
       friendly_name: "Upstairs Thermostat Mode"
-      value_template: >-
-        {%- if states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2') != None -%}
-          {{ states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2') }}
-        {%- else -%}
-          Unknown
-        {%- endif -%}
+      # This automatically returns "unknown" if the state is not set
+      value_template: "{{ states('climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2') }}"
 
-- platform: template
-  sensors:
+    ## Upstairs Fan State
     hvac_upstairs_fan:
       friendly_name: "Upstairs HVAC Fan"
-      value_template: >-
-        {%- if states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes.fan_state != None -%}
-          {{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes.fan_state }}
-        {%- else -%}
-          Unknown
-        {%- endif -%}
+      value_template: "{{ (states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes|default({})).fan_state|default('unknown') }}"
 
-## Upstairs AC Temp Setpoint
-- platform: template
-  sensors:
+    ## Upstairs AC Temp Setpoint
     hvac_upstairs_ac_setpoint:
       friendly_name: "Upstairs AC Setpoint"
-      value_template: >-
-        {%- if states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes.temperature != None -%}
-          {{ states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes.temperature }}
-        {%- else -%}
-          Unknown
-        {%- endif -%}
+      value_template: "{{ (states.climate['2gig_technologies_ct101_thermostat_iris_cooling_1_24_2'].attributes|default({})).temperature|default('unknown') }}"
 
-## Upstairs Heat Temp Setpoint
-- platform: template
-  sensors:
+    ## Upstairs Heat Temp Setpoint
     hvac_upstairs_heat_setpoint:
       friendly_name: "Upstairs Heat Setpoint"
-      value_template: >-
-        {%- if states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_24_1'].attributes.temperature != None -%}
-          {{ states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_24_1'].attributes.temperature }}
-        {%- else -%}
-          Unknown
-        {%- endif -%}
+      value_template: "{{ (states.climate['2gig_technologies_ct101_thermostat_iris_heating_1_24_1'].attributes|default({})).temperature|default('unknown') }}"
 
-## Upstairs Climate
-- platform: template
-  sensors:
+    ## Upstairs Climate
     hvac_upstairs_climate:
-      value_template: >-
-        {%- if states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state == None -%}
-            Unknown
-        {%- elif 68.5 <= states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state|float <= 83.5 -%}
-            Comfy
-        {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1") | float < 68.5 -%}
-          Cold
-        {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1") | float > 83.5 -%}
-          Hot
-        {%- else -%}
-            states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state
-        {%- endif %}
       friendly_name: "Upstairs Climate"
+      value_template: >-
+        {% set temperature = states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state|default(0)|float %}
+
+        {% if not temperature %}
+          {{ states('sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1') }}
+        {% elif 68.5 <= temperature <= 83.5 %}
+          Comfy
+        {% elif temperature < 68.5 %}
+          Cold
+        {% elif temperature > 83.5 %}
+          Hot
+        {% else %}
+          {{ temperature }}
+        {% endif %}
