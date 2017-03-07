@@ -4,8 +4,9 @@
 
 - alias: hvac off during awesome weather
   trigger:
-    - platform: template
-      value_template: "{% if is_state('sensor.season', 'Awesome') %}true{% endif %}"
+    - platform: state
+      entity_id: sensor.season
+      to: 'Awesome'
 
   action:
     - service: climate.set_operation_mode
@@ -25,8 +26,9 @@
 - alias: hvac downstairs mode cool
   hide_entity: True
   trigger:
-    - platform: template
-      value_template: "{% if is_state('sensor.season', 'Summer') %}true{% endif %}"
+    - platform: state
+      entity_id: sensor.season
+      to: 'Summer'
 
   action:
     - service: climate.set_operation_mode
@@ -46,8 +48,9 @@
 - alias: hvac downstairs mode heat
   hide_entity: True
   trigger:
-    - platform: template
-      value_template: "{% if is_state('sensor.season', 'Winter') %}true{% endif %}"
+    - platform: state
+      entity_id: sensor.season
+      to: 'Winter'
 
   action:
     - service: climate.set_operation_mode
