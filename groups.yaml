@@ -8,7 +8,6 @@ default_view:
   entities:
     - group.travel_megs
     - group.travel_rick
-#    - group.device_status
 
 #####################################################################
 ### SECURITY VIEW
@@ -26,25 +25,24 @@ security:
     - group.breaches
 
 #####################################################################
-### ROOMS VIEW
+### INTERIOR DEVICES VIEW
 #####################################################################
 
-rooms:
-  name: Rooms
+interior:
+  name: Interior
   view: yes
-  icon: mdi:lightbulb
+  icon: mdi:home-variant
   entities:
     - group.living_room
+    - group.living_room_fan
     - group.kitchen
     - group.dining_room
     - group.entry_lighting
     - group.accent_lights
     - group.office
     - group.master_bedroom
+    - group.master_bedroom_fan
     - group.billiards_room
-    - group.yard
-    - group.pool
-    - group.porch
 
 #####################################################################
 ### CLIMATE VIEW
@@ -58,10 +56,23 @@ climate:
     - group.climate_status
     - group.downstairs_climate
     - group.downstairs_heating
-    - group.downstairs_cooling
+#    - group.downstairs_cooling
     - group.upstairs_climate
     - group.upstairs_heating
-    - group.upstairs_cooling
+#    - group.upstairs_cooling
+
+#####################################################################
+### EXTERIOR DEVICES VIEW
+#####################################################################
+
+exterior:
+  name: Exterior
+  view: yes
+  icon: mdi:theme-light-dark
+  entities:
+    - group.porch
+    - group.yard
+    - group.pool
 
 #####################################################################
 ### WEATHER VIEW
@@ -101,6 +112,9 @@ media:
   view: yes
   icon: mdi:theater
   entities:
+    - group.living_room_tv
+    - group.directv
+    - group.onkyo_amp
     - group.media_players
     - group.downloads
 
@@ -128,15 +142,9 @@ lab:
   entities:
     - group.family
     - group.triggers
-    - group.living_room_tv
-    - group.directv
-    - group.onkyo_amp
-    - group.living_room_fan
-    - group.master_bedroom_fan
     - group.test_conditions
     - group.hvac_downstairs
     - group.hvac_upstairs
-
 
 #####################################################################
 #####################################################################
@@ -206,6 +214,11 @@ Interior Lights:
 # Dining Room Chandelier
   - light.ge_12724_3way_dimmer_switch_level_34_0
 
+## Lights which do not report state (ceiling fans)
+Stateless Lights:
+  - switch.living_room_fan_light
+  - switch.master_bedroom_fan_light
+
 #####################################################################
 ### EXTERIOR LIGHTS (excluding Porch Lights)
 #####################################################################
@@ -213,7 +226,7 @@ Interior Lights:
 Exterior Lights:
 # patio lights
   - switch.ge_12722_onoff_relay_switch_switch_7_0
-# GE Outdoor wireless outlet: Party/Christmas lights
+# Party/Christmas lights - GE Outdoor wireless outlet
   - switch.ge_Unknown_type4f50_id3031_switch_23_0
 
 #####################################################################
@@ -250,6 +263,16 @@ Living Room:
   - light.living_room_lamp
   - group.living_room_ceiling
 
+Living Room Fan:
+  control: hidden
+  entities:
+  - input_select.living_room_fan_speed
+#  - switch.living_room_fan_low
+#  - switch.living_room_fan_medium
+#  - switch.living_room_fan_high
+#  - switch.living_room_fan_off
+  - switch.living_room_fan_light
+
 Living Room Ceiling:
   - light.northeast_ceiling
   - light.northwest_ceiling
@@ -267,6 +290,27 @@ Master Bedroom:
   - script.master_bedroom_night_time
   - script.mbr_night_light
   - switch.humidifier
+
+Master Bedroom Fan:
+  control: hidden
+  entities:
+  - input_select.master_bedroom_fan_speed
+  - input_select.master_bedroom_fan_options
+#  - switch.master_bedroom_fan_summer_mode
+#  - switch.master_bedroom_fan_off
+  - switch.master_bedroom_fan_light
+  - switch.master_bedroom_fan_delay
+#  - switch.master_bedroom_fan_vacation
+#  - switch.master_bedroom_fan_2_hour
+#  - switch.master_bedroom_fan_4_hour
+#  - switch.master_bedroom_fan_8_hour
+#  - switch.master_bedroom_fan_random
+#  - switch.master_bedroom_fan_1
+#  - switch.master_bedroom_fan_2
+#  - switch.master_bedroom_fan_3
+#  - switch.master_bedroom_fan_4
+#  - switch.master_bedroom_fan_5
+#  - switch.master_bedroom_fan_6
 
 Billiards Room:
   - switch.ge_45609_onoff_relay_switch_switch_2_0
@@ -462,9 +506,40 @@ Light and Switch Override:
 ### MEDIA PLAYERS
 #####################################################################
 
+Living Room TV:
+  control: hidden
+  entities:
+  - switch.living_room_tv_power
+  - switch.living_room_tv_volume
+  - switch.living_room_tv_mute
+  - input_select.living_room_tv_input
+  - media_player.kodi_living_room
+#  - switch.directv
+#  - switch.fire_tv
+#  - switch.chromecast
+
+DirecTV:
+  control: hidden
+  entities:
+  - switch.directv_power
+  - switch.directv_play
+
+Onkyo Amp:
+  control: hidden
+  entities:
+  - switch.amp_power
+  - switch.amp_volume
+  - switch.amp_mute
+  - input_select.onkyo_amp_input
+#  - switch.amp_input_movie
+#  - switch.amp_input_tv
+#  - switch.amp_input_dvd
+#  - switch.amp_input_ipod
+  - switch.amp_movie_mode
+  - switch.amp_music_mode
+
 Media Players:
   - media_player.kodi_office
-  - media_player.kodi_living_room
   - media_player.kodi_bedroom
   - media_player.apple_tv
 #  - media_player.rnmcast
@@ -541,66 +616,3 @@ HVAC Downstairs:
 HVAC Upstairs:
   - climate.2gig_technologies_ct101_thermostat_iris_cooling_1_24_2
   - climate.2gig_technologies_ct101_thermostat_iris_heating_1_24_1
-
-Living Room TV:
-  control: hidden
-  entities:
-  - switch.tv_power
-  - switch.tv_volume
-  - switch.mute_tv
-  - input_select.living_room_tv_input
-#  - switch.directv
-#  - switch.fire_tv
-#  - switch.chromecast
-
-DirecTV:
-  control: hidden
-  entities:
-  - switch.directv_power
-  - switch.directv_play
-
-Onkyo Amp:
-  control: hidden
-  entities:
-  - switch.amp_power
-  - switch.amp_volume
-  - switch.amp_mute
-  - input_select.onkyo_amp_input
-#  - switch.amp_input_movie
-#  - switch.amp_input_tv
-#  - switch.amp_input_dvd
-#  - switch.amp_input_ipod
-  - switch.amp_movie_mode
-  - switch.amp_music_mode
-
-Living Room Fan:
-  control: hidden
-  entities:
-  - input_select.living_room_fan_speed
-#  - switch.living_room_fan_low
-#  - switch.living_room_fan_medium
-#  - switch.living_room_fan_high
-#  - switch.living_room_fan_off
-  - switch.living_room_fan_light
-
-Master Bedroom Fan:
-  control: hidden
-  entities:
-  - input_select.living_room_fan_speed
-  - input_select.living_room_fan_options
-#  - switch.master_bedroom_fan_summer_mode
-#  - switch.master_bedroom_fan_off
-  - switch.master_bedroom_fan_light
-  - switch.master_bedroom_fan_delay
-#  - switch.master_bedroom_fan_vacation
-#  - switch.master_bedroom_fan_2_hour
-#  - switch.master_bedroom_fan_4_hour
-#  - switch.master_bedroom_fan_8_hour
-#  - switch.master_bedroom_fan_random
-#  - switch.master_bedroom_fan_1
-#  - switch.master_bedroom_fan_2
-#  - switch.master_bedroom_fan_3
-#  - switch.master_bedroom_fan_4
-#  - switch.master_bedroom_fan_5
-#  - switch.master_bedroom_fan_6
-

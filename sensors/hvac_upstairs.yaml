@@ -62,9 +62,9 @@
       value_template: >-
         {%- if states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state == None -%}
             Unknown
-        {%- elif 68.5 <= states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state|float <= 83.5 -%}
+        {%- elif 69 <= states.sensor['2gig_technologies_ct101_thermostat_iris_temperature_24_1'].state|float <= 83.5 -%}
             Comfy
-        {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1") | float < 68.5 -%}
+        {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1") | float < 69 -%}
           Cold
         {%- elif states("sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1") | float > 83.5 -%}
           Hot

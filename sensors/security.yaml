@@ -40,66 +40,68 @@
 - platform: template
   sensors:
     lock_beach_door_status:
-      value_template: >-
-        {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '19') -%}
-          {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1', '1') -%}
-            Unlocked by Rick
-          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1', '2') -%}
-            Unlocked by Megs
-          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1', '3') -%}
-            Unlocked by Guest
-          {%- else -%}
-            Unlocked by user {{ sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1 }}
-          {%- endif %}
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '21') %}
-          Manually Locked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '22') %}
-          Manually Unlocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '24') %}
-          Auto Locked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '25') %}
-          Auto Unlocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '27') %}
-          Auto-Relocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '161') %}
-          Tamper
-        {%- else -%}
-            {{ states('sensor.lock_beach_door_status') }}
-        {%- endif %}
+      value_template: "{{ states.lock.assa_abloy_yale_real_living_captouch_lever_locked_12_0.attributes.lock_status }}"
+#      value_template: >-
+#        {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '19') -%}
+#          {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1', '1') -%}
+#            Unlocked by Rick
+#          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1', '2') -%}
+#            Unlocked by Megs
+#          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1', '3') -%}
+#            Unlocked by Guest
+#          {%- else -%}
+#            Unlocked by user {{ sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_12_1 }}
+#          {%- endif %}
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '21') %}
+#          Manually Locked
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '22') %}
+#          Manually Unlocked
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '24') %}
+#          Auto Locked
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '25') %}
+#          Auto Unlocked
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '27') %}
+#          Auto-Relocked
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0', '161') %}
+#          Tamper
+#        {%- else -%}
+#            {{ states('sensor.lock_beach_door_status') }}
+#        {%- endif %}
       friendly_name: "Beach Door Status"
 
 # South Door Status
 - platform: template
   sensors:
     lock_south_door_status:
-      value_template: >-
-        {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '19') -%}
-          {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '1') -%}
-            Unlocked by Rick
-          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '2') -%}
-            Unlocked by Megs
-          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '3') -%}
-            Unlocked by Angelica
-          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '4') -%}
-            Unlocked by Dog Sitter
-          {%- else -%}
-            Unlocked by user {{ sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1 }}
-          {%- endif %}
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '21') %}
-          Manually Locked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '22') %}
-          Manually Unlocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '24') %}
-          Auto Locked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '25') %}
-          Auto Unlocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '27') %}
-          Auto-Relocked
-        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '161') %}
-          Tamper
-        {%- else -%}
-            {{ states('sensor.lock_south_door_status') }}
-        {%- endif %}
+      value_template: "{{ states.lock.assa_abloy_yale_real_living_captouch_lever_locked_16_0.attributes.lock_status }}"
+#      value_template: >-
+#        {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '19') -%}
+#          {%- if is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '1') -%}
+#            Unlocked by Rick
+#          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '2') -%}
+#            Unlocked by Megs
+#          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '3') -%}
+#            Unlocked by Angelica
+#          {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1', '4') -%}
+#            Unlocked by Dog Sitter
+#          {%- else -%}
+#            Unlocked by user {{ sensor.assa_abloy_yale_real_living_captouch_lever_alarm_level_16_1 }}
+#          {%- endif %}
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '21') %}
+#          Manually Locked
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '22') %}
+#          Manually Unlocked
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '24') %}
+#          Auto Locked
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '25') %}
+#          Auto Unlocked
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '27') %}
+#          Auto-Relocked
+#        {%- elif is_state('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0', '161') %}
+#          Tamper
+#        {%- else -%}
+#            {{ states('sensor.lock_south_door_status') }}
+#        {%- endif %}
       friendly_name: "South Door Status"
 
 ## Breaches

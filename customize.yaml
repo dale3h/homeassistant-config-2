@@ -39,7 +39,7 @@
 ## Billiards Room Lights
   switch.ge_45609_onoff_relay_switch_switch_2_0:
     friendly_name: "Billiards Lights"
-    icon: mdi:white-balance-incandescent
+    icon: mdi:ceiling-light
 
 ## Patio Lights
   switch.ge_12722_onoff_relay_switch_switch_7_0:
@@ -100,7 +100,7 @@
   light.ge_12724_3way_dimmer_switch_level_8_0:
     friendly_name: "Master Bedroom Chandelier"
     haaska_name: "Master Bedroom Chandelier"
-    icon: mdi:white-balance-incandescent
+    icon: mdi:ceiling-light
 
 ## Kitchen Lights
   light.ge_12724_3way_dimmer_switch_level_33_0:
@@ -110,7 +110,7 @@
 ## Dining Room Chandelier
   light.ge_12724_3way_dimmer_switch_level_34_0:
     friendly_name: "Dining Room Lights"
-    icon: mdi:white-balance-incandescent
+    icon: mdi:ceiling-light
 
 ## Flux RGB bulb
   light.flux_rgb:
