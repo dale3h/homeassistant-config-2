@@ -31,6 +31,9 @@ morning_weekday:
       brightness: 220
       transition: 60
 
+  - delay:
+      minutes: 5
+
 # turn on the living room lights
   - service: light.turn_on
     entity_id:
@@ -38,7 +41,10 @@ morning_weekday:
       - group.living_room_ceiling
     data:
       brightness: 140
-      transition: 600
+      transition: 120
+
+  - delay:
+      minutes: 5
 
 # turn on the kitchen lights
   - service: light.turn_on

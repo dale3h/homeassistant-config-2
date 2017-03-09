@@ -23,6 +23,7 @@
 
     # Beach Door Status
     lock_beach_door_status:
+
       friendly_name: "Beach Door Status"
       value_template: >-
         {% set state = states('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_12_0') %}
@@ -54,8 +55,12 @@
           {{ state|title }}
         {% endif %}
 
+      friendly_name: "Beach Door Status"
+
+
     # South Door Status
     lock_south_door_status:
+
       friendly_name: "South Door Status"
       value_template: >-
         {% set state = states('sensor.assa_abloy_yale_real_living_captouch_lever_alarm_type_16_0') %}
@@ -88,6 +93,9 @@
         {% else %}
           {{ state|title }}
         {% endif %}
+
+      friendly_name: "South Door Status"
+
 
 ## Breaches
 - platform: haveibeenpwned

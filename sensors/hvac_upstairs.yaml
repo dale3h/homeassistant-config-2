@@ -36,6 +36,7 @@
       friendly_name: "Upstairs Climate"
       # This would be a really good use case for macros... :(
       value_template: >-
+
         {% set temp_entity = 'sensor.2gig_technologies_ct101_thermostat_iris_temperature_24_1' %}
         {% set temp = states(temp_entity)|float(none) %}
         {% set temp_min = states.input_slider.comfort_min.state|default(68.5)|float %}
@@ -44,6 +45,7 @@
         {% if temp is none %}
           {{ states(temp_entity) }}
         {% elif temp < temp_min %}
+
           Cold
         {% elif temp > temp_max %}
           Hot

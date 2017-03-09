@@ -31,8 +31,9 @@
   trigger:
     - platform: numeric_state
       entity_id: sun.sun
-      value_template: "{{ state.attributes.elevation }}"
-      above: 1.8
+
+      value_template: '{{ state.attributes.elevation }}'
+      above: 1.95
 
   condition:
     - condition: state
@@ -44,10 +45,8 @@
       before: '08:00:00'
 
   action:
-    - service: light.turn_off
-
-    - service: switch.turn_off
-
+    - service: homeassistant.turn_off
+      entity_id: group.interior_lights
 
 #####################################################################
 ### Turn on some lights when we get home

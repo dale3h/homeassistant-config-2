@@ -15,7 +15,7 @@
     # Turn the corresponding switch on to send the fan speed command
     - service: switch.turn_on
       data_template:
-        entity_id: "switch.master_bedroom_fan_speed_{{ trigger.to_state.state|lower|replace(' ', '_') }}"
+        entity_id: "switch.master_bedroom_fan_{{ trigger.to_state.state|lower|replace(' ', '_') }}"
 
     # Reset the Input Select to "Select an option..."
     - service: input_select.select_option
